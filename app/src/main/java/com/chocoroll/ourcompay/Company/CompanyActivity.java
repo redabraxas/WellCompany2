@@ -1,9 +1,7 @@
 package com.chocoroll.ourcompay.Company;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -16,8 +14,6 @@ import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -26,18 +22,9 @@ import android.widget.TextView;
 import com.astuetz.PagerSlidingTabStrip;
 import com.chocoroll.ourcompay.Home.ReportListFragment;
 import com.chocoroll.ourcompay.R;
-import com.chocoroll.ourcompay.Retrofit.Retrofit;
-import com.chocoroll.ourcompay.model.Company;
-import com.chocoroll.ourcompay.model.Report;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import com.chocoroll.ourcompay.Model.Company;
 
 import java.io.InputStream;
-
-import retrofit.Callback;
-import retrofit.RestAdapter;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 
 public class CompanyActivity extends FragmentActivity {
 

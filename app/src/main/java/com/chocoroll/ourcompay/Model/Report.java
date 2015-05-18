@@ -1,4 +1,4 @@
-package com.chocoroll.ourcompay.model;
+package com.chocoroll.ourcompay.Model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

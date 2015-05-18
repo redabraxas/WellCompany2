@@ -16,8 +16,8 @@ import android.widget.ListView;
 
 import com.chocoroll.ourcompay.R;
 import com.chocoroll.ourcompay.Retrofit.Retrofit;
-import com.chocoroll.ourcompay.model.Report;
-import com.chocoroll.ourcompay.model.ReportAdapter;
+import com.chocoroll.ourcompay.Model.Report;
+import com.chocoroll.ourcompay.Model.ReportAdapter;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
