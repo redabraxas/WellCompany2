@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="main_color">#9976cfc8</color>
+
+    <color name="slide_line">#ffadb3bf</color>
+    <color name="slide_background">#ff57555c</color>
+
+
+    <color name="tab_background">#ff9e8fff</color>
+    <color name="tab_indicate">#ff5f55ac</color>
+
+</resources>

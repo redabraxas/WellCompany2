@@ -1,0 +1,8 @@
+<resources>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="slidingmenuWidth">15dp</dimen>
+    <dimen name="slidingmenuOffset">63dp</dimen>
+    <dimen name="photo_width">130dp</dimen>
+    <dimen name="photo_height">130dp</dimen>
+</resources>
