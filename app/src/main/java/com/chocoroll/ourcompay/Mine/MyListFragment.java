@@ -3,7 +3,6 @@ package com.chocoroll.ourcompay.Mine;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +16,7 @@ import com.chocoroll.ourcompay.R;
 public class MyListFragment extends Fragment {
 
     String user_id;
+    String user_name;
 
     public MyListFragment() {
         // Required empty public constructor
