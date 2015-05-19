@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.chocoroll.ourcompay.R;
+import com.chocoroll.ourcompay.Report.ReportDetailFragment;
 import com.chocoroll.ourcompay.Retrofit.Retrofit;
 import com.chocoroll.ourcompay.Model.Report;
 import com.chocoroll.ourcompay.Model.ReportAdapter;
@@ -82,10 +84,10 @@ public class ReportListFragment extends Fragment implements HomeFragment.HomeFra
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Report item =(Report)mAdapter.getItem(i);
-//                Intent intent = new Intent(getActivity(), D.class);
-//                intent.putExtra("Report",item);
-//                startActivity(intent);
+
+                Report report = reportList.get(i);
+                ReportDetailFragment reportDetailFragment = ReportDetailFragment.newInstance(report);
+                getActivity().getSupportFragmentManager().beginTransaction().add(R.id.container, reportDetailFragment).addToBackStack(null).commit();
 
 
             }

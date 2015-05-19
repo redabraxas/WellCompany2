@@ -1,6 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
 <merger version="3"><dataSet config="debug"><source path="H:\내문서\AndroidStudioProjects\Project\OurCompany\PagerSlidingTabStrip\build\intermediates\bundles\debug\assets"/></dataSet><dataSet config="main"><source path="H:\내문서\AndroidStudioProjects\Project\OurCompany\PagerSlidingTabStrip\src\androidTest\assets"/></dataSet></merger>
-=======
-<merger version="3"><dataSet config="debug"><source path="C:\Users\L G\Desktop\welcompany\WellCompany2\PagerSlidingTabStrip\build\intermediates\bundles\debug\assets"/></dataSet><dataSet config="main"><source path="C:\Users\L G\Desktop\welcompany\WellCompany2\PagerSlidingTabStrip\src\androidTest\assets"/></dataSet></merger>
->>>>>>> 738268798c482120a0cbe5ebc3cb48251894e125
