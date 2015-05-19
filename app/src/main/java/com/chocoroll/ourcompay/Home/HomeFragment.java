@@ -146,8 +146,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        ((HomeFragmentListner)companyListFragment).setCategoryList("전체보기","전체보기","");
-        ((HomeFragmentListner)reportListFragment).setCategoryList("전체보기","전체보기","");
+
         return v;
     }
 
@@ -170,10 +169,10 @@ public class HomeFragment extends Fragment {
         public Fragment getItem(int position) {
            switch (position){
                case 0:
-
+                   ((HomeFragmentListner)companyListFragment).setCategoryList("전체보기","전체보기","");
                    return companyListFragment;
                case 1:
-
+                   ((HomeFragmentListner)reportListFragment).setCategoryList("전체보기","전체보기","");
                    return reportListFragment;
            }
 

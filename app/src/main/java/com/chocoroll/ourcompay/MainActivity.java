@@ -86,10 +86,6 @@ public class MainActivity extends FragmentActivity {
             }
         });
 
-        slidingMenu.setMenu(R.layout.slide_menu_user);
-
-
-
 
         // 자동로그인에 체크가 되어있따면
         SharedPreferences setting = getSharedPreferences("setting", MODE_PRIVATE);
@@ -109,8 +105,7 @@ public class MainActivity extends FragmentActivity {
             Login(info);
 
         }else{
-            //menu_setting(LOGOUTUSER);
-            menu_setting(USER);
+            menu_setting(LOGOUTUSER);
         }
     }
 
@@ -151,6 +146,7 @@ public class MainActivity extends FragmentActivity {
                     slidingMenu.showContent(true);
                     Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                     startActivity(intent);
+
                 }
             });
 

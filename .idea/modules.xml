@@ -5,6 +5,10 @@
       <module fileurl="file://$PROJECT_DIR$/OurCompany.iml" filepath="$PROJECT_DIR$/OurCompany.iml" />
       <module fileurl="file://$PROJECT_DIR$/PagerSlidingTabStrip/PagerSlidingTabStrip.iml" filepath="$PROJECT_DIR$/PagerSlidingTabStrip/PagerSlidingTabStrip.iml" />
       <module fileurl="file://$PROJECT_DIR$/SlidingMenu/SlidingMenu.iml" filepath="$PROJECT_DIR$/SlidingMenu/SlidingMenu.iml" />
+<<<<<<< HEAD
+=======
+      <module fileurl="file://$PROJECT_DIR$/WellCompany2.iml" filepath="$PROJECT_DIR$/WellCompany2.iml" />
+>>>>>>> 738268798c482120a0cbe5ebc3cb48251894e125
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
