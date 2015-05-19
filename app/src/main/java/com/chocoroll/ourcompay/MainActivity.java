@@ -151,6 +151,7 @@ public class MainActivity extends FragmentActivity {
                     slidingMenu.showContent(true);
                     Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                     startActivity(intent);
+
                 }
             });
 
