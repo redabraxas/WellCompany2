@@ -33,6 +33,9 @@ public interface Retrofit {
     @POST("/qna/enrollcompanyA.php")
     public void sendAnswer(@Body JsonObject info, Callback<String> callback);
 
+    // 나의 신청내역 가져오기
+    @POST("/list/MyReservation.php")
+    public void getMyApplyList(@Body JsonObject info, Callback<JsonArray> callback);
 
 
 }
