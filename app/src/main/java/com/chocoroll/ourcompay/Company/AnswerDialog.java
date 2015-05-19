@@ -154,7 +154,6 @@ public class AnswerDialog extends Dialog{
                                 answerList.add(new Answer(num,writer,date,content));
 
                             }
-                            Collections.reverse(answerList);
                             m_ListView.setAdapter(m_Adapter);
 
 
