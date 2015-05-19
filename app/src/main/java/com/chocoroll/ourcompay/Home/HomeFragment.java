@@ -1,6 +1,7 @@
 package com.chocoroll.ourcompay.Home;
 
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -26,6 +27,8 @@ import com.chocoroll.ourcompay.R;
  * A simple {@link Fragment} subclass.
  */
 public class HomeFragment extends Fragment {
+
+    Activity mActivity;
 
     public interface HomeFragmentListner{
         void setCategoryList(String bCategory, String sCategory, String search);
@@ -193,6 +196,11 @@ public class HomeFragment extends Fragment {
     }
 
 
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        mActivity = activity;
+    }
 
 
 }

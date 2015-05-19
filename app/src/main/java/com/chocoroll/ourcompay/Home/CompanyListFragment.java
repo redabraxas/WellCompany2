@@ -1,6 +1,7 @@
 package com.chocoroll.ourcompay.Home;
 
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -35,6 +36,8 @@ import retrofit.client.Response;
  * A simple {@link Fragment} subclass.
  */
 public class CompanyListFragment extends Fragment implements HomeFragment.HomeFragmentListner{
+
+    Activity mActivity;
 
     ProgressDialog dialog;
     ArrayList<Company> companyList = new ArrayList<Company>();
@@ -149,8 +152,8 @@ public class CompanyListFragment extends Fragment implements HomeFragment.HomeFr
                         @Override
                         public void failure(RetrofitError retrofitError) {
 //                            dialog.dismiss();
-                            Log.e("error", retrofitError.getCause().toString());
-                            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+                            AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
                             builder.setTitle("네트워크가 불안정합니다.")        // 제목 설정
                                     .setMessage("네트워크를 확인해주세요")        // 메세지 설정
                                     .setCancelable(false)        // 뒤로 버튼 클릭시 취소 가능 설정
@@ -180,5 +183,11 @@ public class CompanyListFragment extends Fragment implements HomeFragment.HomeFr
     @Override
     public void setCategoryList(String bCategory, String sCategory, String search) {
         getCompanyList(bCategory,sCategory,search);
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        mActivity = activity;
     }
 }

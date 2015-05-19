@@ -1,6 +1,7 @@
 package com.chocoroll.ourcompay.Home;
 
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -33,6 +34,7 @@ import retrofit.client.Response;
  */
 public class ReportListFragment extends Fragment implements HomeFragment.HomeFragmentListner{
 
+    Activity mActivity;
     ProgressDialog progressDialog;
 
     ArrayList<Report> reportList = new ArrayList<Report>();
@@ -156,7 +158,7 @@ public class ReportListFragment extends Fragment implements HomeFragment.HomeFra
                         @Override
                         public void failure(RetrofitError retrofitError) {
 //                            progressDialog.dismiss();
-                            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                            AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
                             builder.setTitle("네트워크가 불안정합니다.")        // 제목 설정
                                     .setMessage("네트워크를 확인해주세요")        // 메세지 설정
                                     .setCancelable(false)        // 뒤로 버튼 클릭시 취소 가능 설정
@@ -237,7 +239,7 @@ public class ReportListFragment extends Fragment implements HomeFragment.HomeFra
                         @Override
                         public void failure(RetrofitError retrofitError) {
                             progressDialog.dismiss();
-                            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                            AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
                             builder.setTitle("네트워크가 불안정합니다.")        // 제목 설정
                                     .setMessage("네트워크를 확인해주세요")        // 메세지 설정
                                     .setCancelable(false)        // 뒤로 버튼 클릭시 취소 가능 설정
@@ -265,5 +267,11 @@ public class ReportListFragment extends Fragment implements HomeFragment.HomeFra
     @Override
     public void setCategoryList(String bCategory, String sCategory, String search) {
         getReportList(bCategory,sCategory, search);
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        mActivity = activity;
     }
 }
