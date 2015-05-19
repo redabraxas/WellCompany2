@@ -24,6 +24,7 @@ import android.widget.TextView;
 import com.chocoroll.ourcompay.Login.JoinActivity;
 import com.chocoroll.ourcompay.Login.LoginActivity;
 import com.chocoroll.ourcompay.Retrofit.Retrofit;
+import com.chocoroll.ourcompay.UserMenu.MyApplyFragment;
 import com.google.gson.JsonObject;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
@@ -126,6 +127,7 @@ public class MainActivity extends FragmentActivity {
                 break;
             case COMPANY:
                 loginmode = COMPANY;
+                slidingMenu.setMenu(R.layout.slide_menu_company);
                 break;
             case ADMIN:
                 loginmode = ADMIN;
@@ -261,13 +263,13 @@ public class MainActivity extends FragmentActivity {
                     menu_myapply.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            slidingMenu.showContent(true);
-    //                    removeAllStack();
-    //                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-    //                    ft.replace(R.id.container, new WishDealFragment());
-    //                    ft.setTransition(FragmentTransaction.TRANSIT_NONE);
-    //                    ft.addToBackStack(null);
-    //                    ft.commit();
+                        slidingMenu.showContent(true);
+                        removeAllStack();
+                        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                        ft.replace(R.id.container, new MyApplyFragment());
+                        ft.setTransition(FragmentTransaction.TRANSIT_NONE);
+                        ft.addToBackStack(null);
+                        ft.commit();
                         }
                     });
 
