@@ -1,0 +1,145 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.chocoroll.ourcompay.Report.ReportDetailFragment"
+    android:background="#ffffff">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+
+        android:orientation="vertical"
+        android:weightSum="1"
+        >
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+>
+
+
+            <TextView
+                android:layout_width="10dp"
+                android:layout_height="40dp"
+                android:id="@+id/company_name"
+                android:layout_marginLeft="130dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_weight="1"
+                android:text="회사명"
+                />
+
+                    </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="130dp"
+                android:layout_height="40dp"
+                android:id="@+id/user_id"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="ID"
+                android:layout_weight="1"
+
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000"/>
+
+
+
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="1dp"
+
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="날짜"
+                android:layout_weight="1"
+                />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="10dp"
+                android:layout_height="40dp"
+                android:id="@+id/company_purpose"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_weight="1"
+                android:text="목적"
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:id="@+id/edit_content"
+                android:hint="내용"
+                android:layout_weight="2"
+
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:scaleType="fitStart"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:id="@+id/image"
+                android:layout_gravity="center_horizontal"
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</FrameLayout>
