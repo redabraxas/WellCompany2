@@ -21,6 +21,7 @@ import com.chocoroll.ourcompay.R;
 public class ReportDetailFragment extends Fragment {
 
     Report report;
+
     // TODO: Rename and change types and number of parameters
     public static ReportDetailFragment newInstance(Report report) {
         ReportDetailFragment fragment = new ReportDetailFragment();
