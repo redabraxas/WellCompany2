@@ -25,11 +25,6 @@ public class ReportDetailFragment extends Fragment {
 
     Report report;
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> afd732f85bca89cf872c89852cf3c46df1521cea
     // TODO: Rename and change types and number of parameters
     public static ReportDetailFragment newInstance(Report report) {
         ReportDetailFragment fragment = new ReportDetailFragment();
