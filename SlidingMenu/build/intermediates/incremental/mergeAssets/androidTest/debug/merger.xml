@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="debug"><source path="H:\내문서\AndroidStudioProjects\Project\WellCompany2\SlidingMenu\build\intermediates\bundles\debug\assets"/></dataSet><dataSet config="main"><source path="H:\내문서\AndroidStudioProjects\Project\WellCompany2\SlidingMenu\src\androidTest\assets"/></dataSet></merger>
+<merger version="3"><dataSet config="debug"><source path="/Users/HyeJi/AndroidStudioProjects/Welcompany/SlidingMenu/build/intermediates/bundles/debug/assets"/></dataSet><dataSet config="main"><source path="/Users/HyeJi/AndroidStudioProjects/Welcompany/SlidingMenu/src/androidTest/assets"/></dataSet></merger>

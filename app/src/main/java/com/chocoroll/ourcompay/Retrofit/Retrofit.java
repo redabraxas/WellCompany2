@@ -37,5 +37,16 @@ public interface Retrofit {
     @POST("/list/MyReservation.php")
     public void getMyApplyList(@Body JsonObject info, Callback<JsonArray> callback);
 
+    // 나의 리스트 가져오기
+    @POST("/list/showMyReport2.php")
+    public void getContentList(@Body JsonObject info, Callback<JsonArray> callback);
+    @POST("/list/showMyReport2.php")
+    public void getQnAList(@Body JsonObject info, Callback<JsonArray> callback);
+
+    // Deal만들기
+    @POST("/uploads/UploadReport.php")
+    public void UploadDeal(@Body JsonObject info, Callback<String> callback);
+
+
 
 }
