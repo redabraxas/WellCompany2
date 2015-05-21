@@ -1,6 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
-<merger version="3"><dataSet config="main"><source path="C:\Users\L G\Desktop\welcompany\WellCompany2\PagerSlidingTabStrip\src\main\assets"/></dataSet><dataSet config="debug"><source path="C:\Users\L G\Desktop\welcompany\WellCompany2\PagerSlidingTabStrip\src\debug\assets"/></dataSet></merger>
-=======
-<merger version="3"><dataSet config="main"><source path="H:\내문서\AndroidStudioProjects\Project\OurCompany\PagerSlidingTabStrip\src\main\assets"/></dataSet><dataSet config="debug"><source path="H:\내문서\AndroidStudioProjects\Project\OurCompany\PagerSlidingTabStrip\src\debug\assets"/></dataSet></merger>
->>>>>>> 9549f6e552b3dbf037d042394c0334da971fd675
+<merger version="3"><dataSet config="main"><source path="H:\내문서\AndroidStudioProjects\Project\WellCompany2\PagerSlidingTabStrip\src\main\assets"/></dataSet><dataSet config="debug"><source path="H:\내문서\AndroidStudioProjects\Project\WellCompany2\PagerSlidingTabStrip\src\debug\assets"/></dataSet></merger>

@@ -2,8 +2,4 @@
 <com.jeremyfeinstein.slidingmenu.lib.SlidingMenu xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/slidingmenumain"
     android:layout_width="fill_parent"
-<<<<<<< HEAD
-    android:layout_height="fill_parent" /><!-- From: file:/C:/Users/L%20G/Desktop/welcompany/WellCompany2/SlidingMenu/res/layout/slidingmenumain.xml -->
-=======
-    android:layout_height="fill_parent" /><!-- From: file:/H:/내문서/AndroidStudioProjects/Project/OurCompany/SlidingMenu/res/layout/slidingmenumain.xml -->
->>>>>>> 9549f6e552b3dbf037d042394c0334da971fd675
+    android:layout_height="fill_parent" /><!-- From: file:/H:/내문서/AndroidStudioProjects/Project/WellCompany2/SlidingMenu/res/layout/slidingmenumain.xml -->
