@@ -75,6 +75,7 @@ public class MyListFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_mylist, container, false);
 
+        Log.e("mylist", "1");
         // 내 아이디
         user_email = ((MainActivity)MainActivity.mContext).getUserId();
 
@@ -84,7 +85,6 @@ public class MyListFragment extends Fragment {
 
 
         getContentList(user_email,arMyreport);
-
 
        adapter = new ReportAdapter(getActivity(), R.layout.model_report, arMyreport);
 
@@ -109,7 +109,7 @@ public class MyListFragment extends Fragment {
 
 
 
-        getQnAList(user_email, arMyQnA);
+        //getQnAList(user_email, arMyQnA);
 
       adapter2 = new QnaAdapter(getActivity(), R.layout.model_qna_list, arMyQnA);
 
@@ -237,6 +237,8 @@ public class MyListFragment extends Fragment {
                             public void failure(RetrofitError retrofitError) {
                                 dialog.dismiss();
 
+                                Log.e("mylist", "2");
+                                Log.e("mylist", retrofitError.getCause().toString());
                                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                                 builder.setTitle("네트워크가 불안정합니다.")        // 제목 설정
                                         .setMessage("네트워크를 확인해주세요")        // 메세지 설정
