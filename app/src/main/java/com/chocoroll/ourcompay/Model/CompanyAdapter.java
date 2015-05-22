@@ -29,7 +29,7 @@ public class CompanyAdapter extends ArrayAdapter<Company> {
         this.items = items;
         this.context = context;
     }
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent) { //리스트뷰 한칸씩 출력될때마다 호출 됨
         View v = convertView;
         if (v == null) {
             LayoutInflater vi = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

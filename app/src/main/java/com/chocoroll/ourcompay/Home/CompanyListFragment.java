@@ -10,7 +10,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +17,10 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.chocoroll.ourcompay.Company.CompanyActivity;
-import com.chocoroll.ourcompay.R;
-import com.chocoroll.ourcompay.Retrofit.Retrofit;
 import com.chocoroll.ourcompay.Model.Company;
 import com.chocoroll.ourcompay.Model.CompanyAdapter;
+import com.chocoroll.ourcompay.R;
+import com.chocoroll.ourcompay.Retrofit.Retrofit;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
