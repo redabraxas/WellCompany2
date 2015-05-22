@@ -1,10 +1,80 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.chocoroll.ourcompay.Mine.MyListFragment">
+    tools:context="com.chocoroll.ourcompay.Mine.MyListFragment"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    >
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text = "내 글 목록"
+        android:textSize="20dp"/>
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </ListView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:layout_marginLeft="310dp"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text = ":::"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#336c97cf"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:paddingTop="5dp"
+        android:text = "내 질문 목록"
+        android:textSize="20dp"/>
+
+    <ListView
+        android:id="@+id/list2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </ListView>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:layout_marginLeft="310dp"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text = ":::"
+            />
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="15dp"
+    android:orientation="horizontal"
+    tools:context=".MainActivity"
+    android:layout_margin="2dp"
+    >
+
+
+    <TextView
+        android:id="@+id/QnA_date"
+        android:padding="4dp"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:text = "15/04/02"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:id = "@+id/QnA_title"
+        android:layout_marginLeft="4dp"
+        android:padding="4dp"
+        android:layout_width="212dp"
+        android:layout_height="wrap_content"
+        android:text = "카카오톡 답사 문의드립니다."
+        />
+
+    <TextView
+        android:id = "@+id/QnA_check"
+        android:layout_width="60dp"
+        android:layout_marginLeft="4dp"
+        android:padding="4dp"
+        android:layout_height="wrap_content"
+        android:text= "답변완료"
+        android:gravity="center"
+        />
+
+</LinearLayout>
