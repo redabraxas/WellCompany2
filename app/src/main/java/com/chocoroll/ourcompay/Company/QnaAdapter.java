@@ -53,7 +53,7 @@ public class QnaAdapter extends ArrayAdapter<Qna> {
                 @Override
                 public void onClick(View view) {
 
-                    AnswerDialog dialog = new AnswerDialog(context, companyNum, p.getNum(), repID, p.getWriter());
+                    AnswerDialog dialog = new AnswerDialog(context, p.getCom_num(), p.getNum(), repID, p.getWriter());
                     dialog.show();
                 }
             });

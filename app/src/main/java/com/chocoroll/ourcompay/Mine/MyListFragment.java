@@ -215,13 +215,14 @@ public class MyListFragment extends Fragment {
 
                                 for (int i = 0; i < jsonElements.size(); i++) {
                                     JsonObject deal = (JsonObject) jsonElements.get(i);
+                                    String com_num = (deal.get("com_num")).getAsString();
                                     String num = (deal.get("num")).getAsString();
                                     String writer = (deal.get("writer")).getAsString();
                                     String date = (deal.get("date")).getAsString();
                                     String content = (deal.get("content")).getAsString();
                                     String answerCount = (deal.get("answerCount")).getAsString();
 
-                                    arMyQnA.add(new Qna(num, writer, date, content, answerCount));
+                                    arMyQnA.add(new Qna(num, writer, date, content, answerCount,com_num));
 
                                 }
 

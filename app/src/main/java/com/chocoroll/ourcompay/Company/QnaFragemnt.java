@@ -267,7 +267,7 @@ public class QnaFragemnt extends Fragment {
                                 String content = (deal.get("content")).getAsString();
                                 String answerCount = (deal.get("answerCount")).getAsString();
 
-                                qnaList.add(new Qna(num, writer, date, content, answerCount));
+                                qnaList.add(new Qna(num, writer, date, content, answerCount,companyNum));
 
                             }
 
