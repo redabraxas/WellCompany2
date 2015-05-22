@@ -149,6 +149,7 @@ public class MyListFragment extends Fragment {
 
                             }
 
+                            list.setAdapter(adapter);
 
 
 
@@ -199,6 +200,7 @@ public class MyListFragment extends Fragment {
 
                                 }
 
+                                list2.setAdapter(adapter2);
 
                             }
 
