@@ -4,7 +4,6 @@ package com.chocoroll.ourcompay.Mine;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,17 +11,22 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 
+import com.chocoroll.ourcompay.Company.Qna;
+import com.chocoroll.ourcompay.Company.QnaAdapter;
 import com.chocoroll.ourcompay.MainActivity;
+import com.chocoroll.ourcompay.Model.Report;
+import com.chocoroll.ourcompay.Model.ReportAdapter;
 import com.chocoroll.ourcompay.R;
+import com.chocoroll.ourcompay.Report.ReportDetailFragment;
 import com.chocoroll.ourcompay.Retrofit.Retrofit;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
@@ -40,11 +44,12 @@ public class MyListFragment extends Fragment {
     ListView list;
     ListView list2;
 
-    MyreportAdapter adapter;
-    MyQnAAdapter adapter2;
+    ReportAdapter adapter;
+    QnaAdapter adapter2;
 
-    ArrayList<Myreport> arMyreport;
-    ArrayList<MyQnA> arMyQnA;
+
+    ArrayList<Report> arMyreport;
+    ArrayList<Qna> arMyQnA;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,35 +79,39 @@ public class MyListFragment extends Fragment {
         user_email = ((MainActivity)MainActivity.mContext).getUserId();
 
 
-        arMyreport = new ArrayList<Myreport>();
+        arMyreport = new ArrayList<Report>();
 
 
-        Myreport myreport;
 
-
-        dialog = new ProgressDialog(getActivity());
-        dialog.setMessage("딜 리스트를 받아오는 중입니다...");
-        dialog.setIndeterminate(true);
-        dialog.setCancelable(false);
-        dialog.show();
         getContentList(user_email,arMyreport);
 
 
-       adapter = new MyreportAdapter(getActivity(), R.layout.model_report_list, arMyreport);
+       adapter = new ReportAdapter(getActivity(), R.layout.model_report, arMyreport);
 
 
 
         list = (ListView)v.findViewById(R.id.list);
         list.setAdapter(adapter);
 
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Report report = arMyreport.get(i);
+                ReportDetailFragment reportDetailFragment = ReportDetailFragment.newInstance(report);
+                getActivity().getSupportFragmentManager().beginTransaction().add(R.id.container, reportDetailFragment).addToBackStack(null).commit();
 
-        arMyQnA = new ArrayList<MyQnA>();
 
-        MyQnA myQnA;
+            }
+        }) ;
+
+
+        arMyQnA = new ArrayList<Qna>();
+
+
 
         getQnAList(user_email, arMyQnA);
 
-      adapter2 = new MyQnAAdapter(getActivity(), R.layout.model_qna_list, arMyQnA);
+      adapter2 = new QnaAdapter(getActivity(), R.layout.model_qna_list, arMyQnA);
 
 
         list2 = (ListView)v.findViewById(R.id.list2);
@@ -117,7 +126,17 @@ public class MyListFragment extends Fragment {
 
 
 
-    void getContentList(String user_email, final ArrayList<Myreport> arMyreport){
+    void getContentList(String user_email, final ArrayList<Report> arMyreport){
+
+
+
+
+        dialog = new ProgressDialog(getActivity());
+        dialog.setMessage("리스트를 받아오는 중입니다...");
+        dialog.setIndeterminate(true);
+        dialog.setCancelable(false);
+        dialog.show();
+
 
         final JsonObject info = new JsonObject();
         info.addProperty("user_email",user_email);
@@ -139,13 +158,18 @@ public class MyListFragment extends Fragment {
                             arMyreport.clear();
                             for (int i = 0; i < jsonElements.size(); i++) {
                                 JsonObject deal = (JsonObject) jsonElements.get(i);
-                                String com_num = (deal.get("com_num")).getAsString();
-                                String comName = (deal.get("comName")).getAsString();
+                                String num = (deal.get("reportNum")).getAsString();
+                                String companyNum = (deal.get("comNum")).getAsString();
+                                String companyName = (deal.get("comName")).getAsString();
+
+                                String id = (deal.get("userEmail")).getAsString();
                                 String purpose = (deal.get("purpose")).getAsString();
-                                String report_num = (deal.get("report_num")).getAsString();
+
+                                String content = (deal.get("content")).getAsString();
+                                String picture = (deal.get("picture")).getAsString();
 
 
-                                arMyreport.add(new Myreport(com_num, comName, purpose, report_num));
+                                arMyreport.add(new Report(num,companyNum,companyName,id,purpose,content,picture));
 
                             }
 
@@ -171,7 +195,7 @@ public class MyListFragment extends Fragment {
 
     }
 
-    void getQnAList(String user_email, final ArrayList<MyQnA> arMyQnA){
+    void getQnAList(String user_email, final ArrayList<Qna> arMyQnA){
 
         final JsonObject info = new JsonObject();
         info.addProperty("user_email",user_email);
@@ -191,16 +215,20 @@ public class MyListFragment extends Fragment {
 
                                 for (int i = 0; i < jsonElements.size(); i++) {
                                     JsonObject deal = (JsonObject) jsonElements.get(i);
-                                    String com_num = (deal.get("com_num")).getAsString();
-                                    String comName = (deal.get("comName")).getAsString();
-                                    String purpose = (deal.get("purpose")).getAsString();
+                                    String num = (deal.get("num")).getAsString();
+                                    String writer = (deal.get("writer")).getAsString();
+                                    String date = (deal.get("date")).getAsString();
+                                    String content = (deal.get("content")).getAsString();
+                                    String answerCount = (deal.get("answerCount")).getAsString();
 
-
-                                    arMyQnA.add(new MyQnA(com_num, comName, purpose));
+                                    arMyQnA.add(new Qna(num, writer, date, content, answerCount));
 
                                 }
 
+
+                                Collections.reverse(arMyQnA);
                                 list2.setAdapter(adapter2);
+
 
                             }
 
@@ -236,133 +264,4 @@ public class MyListFragment extends Fragment {
 }
 
 
-
-
-class Myreport{
-
-    String content_date;
-    String content_com;
-    String content_title;
-    String content_recount;
-
-    Myreport(String obj1, String obj2, String obj3, String obj4){
-        content_date = obj1;
-        content_com = obj2;
-        content_title = obj3;
-        content_recount = "["+obj4+"]";
-    }
-
-}
-
-class MyQnA{
-
-    String QnA_date;
-    String QnA_title;
-    String QnA_check;
-
-    MyQnA(String obj1, String obj2, String obj3){
-        QnA_date = obj1;
-        QnA_title = obj2;
-        QnA_check = obj3;
-    }
-}
-class MyreportAdapter extends BaseAdapter {
-
-    Context con;
-    LayoutInflater inflater;
-    ArrayList<Myreport> arD;
-    int layout;
-
-    public MyreportAdapter(Context context, int alayout, ArrayList<Myreport> aarD){
-        con = context;
-        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        arD = aarD;
-        layout = alayout;
-    }
-    @Override
-    public int getCount() {
-        return arD.size();
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return arD.get(position).content_title;
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        if(convertView == null){
-            LayoutInflater vi = (LayoutInflater)con.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = vi.inflate(R.layout.model_report_list, null);
-        }
-
-        TextView content_date = (TextView) convertView.findViewById(R.id.content_date);
-        content_date.setText(arD.get(position).content_date);
-
-        TextView content_com = (TextView) convertView.findViewById(R.id.content_com);
-        content_com.setText(arD.get(position).content_com);
-
-        TextView content_title = (TextView) convertView.findViewById(R.id.content_title);
-        content_title.setText(arD.get(position).content_title);
-
-        TextView content_recount = (TextView) convertView.findViewById(R.id.content_recount);
-        content_recount.setText(arD.get(position).content_recount);
-
-        return convertView;
-    }
-}
-class MyQnAAdapter extends BaseAdapter{
-
-    Context con;
-    LayoutInflater inflater;
-    ArrayList<MyQnA> arD;
-    int layout;
-
-    public MyQnAAdapter(Context context, int alayout, ArrayList<MyQnA> aarD){
-        con = context;
-        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        arD = aarD;
-        layout = alayout;
-    }
-    @Override
-    public int getCount() {
-        return arD.size();
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return arD.get(position).QnA_title;
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        if(convertView == null){
-
-            LayoutInflater vi = (LayoutInflater)con.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = vi.inflate(R.layout.model_qna_list, null);
-
-        }
-
-        TextView content_date = (TextView) convertView.findViewById(R.id.QnA_date);
-        content_date.setText(arD.get(position).QnA_date);
-
-        TextView content_com = (TextView) convertView.findViewById(R.id.QnA_title);
-        content_com.setText(arD.get(position).QnA_title);
-
-        TextView content_title = (TextView) convertView.findViewById(R.id.QnA_check);
-        content_title.setText(arD.get(position).QnA_check);
-
-        return convertView;
-    }
-}
 

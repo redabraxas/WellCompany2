@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -14,11 +13,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.chocoroll.ourcompay.MainActivity;
 import com.chocoroll.ourcompay.R;
@@ -110,7 +107,7 @@ public class QnaFragemnt extends Fragment {
 
         // 리스트뷰 셋팅
         listView = (ListView) v.findViewById(R.id.listViewQna);
-        mAdapter= new QnaAdapter(getActivity(), R.layout.model_qna, qnaList);
+        mAdapter= new QnaAdapter(getActivity(), R.layout.model_qna, qnaList, companyNum, repID);
 
         listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         listView.setDivider(new ColorDrawable(Color.LTGRAY));
@@ -229,41 +226,6 @@ public class QnaFragemnt extends Fragment {
 
 
 
-    }
-
-
-    public class QnaAdapter extends ArrayAdapter<Qna>{
-        private ArrayList<Qna> items;
-        private Context context;
-
-        public QnaAdapter(Context context, int textViewResourceId, ArrayList<Qna> items) {
-            super(context, textViewResourceId, items);
-            this.items = items;
-            this.context = context;
-        }
-        public View getView(int position, View convertView, ViewGroup parent) {
-            View v = convertView;
-            if (v == null) {
-                LayoutInflater vi = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                v = vi.inflate(R.layout.model_qna, null);
-            }
-            final Qna p = items.get(position);
-            if (p != null) {
-                ((TextView)  v.findViewById(R.id.qna_id)).setText(p.getWriter());
-                ((TextView) v.findViewById(R.id.qna_date)).setText(p.getDate());
-                ((TextView)  v.findViewById(R.id.qna_content)).setText(p.getContent());
-                ((Button)v.findViewById(R.id.qna_showAnswer)).setText("답변보기("+p.getAnswerCount()+")");
-                ((Button)v.findViewById(R.id.qna_showAnswer)).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-
-                        AnswerDialog dialog = new AnswerDialog(getActivity(), companyNum, p.getNum(), repID, p.getWriter());
-                        dialog.show();
-                    }
-                });
-            }
-            return v;
-        }
     }
 
 
