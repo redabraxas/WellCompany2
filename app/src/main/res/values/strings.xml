@@ -109,5 +109,6 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_join">JoinActivity</string>
     <string name="title_activity_report_write">ReportWriteActivity</string>
+    <string name="title_activity_reserve">ReserveActivity</string>
 
 </resources>

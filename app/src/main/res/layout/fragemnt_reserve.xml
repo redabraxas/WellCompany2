@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    style="@style/AppBaseTheme">
 
+
+    <TextView
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:text="견학 가능한 날짜를 선택해주세요"
+        android:layout_gravity="center_horizontal"
+        android:padding="5dp"/>
+
+    <CalendarView
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/calendarView"
+        android:focusedMonthDateColor="#ff000000"
+        android:unfocusedMonthDateColor="#7c000000"
+        android:weekSeparatorLineColor="#ffffef9c"
+        android:selectedWeekBackgroundColor="#ffe2fffa"
+        android:showWeekNumber="false"
+        android:dateTextAppearance="?android:attr/textAppearanceLarge"
+        style="@style/Mytheme" />
 </LinearLayout>

@@ -38,6 +38,10 @@
             android:name=".Report.ReportWriteActivity"
             android:label="@string/title_activity_report_write" >
         </activity>
+        <activity
+            android:name=".Company.ReserveActivity"
+            android:label="@string/title_activity_reserve" >
+        </activity>
     </application>
 
 </manifest>
