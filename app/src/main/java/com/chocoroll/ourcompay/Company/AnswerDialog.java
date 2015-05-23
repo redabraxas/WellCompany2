@@ -19,12 +19,11 @@ import android.widget.TextView;
 
 import com.chocoroll.ourcompay.MainActivity;
 import com.chocoroll.ourcompay.R;
-import com.chocoroll.ourcompay.Retrofit.Retrofit;
+import com.chocoroll.ourcompay.Extra.Retrofit;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;

@@ -21,7 +21,7 @@ import com.chocoroll.ourcompay.Model.Report;
 import com.chocoroll.ourcompay.Model.ReportAdapter;
 import com.chocoroll.ourcompay.R;
 import com.chocoroll.ourcompay.Report.ReportDetailFragment;
-import com.chocoroll.ourcompay.Retrofit.Retrofit;
+import com.chocoroll.ourcompay.Extra.Retrofit;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 

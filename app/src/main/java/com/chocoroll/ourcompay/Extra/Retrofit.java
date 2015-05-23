@@ -1,4 +1,4 @@
-package com.chocoroll.ourcompay.Retrofit;
+package com.chocoroll.ourcompay.Extra;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;

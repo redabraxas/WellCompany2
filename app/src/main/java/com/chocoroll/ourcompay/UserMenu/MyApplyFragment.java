@@ -1,46 +1,31 @@
 package com.chocoroll.ourcompay.UserMenu;
 
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.astuetz.PagerSlidingTabStrip;
-import com.chocoroll.ourcompay.Company.CompanyActivity;
 import com.chocoroll.ourcompay.MainActivity;
-import com.chocoroll.ourcompay.Model.Company;
-import com.chocoroll.ourcompay.Model.CompanyAdapter;
-import com.chocoroll.ourcompay.Model.Report;
 import com.chocoroll.ourcompay.Model.Reserve;
 import com.chocoroll.ourcompay.R;
-import com.chocoroll.ourcompay.Retrofit.Retrofit;
+import com.chocoroll.ourcompay.Extra.Retrofit;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 
 import retrofit.Callback;
@@ -275,30 +260,7 @@ public class MyApplyFragment extends Fragment {
             return v;
         }
 
-        public class ReserveApplyAdapter extends ArrayAdapter<Reserve> {
-            private ArrayList<Reserve> items;
-            private Context context;
-            private int textViewResourceId;
 
-            public ReserveApplyAdapter(Context context, int textViewResourceId, ArrayList<Reserve> items) {
-                super(context, textViewResourceId, items);
-                this.items = items;
-                this.context = context;
-                this.textViewResourceId = textViewResourceId;
-            }
-            public View getView(int position, View convertView, ViewGroup parent) {
-                View v = convertView;
-                if (v == null) {
-                    LayoutInflater vi = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                    v = vi.inflate(textViewResourceId, null);
-                }
-                Reserve p = items.get(position);
-                if (p != null) {
-                    //((TextView)  v.findViewById(R.id.companyName)).setText(str);
-                }
-                return v;
-            }
-        }
 
 
     }

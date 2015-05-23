@@ -20,7 +20,7 @@ import com.chocoroll.ourcompay.Company.CompanyActivity;
 import com.chocoroll.ourcompay.Model.Company;
 import com.chocoroll.ourcompay.Model.CompanyAdapter;
 import com.chocoroll.ourcompay.R;
-import com.chocoroll.ourcompay.Retrofit.Retrofit;
+import com.chocoroll.ourcompay.Extra.Retrofit;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 

@@ -5,11 +5,10 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -19,7 +18,7 @@ import android.widget.TextView;
 
 import com.chocoroll.ourcompay.MainActivity;
 import com.chocoroll.ourcompay.R;
-import com.chocoroll.ourcompay.Retrofit.Retrofit;
+import com.chocoroll.ourcompay.Extra.Retrofit;
 import com.google.gson.JsonObject;
 
 import retrofit.Callback;
@@ -41,6 +40,13 @@ public class LoginActivity extends Activity {
         Button login_bt=(Button)findViewById(R.id.login_bt);
         Button login_findid=(Button)findViewById(R.id.login_findid);
         Button login_findpasswd=(Button)findViewById(R.id.login_findpasswd);
+        login_findpasswd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, FindPWActivity.class);
+                startActivity(intent);
+            }
+        });
 
         login_bt.setOnClickListener(new View.OnClickListener(){
 

@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -20,9 +19,10 @@ import android.widget.TextView;
 
 import com.chocoroll.ourcompay.Login.JoinActivity;
 import com.chocoroll.ourcompay.Login.LoginActivity;
+import com.chocoroll.ourcompay.Mine.MyInfoFragment;
 import com.chocoroll.ourcompay.Mine.MyListFragment;
 import com.chocoroll.ourcompay.Report.ReportWriteActivity;
-import com.chocoroll.ourcompay.Retrofit.Retrofit;
+import com.chocoroll.ourcompay.Extra.Retrofit;
 import com.chocoroll.ourcompay.UserMenu.MyApplyFragment;
 import com.google.gson.JsonObject;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
@@ -181,15 +181,12 @@ public class MainActivity extends FragmentActivity {
                 public void onClick(View view) {
                     slidingMenu.showContent(true);
 
-
-
-//
-//                    removeAllStack();
-//                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-//                    ft.replace(R.id.container, new WishDealFragment());
-//                    ft.setTransition(FragmentTransaction.TRANSIT_NONE);
-//                    ft.addToBackStack(null);
-//                    ft.commit();
+                    removeAllStack();
+                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    ft.replace(R.id.container, new MyInfoFragment());
+                    ft.setTransition(FragmentTransaction.TRANSIT_NONE);
+                    ft.addToBackStack(null);
+                    ft.commit();
 
 
                 }
