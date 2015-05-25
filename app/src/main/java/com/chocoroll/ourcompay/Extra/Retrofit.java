@@ -22,6 +22,8 @@ public interface Retrofit {
     // 회사별 리포트
     @POST("/list/companyreportlist.php")
     public void getCompanyReportList(@Body JsonObject info, Callback<JsonArray> callback);
+    @POST("/list/list/detailReport.php")
+    public void getReportDetail(@Body JsonObject info, Callback<JsonArray> callback);
 
     // 회사별 질문 목록 및 답변
     @POST("/qna/companyQuestionList.php ")

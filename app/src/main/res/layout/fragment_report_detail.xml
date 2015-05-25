@@ -1,145 +1,269 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.chocoroll.ourcompay.Report.ReportDetailFragment"
-    android:background="#ffffff">
+    android:background="#FFFFFF"
+    android:orientation="vertical" >
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-
-        android:orientation="vertical"
-        android:weightSum="1"
-        >
+        android:fillViewport="true" >
 
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
->
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            android:orientation="vertical" >
 
 
-            <TextView
-                android:layout_width="10dp"
-                android:layout_height="40dp"
-                android:id="@+id/company_name"
-                android:layout_marginLeft="130dp"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_weight="1"
-                android:text="회사명"
-                />
-
-                    </LinearLayout>
-
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="130dp"
-                android:layout_height="40dp"
-                android:id="@+id/user_id"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="ID"
-                android:layout_weight="1"
-
-                />
-            <View
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="fill_parent"
                 android:layout_height="1dp"
-                android:background="#000000"/>
+                android:background="#336c97cf"
+                android:orientation="vertical" >
+            </LinearLayout>
 
-
-
-
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="1dp"
-
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="날짜"
-                android:layout_weight="1"
-                />
-
-
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="10dp"
-                android:layout_height="40dp"
-                android:id="@+id/company_purpose"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_weight="1"
-                android:text="목적"
-                />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#000000"/>
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-
-
-            <TextView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:id="@+id/edit_content"
-                android:hint="내용"
-                android:layout_weight="2"
-
-                />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#000000"/>
-
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-
-            <ImageView
-                android:scaleType="fitStart"
+            <RelativeLayout
+                android:id="@+id/write_pro_name"
                 android:layout_width="wrap_content"
-                android:layout_height="200dp"
-                android:id="@+id/image"
-                android:layout_gravity="center_horizontal"
-                />
-            <View
-                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="방문 회사 : "
+                        android:textColor="#000000"
+                        android:textSize="15dp"
+                        android:typeface="sans" />
+
+                    <TextView
+                        android:id="@+id/company_name"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:padding="10dp"
+                        android:textColor="#000000"
+                        android:textSize="15dp"
+                        android:typeface="sans"
+                        android:text=""/>
+                </LinearLayout>
+            </RelativeLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
                 android:layout_height="1dp"
-                android:background="#000000"/>
+                android:background="#336c97cf"
+                android:orientation="vertical" >
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="방문 목적 : "
+                        android:textColor="#000000"
+                        android:textSize="15dp"
+                        android:typeface="sans" />
+
+                    <TextView
+                        android:id="@+id/company_purpose"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:padding="10dp"
+                        android:textColor="#000000"
+                        android:textSize="15dp"
+                        android:typeface="sans"
+                        android:text=""/>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#336c97cf"
+                android:orientation="vertical" >
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/write_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="방문 날짜 :   "
+                        android:textColor="#000000"
+                        android:textSize="15dp"
+                        android:typeface="sans" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:id="@+id/reserv_date"/>
+
+
+                    />
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#336c97cf"
+                android:orientation="vertical" >
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="방문자 :   "
+                        android:textColor="#000000"
+                        android:textSize="15dp"
+                        android:typeface="sans" />
+                    <TextView
+                        android:layout_width="130dp"
+                        android:layout_height="40dp"
+                        android:id="@+id/user_id"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_weight="1"/>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#336c97cf"
+                android:orientation="vertical" >
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/write_pro_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical" >
+
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="후기 글 "
+                        android:textColor="#000000"
+                        android:id="@+id/edit_content"
+                        android:textSize="15dp"
+                        android:typeface="sans" />
+
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#336c97cf"
+                android:orientation="vertical" >
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/report_write_picturelayout1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/image"
+                        android:layout_margin="10dp"
+                        android:text="견학 사진 : "
+                        android:textColor="#000000"
+                        android:textSize="15dp"
+                        android:typeface="sans" />
+
+
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+
+
+
         </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    </ScrollView>
 
-
-
-        </LinearLayout>
-
-
-    </LinearLayout>
-</FrameLayout>
+</LinearLayout>
