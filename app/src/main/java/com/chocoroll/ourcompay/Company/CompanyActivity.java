@@ -2,16 +2,13 @@ package com.chocoroll.ourcompay.Company;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,15 +19,24 @@ import android.widget.TextView;
 import com.astuetz.PagerSlidingTabStrip;
 import com.chocoroll.ourcompay.Extra.DownloadImageTask;
 import com.chocoroll.ourcompay.Home.ReportListFragment;
-import com.chocoroll.ourcompay.R;
 import com.chocoroll.ourcompay.Model.Company;
-
-import java.io.InputStream;
+import com.chocoroll.ourcompay.R;
 
 public class CompanyActivity extends FragmentActivity {
 
     ProgressDialog dialog;
     static Company company;
+
+
+    public String getCompany(){
+        return company.getName();
+    }
+
+    public String getCom_num(){
+        return company.getNum();
+    }
+
+    public static Context mContext;
 
     private PagerSlidingTabStrip tabs;
     private ViewPager pager;
@@ -40,6 +46,8 @@ public class CompanyActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_company);
+
+        mContext = this;
 
         company = getIntent().getParcelableExtra("Company");
 

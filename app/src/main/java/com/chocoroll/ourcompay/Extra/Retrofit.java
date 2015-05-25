@@ -43,10 +43,13 @@ public interface Retrofit {
     @POST("/list/showMyQna.php")
     public void getQnAList(@Body JsonObject info, Callback<JsonArray> callback);
 
-    // Deal만들기
+    // report 작성
     @POST("/uploads/UploadReport.php")
     public void UploadDeal(@Body JsonObject info, Callback<String> callback);
 
 
+    // 견학예약
+    @POST("/list/registReservation.php")
+    public void reservation(@Body JsonObject info, Callback<String> callback);
 
 }
