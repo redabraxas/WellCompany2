@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -215,6 +216,7 @@ public class OneMonthView extends LinearLayout implements View.OnClickListener {
         int touchday=Integer.parseInt(day);
 
 
+        Log.e("view", day +"   "+ String.valueOf(ov.getweek())+"   "+String.valueOf(touchday)+"   "+String.valueOf(during));
         if(!(Integer.parseInt(day)>=1&&Integer.parseInt(day)<=6&&ov.getweek()>=4)&&isInside(touchday,during)){
         	AlertDialog dialog=new AlertDialog.Builder(mContext).setMessage("지난 날짜는 선택이 불가능 합니다.")
 			.setPositiveButton("확인", new DialogInterface.OnClickListener() {

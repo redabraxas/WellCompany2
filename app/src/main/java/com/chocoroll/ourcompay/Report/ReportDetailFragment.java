@@ -8,8 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.chocoroll.ourcompay.Company.AnswerDialog;
 import com.chocoroll.ourcompay.Extra.DownloadImageTask;
 import com.chocoroll.ourcompay.Model.Report;
 import com.chocoroll.ourcompay.R;
@@ -22,7 +24,6 @@ import com.chocoroll.ourcompay.R;
 public class ReportDetailFragment extends Fragment {
 
     Report report;
-    Bitmap bitmap;
     TextView company_name;
     TextView user_id;
     TextView company_purpose;
@@ -51,7 +52,6 @@ public class ReportDetailFragment extends Fragment {
         if (getArguments() != null) {
             report = getArguments().getParcelable("Report");
 
-
         }
     }
 
@@ -77,10 +77,15 @@ public class ReportDetailFragment extends Fragment {
                 .execute(report.getPicture());
 
 
+        ((LinearLayout)v.findViewById(R.id.report_reply)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                AnswerDialog dialog = new AnswerDialog(getActivity(), report.getNum());
+                dialog.show();
 
-
-
+            }
+        });
 
 
 

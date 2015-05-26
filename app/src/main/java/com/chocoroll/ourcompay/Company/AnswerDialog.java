@@ -47,6 +47,10 @@ public class AnswerDialog extends Dialog{
     ListView m_ListView;
     AnswerAdapter m_Adapter;
 
+    String reportNum;
+
+    String type="";
+
 
     public AnswerDialog(Context context, String companyNum, String qnaNum, String repID, String writer) {
         super(context);
@@ -55,24 +59,72 @@ public class AnswerDialog extends Dialog{
          this.qnaNum = qnaNum;
         this.repID = repID;
         this.writer = writer;
-}
+        type="company";
+    }
 
+    public AnswerDialog(Context context, String reportNum) {
+        super(context);
+        this.context = context;
+        this.reportNum = reportNum;
+        type="report";
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_answer_list);
-        this.setTitle("답변보기");
 
         m_ListView=(ListView) findViewById(R.id.answer_list);
         m_Adapter=new AnswerAdapter(getContext(), R.layout.model_answer, answerList);
 
 
+        if(type.equals("company"))
+        {
+            this.setTitle("답변보기");
 
-        // 답변 달기는 셀러 또는 질문 작성자만 할 수 있다.
-        RelativeLayout answerbox = (RelativeLayout)findViewById(R.id.seller_answer_box);
+            // 답변 달기는 셀러 또는 질문 작성자만 할 수 있다.
+            RelativeLayout answerbox = (RelativeLayout)findViewById(R.id.seller_answer_box);
 
-        if(((MainActivity)MainActivity.mContext).getUserId().equals(repID) ||  ((MainActivity)MainActivity.mContext).getUserId().equals(writer)){
+            if(((MainActivity)MainActivity.mContext).getUserId().equals(repID) ||  ((MainActivity)MainActivity.mContext).getUserId().equals(writer)){
+
+                Button replyAnswer = (Button) findViewById(R.id.answer_ok);
+                replyAnswer.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        String content = ((EditText) findViewById(R.id.answer_content_this)).getText().toString();
+                        if(content.equals("")){
+                            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                            builder.setTitle("작성 실패")        // 제목 설정
+                                    .setMessage("내용을 입력해주세요~")        // 메세지 설정
+                                    .setCancelable(false)        // 뒤로 버튼 클릭시 취소 가능 설정
+                                    .setPositiveButton("확인", new OnClickListener() {
+                                        // 확인 버튼 클릭시 설정
+                                        public void onClick(DialogInterface dialog, int whichButton) {
+                                            dialog.dismiss();
+                                        }
+                                    });
+                            AlertDialog dialog = builder.create();    // 알림창 객체 생성
+                            dialog.show();    // 알림창 띄우기
+                        }else{
+                            ((EditText) findViewById(R.id.answer_content_this)).setText("");
+                            sendAnswer(content);
+                        }
+
+
+                    }
+                });
+            }else{
+                answerbox.setVisibility(View.GONE);
+            }
+
+
+            // 답변리스트를 가져온다.
+            getAnswerList();
+
+
+        }else if(type.equals("report")){
+            this.setTitle("댓글보기");
 
             Button replyAnswer = (Button) findViewById(R.id.answer_ok);
             replyAnswer.setOnClickListener(new View.OnClickListener() {
@@ -80,7 +132,7 @@ public class AnswerDialog extends Dialog{
                 public void onClick(View view) {
 
                     String content = ((EditText) findViewById(R.id.answer_content_this)).getText().toString();
-                    if(content.equals("")){
+                    if (content.equals("")) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(context);
                         builder.setTitle("작성 실패")        // 제목 설정
                                 .setMessage("내용을 입력해주세요~")        // 메세지 설정
@@ -93,21 +145,17 @@ public class AnswerDialog extends Dialog{
                                 });
                         AlertDialog dialog = builder.create();    // 알림창 객체 생성
                         dialog.show();    // 알림창 띄우기
-                    }else{
+                    } else {
                         ((EditText) findViewById(R.id.answer_content_this)).setText("");
-                        sendAnswer(content);
+                        sendReply(content);
                     }
-
-
                 }
             });
-        }else{
-            answerbox.setVisibility(View.GONE);
+
+
+            getReplyList();
         }
 
-
-        // 답변리스트를 가져온다.
-        getAnswerList();
 
 
     }
@@ -276,6 +324,172 @@ public class AnswerDialog extends Dialog{
         }).start();
 
     }
+
+
+
+    public void getReplyList(){
+
+        answerList.clear();
+
+        dialog = new ProgressDialog(context);
+        dialog.setMessage("댓글리스트를 받아오는 중입니다...");
+        dialog.setIndeterminate(true);
+        dialog.setCancelable(false);
+        dialog.show();
+
+        final JsonObject info = new JsonObject();
+        info.addProperty("reportNum", reportNum);
+
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+
+                    RestAdapter restAdapter = new RestAdapter.Builder()
+                            .setEndpoint(Retrofit.ROOT)  //call your base url
+                            .build();
+                    Retrofit retrofit = restAdapter.create(Retrofit.class); //this is how retrofit create your api
+                    retrofit.getReplyList(info, new Callback<JsonArray>() {
+
+                        @Override
+                        public void success(JsonArray jsonElements, Response response) {
+
+                            dialog.dismiss();
+
+
+                            for (int i = 0; i < jsonElements.size(); i++) {
+                                JsonObject jsonObject = (JsonObject) jsonElements.get(i);
+                                String num = (jsonObject.get("num")).getAsString();
+                                String writer = (jsonObject.get("writer")).getAsString();
+                                String date = (jsonObject.get("date")).getAsString();
+                                String content = (jsonObject.get("content")).getAsString();
+
+                                answerList.add(new Answer(num,writer,date,content));
+
+                            }
+                            m_ListView.setAdapter(m_Adapter);
+
+
+                        }
+
+                        @Override
+                        public void failure(RetrofitError retrofitError) {
+                            dialog.dismiss();
+                            Log.e("error", retrofitError.getCause().toString());
+                            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                            builder.setTitle("네트워크가 불안정합니다.")        // 제목 설정
+                                    .setMessage("네트워크를 확인해주세요")        // 메세지 설정
+                                    .setCancelable(false)        // 뒤로 버튼 클릭시 취소 가능 설정
+                                    .setPositiveButton("확인", new OnClickListener() {
+                                        // 확인 버튼 클릭시 설정
+                                        public void onClick(DialogInterface dialog, int whichButton) {
+
+                                        }
+                                    });
+
+                            AlertDialog dialog = builder.create();    // 알림창 객체 생성
+                            dialog.show();    // 알림창 띄우기
+
+                        }
+                    });
+                }
+                catch (Throwable ex) {
+
+                }
+            }
+        }).start();
+
+
+    }
+
+    void sendReply(String content){
+
+
+        dialog = new ProgressDialog(context);
+        dialog.setMessage("댓글을 작성하는 중입니다...");
+        dialog.setIndeterminate(true);
+        dialog.setCancelable(false);
+        dialog.show();
+
+        final JsonObject info = new JsonObject();
+        info.addProperty("writer", ((MainActivity)(MainActivity.mContext)).getUserId());
+        info.addProperty("reportNum", reportNum);
+        info.addProperty("content", content);
+
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+
+                    RestAdapter restAdapter = new RestAdapter.Builder()
+                            .setEndpoint(Retrofit.ROOT)  //call your base url
+                            .build();
+                    Retrofit retrofit = restAdapter.create(Retrofit.class); //this is how retrofit create your api
+                    retrofit.sendReply(info, new Callback<String>() {
+
+                        @Override
+                        public void success(String result, Response response) {
+
+                            dialog.dismiss();
+
+                            if(result.equals("success")){
+                                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                                builder.setTitle("답변 작성 성공")        // 제목 설정
+                                        .setMessage("답변을 성공적으로 작성하셨습니다.")        // 메세지 설정
+                                        .setCancelable(false)        // 뒤로 버튼 클릭시 취소 가능 설정
+                                        .setPositiveButton("확인", new OnClickListener() {
+                                            // 확인 버튼 클릭시 설정
+                                            public void onClick(DialogInterface dialog, int whichButton) {
+                                                getAnswerList();
+                                            }
+                                        });
+
+                                AlertDialog dialog = builder.create();    // 알림창 객체 생성
+                                dialog.show();    // 알림창 띄우기
+                            }else{
+                                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                                builder.setTitle("실패")        // 제목 설정
+                                        .setMessage("답변을 작성하는 데 실패하였습니다. 다시 시도해주세요.")        // 메세지 설정
+                                        .setCancelable(false)        // 뒤로 버튼 클릭시 취소 가능 설정
+                                        .setPositiveButton("확인", new OnClickListener() {
+                                            // 확인 버튼 클릭시 설정
+                                            public void onClick(DialogInterface dialog, int whichButton) {
+                                            }
+                                        });
+
+                                AlertDialog dialog = builder.create();    // 알림창 객체 생성
+                                dialog.show();    // 알림창 띄우기
+                            }
+
+                        }
+
+                        @Override
+                        public void failure(RetrofitError retrofitError) {
+                            dialog.dismiss();
+                            Log.e("error", retrofitError.getCause().toString());
+                            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                            builder.setTitle("네트워크가 불안정합니다.")        // 제목 설정
+                                    .setMessage("네트워크를 확인해주세요")        // 메세지 설정
+                                    .setCancelable(false)        // 뒤로 버튼 클릭시 취소 가능 설정
+                                    .setPositiveButton("확인", new OnClickListener() {
+                                        // 확인 버튼 클릭시 설정
+                                        public void onClick(DialogInterface dialog, int whichButton) {
+                                        }
+                                    });
+
+                            AlertDialog dialog = builder.create();    // 알림창 객체 생성
+                            dialog.show();    // 알림창 띄우기
+
+                        }
+                    });
+                }
+                catch (Throwable ex) {
+
+                }
+            }
+        }).start();
+
+    }
+
+
 
 
     public class AnswerAdapter extends ArrayAdapter<Answer> {

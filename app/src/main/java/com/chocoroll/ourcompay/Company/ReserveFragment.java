@@ -103,6 +103,8 @@ public class ReserveFragment extends Fragment {
 
 
     }
+
+
     public interface OnMonthChangeListener {
 
         void onChange(int year, int month);
@@ -110,7 +112,8 @@ public class ReserveFragment extends Fragment {
 
     private OnMonthChangeListener dummyListener = new OnMonthChangeListener() {
         @Override
-        public void onChange(int year, int month) {}
+        public void onChange(int year, int month) {
+        }
     };
 
     private OnMonthChangeListener listener = dummyListener;
@@ -137,6 +140,8 @@ public class ReserveFragment extends Fragment {
 
 
     }
+
+
     @Override
     public void onDetach() {
         setOnMonthChangeListener(null);

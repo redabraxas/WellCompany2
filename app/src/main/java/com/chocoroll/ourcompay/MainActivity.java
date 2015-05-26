@@ -348,6 +348,7 @@ public class MainActivity extends FragmentActivity {
                                             }
                                         }).show();
 
+                                menu_setting(MainActivity.LOGOUTUSER);
                             }else if(result.equals("passwd_failed")){
 
                                 new AlertDialog.Builder(MainActivity.this).setMessage("비밀번호가 변경되었으니 다시 로그인 해주세요.")
@@ -359,6 +360,7 @@ public class MainActivity extends FragmentActivity {
                                             }
                                         }).show();
 
+                                menu_setting(MainActivity.LOGOUTUSER);
                             }else{
 
 

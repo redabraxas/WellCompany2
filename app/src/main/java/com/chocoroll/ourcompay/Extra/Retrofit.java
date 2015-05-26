@@ -8,7 +8,9 @@ import retrofit.http.Body;
 import retrofit.http.POST;
 
 public interface Retrofit {
+
     public static final String ROOT = "http://welcompany.dothome.co.kr";
+    //public static final String ROOT = "  http://welcompany.zz.mu";
     @POST("/login/login.php")
     public void login(@Body JsonObject info, Callback<String> callback);
     @POST("/login/join.php")
@@ -28,6 +30,11 @@ public interface Retrofit {
     public void getCompanyReportList(@Body JsonObject info, Callback<JsonArray> callback);
     @POST("/list/list/detailReport.php")
     public void getReportDetail(@Body JsonObject info, Callback<JsonArray> callback);
+    @POST("/list/list/detailReport.php")
+    public void getReplyList(@Body JsonObject info, Callback<JsonArray> callback);
+    @POST("/list/list/sendReply.php")
+    public void sendReply(@Body JsonObject info, Callback<String> callback);
+
 
     // 회사별 질문 목록 및 답변
     @POST("/qna/companyQuestionList.php ")
