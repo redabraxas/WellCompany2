@@ -1,57 +1,68 @@
 package com.chocoroll.ourcompay.Login;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.chocoroll.ourcompay.Extra.Retrofit;
 import com.chocoroll.ourcompay.R;
+import com.google.gson.JsonObject;
+
+import retrofit.Callback;
+import retrofit.RestAdapter;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class JoinActivity extends Activity {
-
+    ProgressDialog dialog = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join);
+
+
+
+
+        final EditText email = (EditText) findViewById(R.id.editid);
+        final EditText passwd = (EditText) findViewById(R.id.editpwd);
+        final EditText repasswd = (EditText) findViewById(R.id.editrepwd);
+
+        Button regist = (Button) findViewById(R.id.btnregister);
+        regist.setOnClickListener(new View.OnClickListener()
+
+        {
+            @Override
+            public void onClick (View v){
+                String id = email.getText().toString();
+                String pw = passwd.getText().toString();
+                String repw = repasswd.getText().toString();
+                dialog = ProgressDialog.show(JoinActivity.this, "", "회원가입 중", true);
+
+                if (!pw.equals(repw)) {
+                    new AlertDialog.Builder(JoinActivity.this).setMessage("비밀번호가 서로 일치하지 않습니다.")
+                            .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+
+                                }
+                            }).show();
+                } else {
+                    join(id, pw);
+                }
+                dialog.dismiss();
+
+            }
+        });
+
     }
-
-    ProgressDialog dialog = null;
-
-    final EditText email = (EditText) findViewById(R.id.editid);
-    final EditText passwd = (EditText) findViewById(R.id.editpwd);
-    final EditText repasswd = (EditText) findViewById(R.id.editrepwd);
-
-    Button regist = (Button) findViewById(R.id.btnregister);
-   /* regist.setOnClickListener(new View.OnClickListener()
-
-    {
-        @Override
-        public void onClick (View v){
-        String id = email.getText().toString();
-        String pw = passwd.getText().toString();
-        String repw = repasswd.getText().toString();
-        dialog = ProgressDialog.show(Join.this, "", "회원가입 중", true);
-
-        if (!pw.equals(repw)) {
-            new AlertDialog.Builder(Paint.Join.this).setMessage("비밀번호가 서로 일치하지 않습니다.")
-                    .setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-
-                        }
-                    }).show();
-        } else {
-            join(id, pw);
-        }
-        dialog.dismiss();
-
-    }
-    }
-
-    );
-}
 
 
     public void join(final String id, final String pw) {
@@ -74,7 +85,7 @@ public class JoinActivity extends Activity {
                             dialog.dismiss();
                             if (result.equals("multiple_id")) {
 
-                                new AlertDialog.Builder(Join.this).setMessage("이미 있는 아이디 입니다.")
+                                new AlertDialog.Builder(JoinActivity.this).setMessage("이미 있는 아이디 입니다.")
                                         .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
@@ -85,9 +96,9 @@ public class JoinActivity extends Activity {
 
                             } else if (result.equals("success")) {
                                 finish();
-                                Toast.makeText(Join.this, "회원가입 되었습니다.", Toast.LENGTH_LONG).show();
+                                Toast.makeText(JoinActivity.this, "회원가입 되었습니다.", Toast.LENGTH_LONG).show();
                                 Intent intent;
-                                intent = new Intent(Join.this, Login.class);
+                                intent = new Intent(JoinActivity.this, LoginActivity.class);
                                 startActivity(intent);
                             }
 
@@ -96,7 +107,7 @@ public class JoinActivity extends Activity {
                         @Override
                         public void failure(RetrofitError retrofitError) {
                             dialog.dismiss();
-                            AlertDialog.Builder builder = new AlertDialog.Builder(Join.this);
+                            AlertDialog.Builder builder = new AlertDialog.Builder(JoinActivity.this);
                             builder.setTitle("네트워크 에러")        // 제목 설정
                                     .setMessage(retrofitError.getCause().toString())        // 메세지 설정
                                     .setCancelable(false)        // 뒤로 버튼 클릭시 취소 가능 설정
@@ -121,5 +132,5 @@ public class JoinActivity extends Activity {
         }).start();
     }
 }
-*/
-}
+
+

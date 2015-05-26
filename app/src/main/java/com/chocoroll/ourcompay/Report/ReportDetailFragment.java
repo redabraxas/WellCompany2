@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.chocoroll.ourcompay.Extra.DownloadImageTask;
 import com.chocoroll.ourcompay.Extra.Retrofit;
 import com.chocoroll.ourcompay.Model.Report;
 import com.chocoroll.ourcompay.R;
@@ -54,6 +55,7 @@ public class ReportDetailFragment extends Fragment {
         // Required empty public constructor
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,13 +81,17 @@ public class ReportDetailFragment extends Fragment {
         content=(TextView)v.findViewById(R.id.edit_content);
         image=(ImageView)v.findViewById(R.id.image);
 
+        company_name.setText(report.getCompanyName());
+        user_id.setText(report.getId());
+        company_purpose.setText(report.getPurpose());
+        content.setText(report.getContent());
+        new DownloadImageTask((ImageView) v.findViewById(R.id.image))
+                .execute(report.getPicture());
 
 
 
 
-
-
-        //   getReportDetail(report.getNum());
+        getReportDetail(report.getNum());
 
 
 
@@ -140,6 +146,7 @@ public class ReportDetailFragment extends Fragment {
 
                         @Override
                         public void failure(RetrofitError retrofitError) {
+//                            dialog.dismiss();
 //                            dialog.dismiss();
                             Log.e("error", retrofitError.getCause().toString());
                             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
