@@ -13,6 +13,8 @@ public interface Retrofit {
     public void login(@Body JsonObject info, Callback<String> callback);
     @POST("/login/join.php")
     public void join(@Body JsonObject info, Callback<String> callback);
+    @POST("/php")
+    public void sendID(@Body JsonObject info, Callback<String> callback);
 
     // 카테고리 별 리스트
     @POST("/list/comCategory.php")
