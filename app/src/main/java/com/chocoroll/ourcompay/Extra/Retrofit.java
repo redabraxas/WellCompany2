@@ -11,6 +11,8 @@ public interface Retrofit {
     public static final String ROOT = "http://welcompany.dothome.co.kr";
     @POST("/login/login.php")
     public void login(@Body JsonObject info, Callback<String> callback);
+    @POST("/login/join.php")
+    public void join(@Body JsonObject info, Callback<String> callback);
 
     // 카테고리 별 리스트
     @POST("/list/comCategory.php")
