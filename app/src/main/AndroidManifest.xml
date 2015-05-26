@@ -42,6 +42,14 @@
             android:name=".Company.ReserveActivity"
             android:label="@string/title_activity_reserve" >
         </activity>
+        <activity
+            android:name=".Login.JoinSelectActivity"
+            android:label="@string/title_activity_join_select" >
+        </activity>
+        <activity
+            android:name=".Login.JoinCompanyActivity"
+            android:label="@string/title_activity_join_company" >
+        </activity>
     </application>
 
 </manifest>

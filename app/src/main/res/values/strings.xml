@@ -142,5 +142,7 @@
     <string name="title_activity_join">JoinActivity</string>
     <string name="title_activity_report_write">ReportWriteActivity</string>
     <string name="title_activity_reserve">ReserveActivity</string>
+    <string name="title_activity_join_select">JoinSelectActivity</string>
+    <string name="title_activity_join_company">JoinCompanyActivity</string>
 
 </resources>

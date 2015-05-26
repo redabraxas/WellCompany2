@@ -18,6 +18,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.chocoroll.ourcompay.Login.JoinActivity;
+import com.chocoroll.ourcompay.Login.JoinSelectActivity;
 import com.chocoroll.ourcompay.Login.LoginActivity;
 import com.chocoroll.ourcompay.Mine.MyInfoFragment;
 import com.chocoroll.ourcompay.Mine.MyListFragment;
@@ -155,7 +156,7 @@ public class MainActivity extends FragmentActivity {
                 @Override
                 public void onClick(View view) {
                     slidingMenu.showContent(true);
-                    Intent intent = new Intent(MainActivity.this, JoinActivity.class);
+                    Intent intent = new Intent(MainActivity.this, JoinSelectActivity.class);
                     startActivity(intent);
                 }
             });
