@@ -1,29 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    style="@style/AppBaseTheme">
+    android:background="#FFFFFF"
+    android:clickable="true">
 
 
-    <TextView
-        android:gravity="center"
+    <LinearLayout
+        android:id="@+id/main_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:text="견학 가능한 날짜를 선택해주세요"
-        android:layout_gravity="center_horizontal"
-        android:padding="5dp"/>
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:gravity="center_vertical" >
 
-    <CalendarView
-        android:padding="10dp"
+        <Button
+            android:id="@+id/main_add_bt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:drawableLeft="@android:drawable/ic_menu_today"
+            android:text="오늘일자"
+            android:textSize="14sp"
+            android:typeface="sans" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/main_daily_bt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:text="상하 스크롤로 월선택이 가능합니다.\n날짜를 선택하여 공연일정을 확인하세요!"
+            android:textSize="10sp"
+            android:typeface="sans" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/this_month_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="#888888"
+        android:textSize="30dp"
+        android:typeface="sans" />
+
+    <LinearLayout
+        android:id="@+id/dayname"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/this_month_tv"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="SUN"
+            android:textColor="#FF4444"
+            android:typeface="sans" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="MON"
+            android:textColor="#a1a194"
+            android:typeface="sans" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TUE"
+            android:textColor="#a1a194"
+            android:typeface="sans" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="WEN"
+            android:textColor="#a1a194"
+            android:typeface="sans" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="THU"
+            android:textColor="#a1a194"
+            android:typeface="sans" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="FRI"
+            android:textColor="#a1a194"
+            android:typeface="sans" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="SAT"
+            android:textColor="#0099CC"
+            android:typeface="sans" />
+    </LinearLayout>
+
+
+    <com.chocoroll.ourcompay.Calendar.VerticalViewPager
+        android:id="@+id/vviewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/calendarView"
-        android:focusedMonthDateColor="#ff000000"
-        android:unfocusedMonthDateColor="#7c000000"
-        android:weekSeparatorLineColor="#ffffef9c"
-        android:selectedWeekBackgroundColor="#ffe2fffa"
-        android:showWeekNumber="false"
-        android:dateTextAppearance="?android:attr/textAppearanceLarge"
-        style="@style/Mytheme" />
-</LinearLayout>
+        android:layout_above="@+id/main_bottom"
+        android:layout_below="@+id/dayname" />
+
+
+</RelativeLayout>
