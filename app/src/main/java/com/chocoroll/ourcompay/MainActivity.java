@@ -19,13 +19,12 @@ import android.widget.TextView;
 
 import com.chocoroll.ourcompay.AdminMenu.CompanyStateFragment;
 import com.chocoroll.ourcompay.CompanyMenu.VisitStateFragment;
-import com.chocoroll.ourcompay.Login.JoinActivity;
-import com.chocoroll.ourcompay.Login.JoinSelectActivity;
+import com.chocoroll.ourcompay.Extra.Retrofit;
+import com.chocoroll.ourcompay.Login.JoinSelectFragment;
 import com.chocoroll.ourcompay.Login.LoginActivity;
 import com.chocoroll.ourcompay.Mine.MyInfoFragment;
 import com.chocoroll.ourcompay.Mine.MyListFragment;
 import com.chocoroll.ourcompay.Report.ReportWriteActivity;
-import com.chocoroll.ourcompay.Extra.Retrofit;
 import com.chocoroll.ourcompay.UserMenu.MyApplyFragment;
 import com.google.gson.JsonObject;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
@@ -157,9 +156,16 @@ public class MainActivity extends FragmentActivity {
             menu_join.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
                     slidingMenu.showContent(true);
-                    Intent intent = new Intent(MainActivity.this, JoinSelectActivity.class);
-                    startActivity(intent);
+
+                    removeAllStack();
+                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    ft.replace(R.id.container, new JoinSelectFragment());
+                    ft.setTransition(FragmentTransaction.TRANSIT_NONE);
+                    ft.addToBackStack(null);
+                    ft.commit();
+
                 }
             });
 
