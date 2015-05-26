@@ -1,13 +1,9 @@
 package com.chocoroll.ourcompay.Report;
 
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,16 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.chocoroll.ourcompay.Extra.DownloadImageTask;
-import com.chocoroll.ourcompay.Extra.Retrofit;
 import com.chocoroll.ourcompay.Model.Report;
 import com.chocoroll.ourcompay.R;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-
-import retrofit.Callback;
-import retrofit.RestAdapter;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -91,87 +79,13 @@ public class ReportDetailFragment extends Fragment {
 
 
 
-        getReportDetail(report.getNum());
+
 
 
 
 
 
         return v;
-    }
-
-
-
-    void getReportDetail(String num){
-        final JsonObject info = new JsonObject();
-        info.addProperty("num", report.getNum());
-
-        new Thread(new Runnable() {
-            public void run() {
-                try {
-
-                    RestAdapter restAdapter = new RestAdapter.Builder()
-                            .setEndpoint(Retrofit.ROOT)  //call your base url
-                            .build();
-                    Retrofit retrofit = restAdapter.create(Retrofit.class); //this is how retrofit create your api
-                    retrofit.getReportDetail(info, new Callback<JsonArray>() {
-
-                        @Override
-                        public void success(JsonArray jsonElements, Response response) {
-
-                            for (int i = 0; i < jsonElements.size(); i++) {
-                                JsonObject report = (JsonObject) jsonElements.get(i);
-                                //String cno = (coupon.get("cno")).getAsString();
-                                String comp_name = (report.get("comp_name")).getAsString();
-
-                                String userid = (report.get("userid")).getAsString();
-                                String purpose = (report.get("perpose")).getAsString();
-                                String rp_content = (report.get("rp_content")).getAsString();
-                                String picture=(report.get("picture")).getAsString();
-
-
-                                //날짜받기
-
-                                company_name.setText(comp_name);
-                                user_id.setText(userid);
-                                company_purpose.setText(purpose);
-                                content.setText(rp_content);
-                                bitmap = BitmapFactory.decodeFile(picture);
-                                image.setImageBitmap(bitmap);
-
-
-                            }
-
-                        }
-
-                        @Override
-                        public void failure(RetrofitError retrofitError) {
-//                            dialog.dismiss();
-//                            dialog.dismiss();
-                            Log.e("error", retrofitError.getCause().toString());
-                            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                            builder.setTitle("네트워크가 불안정합니다.")        // 제목 설정
-                                    .setMessage("네트워크를 확인해주세요")        // 메세지 설정
-                                    .setCancelable(false)        // 뒤로 버튼 클릭시 취소 가능 설정
-                                    .setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                                        // 확인 버튼 클릭시 설정
-                                        public void onClick(DialogInterface dialog, int whichButton) {
-                                            getActivity().finish();
-                                        }
-                                    });
-
-                            AlertDialog dialog = builder.create();    // 알림창 객체 생성
-                            dialog.show();    // 알림창 띄우기
-
-                        }
-                    });
-                }
-                catch (Throwable ex) {
-
-                }
-            }
-        }).start();
-
     }
 
 
