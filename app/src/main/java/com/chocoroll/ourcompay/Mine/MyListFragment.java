@@ -109,7 +109,7 @@ public class MyListFragment extends Fragment {
 
 
 
-        //getQnAList(user_email, arMyQnA);
+        getQnAList(user_email, arMyQnA);
 
       adapter2 = new QnaAdapter(getActivity(), R.layout.model_qna_list, arMyQnA);
 

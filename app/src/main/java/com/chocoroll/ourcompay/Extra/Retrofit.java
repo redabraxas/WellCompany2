@@ -22,6 +22,8 @@ public interface Retrofit {
     // 회사별 리포트
     @POST("/list/companyreportlist.php")
     public void getCompanyReportList(@Body JsonObject info, Callback<JsonArray> callback);
+    @POST("/list/list/detailReport.php")
+    public void getReportDetail(@Body JsonObject info, Callback<JsonArray> callback);
 
     // 회사별 질문 목록 및 답변
     @POST("/qna/companyQuestionList.php ")
@@ -43,10 +45,13 @@ public interface Retrofit {
     @POST("/list/showMyQna.php")
     public void getQnAList(@Body JsonObject info, Callback<JsonArray> callback);
 
-    // Deal만들기
+    // report 작성
     @POST("/uploads/UploadReport.php")
     public void UploadDeal(@Body JsonObject info, Callback<String> callback);
 
 
+    // 견학예약
+    @POST("/list/registReservation.php")
+    public void reservation(@Body JsonObject info, Callback<String> callback);
 
 }
