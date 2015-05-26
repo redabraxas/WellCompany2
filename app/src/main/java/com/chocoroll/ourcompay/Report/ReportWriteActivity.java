@@ -12,16 +12,18 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.content.CursorLoader;
 import android.util.Base64;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.view.View.OnClickListener;
+
+import com.chocoroll.ourcompay.Extra.Retrofit;
 import com.chocoroll.ourcompay.MainActivity;
 import com.chocoroll.ourcompay.R;
-import com.chocoroll.ourcompay.Extra.Retrofit;
 import com.google.gson.JsonObject;
 
 import java.io.ByteArrayOutputStream;
@@ -230,14 +232,29 @@ public class ReportWriteActivity extends Activity implements OnClickListener {
 
     }
 
-    public String getPath(Uri uri) {
-        String[] projection = {MediaStore.Images.Media.DATA};
-        Cursor cursor = managedQuery(uri, projection, null, null, null);
+
+
+    protected String getPath(Uri uri){
+
+        String [] projection = {MediaStore.Images.Media.DATA};
+
+        CursorLoader cursorLoader = new CursorLoader(
+                getApplicationContext(),
+                uri,
+                projection,
+                null,   //selection
+                null,   //selectionArgs
+                null   //sortOrder
+        );
+
+        Cursor cursor = cursorLoader.loadInBackground();
+
         int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
         cursor.moveToFirst();
-        return cursor.getString(column_index);
-    }
 
+        return cursor.getString(column_index);
+
+    }
     @Override
     protected void onStop() {
         // TODO Auto-generated method stub
