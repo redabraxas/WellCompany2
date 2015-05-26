@@ -1,6 +1,7 @@
 package com.chocoroll.ourcompay.UserMenu;
 
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -11,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,19 +45,14 @@ public class MyApplyFragment extends Fragment {
     private ViewPager pager;
     private MyPagerAdapter mAdapter;
 
-    ArrayList<Reserve> waitApplyList;
-    ArrayList<Reserve> rejectApplyList;
-    ArrayList<Reserve> approveApplyList;
+    ArrayList<Reserve> waitApplyList = new ArrayList<Reserve>();
+    ArrayList<Reserve> rejectApplyList = new ArrayList<Reserve>();
+    ArrayList<Reserve> approveApplyList = new ArrayList<Reserve>();
 
 
     public MyApplyFragment() {
         // Required empty public constructor
     }
-
-    public interface ApplyListListener{
-        public void setList(ArrayList<Reserve> applyList);
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,7 +63,12 @@ public class MyApplyFragment extends Fragment {
         tabs = (PagerSlidingTabStrip)v.findViewById(R.id.tabs);
         tabs.setTextColor(Color.WHITE);
         pager = (ViewPager)v.findViewById(R.id.pager);
+        mAdapter = new MyPagerAdapter(getChildFragmentManager());
 
+        pager.setOffscreenPageLimit(2);
+        final int pageMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources()
+                .getDisplayMetrics());
+        pager.setPageMargin(pageMargin);
 
         getMyApplyList();
         return v;
@@ -85,18 +87,18 @@ public class MyApplyFragment extends Fragment {
         }
         @Override
         public int getCount() {
-            return 2;
+            return 3;
         }
 
         @Override
         public Fragment getItem(int position) {
             switch (position){
                 case 0:
-                    return new ApplyListFragment(waitApplyList);
+                    return ApplyListFragment.newInstance(waitApplyList);
                 case 1:
-                    return new ApplyListFragment(approveApplyList);
+                    return ApplyListFragment.newInstance(approveApplyList);
                 case 2:
-                    return new ApplyListFragment(rejectApplyList);
+                    return ApplyListFragment.newInstance(rejectApplyList);
             }
 
             return null;
@@ -176,16 +178,14 @@ public class MyApplyFragment extends Fragment {
                                         rejectApplyList.add(new Reserve(reserveNum,comName,id,name,phone,belongs,
                                                 expectPeople,purpose,expectQuery,comment,state));
                                         break;
+
                                 }
+
+                                Log.e("apply", comName);
 
                             }
 
-                            mAdapter = new MyPagerAdapter(getChildFragmentManager());
 
-                            pager.setOffscreenPageLimit(2);
-                            final int pageMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources()
-                                    .getDisplayMetrics());
-                            pager.setPageMargin(pageMargin);
                             pager.setAdapter(mAdapter);
                             tabs.setViewPager(pager);
 
@@ -218,32 +218,40 @@ public class MyApplyFragment extends Fragment {
         }).start();
     }
 
-    public class ApplyListFragment extends Fragment{
+    public static class ApplyListFragment extends Fragment{
 
-        ArrayList<Reserve> applyList = new ArrayList<Reserve>();
-        ReserveApplyAdapter mAdapter;
+        ArrayList<Reserve> applyList ;
+        ReserveApplyAdapter applyAdapter;
         ListView listView;
 
-
-        public ApplyListFragment(ArrayList<Reserve> applyList){
-            this.applyList = applyList;
+        public static ApplyListFragment newInstance(ArrayList<Reserve> applyList) {
+            ApplyListFragment fragment = new ApplyListFragment();
+            Bundle args = new Bundle();
+            args.putParcelableArrayList("applyList", applyList);
+            fragment.setArguments(args);
+            return fragment;
         }
+
+
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             // Inflate the layout for this fragment
 
+            applyList = new ArrayList<Reserve>();
+            applyList= getArguments().getParcelableArrayList("applyList");
+
             View v=  inflater.inflate(R.layout.fragment_apply_list, container, false);
 
             listView =(ListView) v.findViewById(R.id.listViewApply);
-            mAdapter= new ReserveApplyAdapter(getActivity(), R.layout.model_reserve_apply, applyList);
+            applyAdapter= new ReserveApplyAdapter(getActivity(), R.layout.model_reserve_apply, applyList);
 
             listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
             listView.setDivider(new ColorDrawable(Color.LTGRAY));
             listView.setDividerHeight(3);
 
-            listView.setAdapter(mAdapter);
+            listView.setAdapter(applyAdapter);
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

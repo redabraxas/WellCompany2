@@ -48,8 +48,8 @@ public class MyListFragment extends Fragment {
     QnaAdapter adapter2;
 
 
-    ArrayList<Report> arMyreport;
-    ArrayList<Qna> arMyQnA;
+    ArrayList<Report> arMyreport = new ArrayList<Report>();
+    ArrayList<Qna> arMyQnA = new ArrayList<Qna>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -75,47 +75,32 @@ public class MyListFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_mylist, container, false);
 
-        Log.e("mylist", "1");
         // 내 아이디
         user_email = ((MainActivity)MainActivity.mContext).getUserId();
 
 
-        arMyreport = new ArrayList<Report>();
 
-
-
-        getContentList(user_email,arMyreport);
-
-       adapter = new ReportAdapter(getActivity(), R.layout.model_report, arMyreport);
-
-
-
+        adapter = new ReportAdapter(getActivity(), R.layout.model_report, arMyreport);
         list = (ListView)v.findViewById(R.id.list);
         list.setAdapter(adapter);
-
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Report report = arMyreport.get(i);
                 ReportDetailFragment reportDetailFragment = ReportDetailFragment.newInstance(report);
                 getActivity().getSupportFragmentManager().beginTransaction().add(R.id.container, reportDetailFragment).addToBackStack(null).commit();
-
-
             }
         }) ;
 
-
-        arMyQnA = new ArrayList<Qna>();
-
+        getContentList(user_email,arMyreport);
 
 
-        getQnAList(user_email, arMyQnA);
 
-      adapter2 = new QnaAdapter(getActivity(), R.layout.model_qna_list, arMyQnA);
-
-
+        adapter2 = new QnaAdapter(getActivity(), R.layout.model_qna_list, arMyQnA);
         list2 = (ListView)v.findViewById(R.id.list2);
         list2.setAdapter(adapter2);
+
+        getQnAList(user_email, arMyQnA);
         return v;
 
 
