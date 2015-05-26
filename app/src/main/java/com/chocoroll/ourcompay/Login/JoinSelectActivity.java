@@ -29,7 +29,6 @@ public class JoinSelectActivity extends Activity {
                 break;
             case R.id.btnJoinCompany:
                 intent = new Intent(JoinSelectActivity.this, JoinCompanyActivity.class);
-                startActivity(intent);
                 break;
         }
 
