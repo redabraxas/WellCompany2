@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.chocoroll.ourcompay.CompanyMenu.VisitStateFragment;
 import com.chocoroll.ourcompay.Login.JoinActivity;
 import com.chocoroll.ourcompay.Login.JoinSelectActivity;
 import com.chocoroll.ourcompay.Login.LoginActivity;
@@ -281,13 +282,13 @@ public class MainActivity extends FragmentActivity {
                     menu_reserve.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            slidingMenu.showContent(true);
-                            //                    removeAllStack();
-                            //                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                            //                    ft.replace(R.id.container, new WishDealFragment());
-                            //                    ft.setTransition(FragmentTransaction.TRANSIT_NONE);
-                            //                    ft.addToBackStack(null);
-                            //                    ft.commit();
+                    slidingMenu.showContent(true);
+                    removeAllStack();
+                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    ft.replace(R.id.container, new VisitStateFragment());
+                    ft.setTransition(FragmentTransaction.TRANSIT_NONE);
+                    ft.addToBackStack(null);
+                    ft.commit();
                         }
                     });
                     break;
@@ -301,12 +302,12 @@ public class MainActivity extends FragmentActivity {
 
                             Intent intent = new Intent(MainActivity.this, ReportWriteActivity.class);
                             startActivity(intent);
-                            //                    removeAllStack();
-                            //                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                            //                    ft.replace(R.id.container, new WishDealFragment());
-                            //                    ft.setTransition(FragmentTransaction.TRANSIT_NONE);
-                            //                    ft.addToBackStack(null);
-                            //                    ft.commit();
+        //                    removeAllStack();
+        //                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        //                    ft.replace(R.id.container, new WishDealFragment());
+        //                    ft.setTransition(FragmentTransaction.TRANSIT_NONE);
+        //                    ft.addToBackStack(null);
+        //                    ft.commit();
                         }
                     });
                     break;

@@ -22,9 +22,12 @@ import android.widget.ListView;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.chocoroll.ourcompay.MainActivity;
+import com.chocoroll.ourcompay.Model.Report;
 import com.chocoroll.ourcompay.Model.Reserve;
 import com.chocoroll.ourcompay.R;
 import com.chocoroll.ourcompay.Extra.Retrofit;
+import com.chocoroll.ourcompay.Report.ReportDetailFragment;
+import com.chocoroll.ourcompay.Reserve.ReserveDetailFragment;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
@@ -255,11 +258,10 @@ public class MyApplyFragment extends Fragment {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                    Reserve item =(Reserve)mAdapter.getItem(i);
-//
-//                    Intent intent = new Intent(getActivity(), CompanyActivity.class);
-//                    intent.putExtra("Company",item);
-//                    startActivity(intent);
+
+                    Reserve reserve = applyList.get(i);
+                    ReserveDetailFragment reserveDetailFragment = ReserveDetailFragment.newInstance(reserve);
+                    getActivity().getSupportFragmentManager().beginTransaction().add(R.id.container, reserveDetailFragment).addToBackStack(null).commit();
 
                 }
             }) ;
