@@ -51,7 +51,6 @@ public class OneMonthView extends LinearLayout implements View.OnClickListener {
             for(int i=0; i<42; i++) {
 
                 if(i % 7 == 0) {
-                    //?�� 二? ?��?��?��?�� ?��?��
                     ll = new LinearLayout(mContext);
                     LayoutParams params
                             = new LayoutParams(LayoutParams.MATCH_PARENT, 0);

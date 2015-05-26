@@ -45,13 +45,9 @@ public class ReserveActivity extends Activity implements OnClickListener {
         setContentView(R.layout.activity_reserve);
 
 
-// 날짜입력받기
-//        String year = getIntent().getStringExtra("year");
-        String year = "2015";
-//        String month = getIntent().getStringExtra("month");
-        String month = "05";
-//        String day = getIntent().getStringExtra("day");
-        String day = "26";
+        String year = String.valueOf(getIntent().getIntExtra("year",0));
+        String month = String.valueOf(getIntent().getIntExtra("month",0));
+        String day = String.valueOf(getIntent().getIntExtra("day",0));
 
 
         reserve_date = year+"-"+month+"-"+day;

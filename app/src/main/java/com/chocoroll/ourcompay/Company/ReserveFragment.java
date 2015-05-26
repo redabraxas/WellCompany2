@@ -2,30 +2,45 @@ package com.chocoroll.ourcompay.Company;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.chocoroll.ourcompay.Calendar.OneMonthView;
 import com.chocoroll.ourcompay.Calendar.VerticalViewPager;
+import com.chocoroll.ourcompay.Extra.Retrofit;
 import com.chocoroll.ourcompay.R;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
+import java.util.Locale;
+
+import retrofit.Callback;
+import retrofit.RestAdapter;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 /**
  * Created by RA on 2015-05-17.
@@ -34,15 +49,41 @@ public class ReserveFragment extends Fragment {
 
     String companyNum;
 
-    private static final String NAME = "MainActivity";
-    private final String CLASS = NAME + "@" + Integer.toHexString(hashCode());
-    private int during;
 
-    public static final String ARG_YEAR = "year";
-    public static final String ARG_MONTH = "month";
-    Button todayButton;
-    TextView thisMonthTv;
-    int current, mSelectedIndex;
+    /// 당연한 이야기지만 한줄에 7일씩 안들어갈 경우 휴일처리는 고려하지 않았다 -_-;;
+    final static int ROWS = 7 ; /// 줄/행수
+    final static int COLS = 7 ; /// 칸/열수
+
+
+    Context m_context ;    /// context
+
+    LinearLayout m_targetLayout ; /// 달력을 넣을 레이아웃
+
+    Calendar m_Calendar ;   /// 사용할 달력
+
+    LinearLayout [ ] m_lineLy ;  /// 7라인 요일표시 + 최대 6주
+    LinearLayout [ ] m_cellLy ;  /// 7칸
+    TextView [ ] m_cellTextBtn ; /// 각 칸마다 넣을 텍스트뷰 (버튼처럼 이벤트 주려고 Btn 이라 붙였음)
+/// 사실 버튼으로 하고싶은데 버튼에 텍스트 넣으면 죽어도 상하좌우 여백이 들어가서
+/// 텍스트가 짤려서 TextView로 만들 수 밖에 없음
+
+    LinearLayout [ ] m_horizontalLine ; /// 경계선 라인 가로
+    LinearLayout[ ] m_verticalLine ; /// 경계선 라인 세로
+
+    int m_startPos ;    /// 요일을 찍기 시작 할 위치
+    int m_lastDay ;     /// 그 달의 마지막날
+    int m_selDay ;     /// 현재 선택된 날짜
+
+////////////////////////////////////////
+
+    float m_displayScale ;   /// 화면 사이즈에 따른 텍스트 크기 보정값 저장용
+    float m_textSize ;    /// 텍스트 사이즈(위 라인의 변수와 곱해짐)
+    float m_topTextSize ;   /// 요일텍스트 사이즈(역시 보정값과 곱해짐)
+
+    int m_tcHeight = 100 ;   /// 요일 들어가는 부분 한칸의 높이
+    int m_cWidth = 100 ;    /// 한칸의 넓이
+    int m_cHeight = 100 ;   /// 한칸의 높이
+    int m_lineSize = 5 ;   /// 경계선의 굵기
 
 
     public ReserveFragment() {
@@ -60,226 +101,774 @@ public class ReserveFragment extends Fragment {
         // Inflate the layout for this fragment
         final View v = inflater.inflate(R.layout.fragemnt_reserve, container, false);
 
-        todayButton = (Button)v.findViewById(R.id.main_add_bt);
-        thisMonthTv = (TextView)v.findViewById(R.id.this_month_tv);
-        vvpager = (VerticalViewPager)v.findViewById(R.id.vviewPager);
-        adapter = new MonthlySlidePagerAdapter(getActivity(), mYear, mMonth);
-        vvpager.setAdapter(adapter);
-        vvpager.setOnPageChangeListener(adapter);
-        vvpager.setCurrentItem(adapter.getPosition(mYear, mMonth));
 
-        ReserveFragment.this.setOnMonthChangeListener(new OnMonthChangeListener() {
+        // 날짜 뷰
+        TextView[] tv;
+        tv= new TextView[3];
+        tv[0] =(TextView)v.findViewById(R.id.m_yearTv);
+        tv[1] =(TextView)v.findViewById(R.id.m_mothTv);
 
-            @Override
-            public void onChange(int year, int month) {
-
-                thisMonthTv.setText(year + "." + (month + 1));
-
-            }
-        });
-        vvpager.setCurrentItem(0);
-        Calendar cal = Calendar.getInstance();
-        thisMonthTv.setText(cal.get(cal.YEAR)+ "." + (cal.get(cal.MONTH) + 1));
-
-        todayButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                vvpager.setCurrentItem(0);
-
-            }
-        });
+        setViewTarget(tv);
 
 
+        // 달 이동 버튼
+        Button[] btn;
+        btn = new Button[4];
+        btn[2] = (Button)v.findViewById(R.id.m_preMonthBtn);
+        btn[3] = (Button)v.findViewById(R.id.m_nextMonthBtn);
+        setControl( btn );
 
+        /// context저장
+        m_context = getActivity() ;
+
+        /// 타겟 레이아웃 저장
+        m_targetLayout =  (LinearLayout)v.findViewById(R.id.calenderView) ;
+
+        /// 오늘 잘짜로 달력 생성
+        m_Calendar = Calendar.getInstance( ) ;
+
+        /// 표시할 각각의 레이어 생성
+        m_lineLy = new LinearLayout[ COLS ] ;      /// 7줄의 레이아웃 생성
+        m_cellLy = new LinearLayout[ COLS * ROWS ] ;    /// 그안에  줄당 7개씩 총 49개의 레이아웃 생성
+        m_cellTextBtn = new TextView[ COLS * ROWS ] ;    /// 동일한 갯수의 버튼도 생성
+        m_horizontalLine = new LinearLayout[ COLS - 1 ] ;    /// 세로 구분선 레이아웃
+        m_verticalLine = new LinearLayout[ ( COLS - 1 ) * ROWS ] ; /// 가로 구분선 레이아웃
+
+        /// 화면의 크기에 따른 보정값
+        m_displayScale = m_context.getResources( ).getDisplayMetrics( ).density ;
+
+        m_topTextSize = m_displayScale * 12.0f ;
+        m_textSize = m_displayScale * 12.0f ;
+
+        m_colorParam = new gsCalendarColorParam( ) ;
+        initCalendar( ) ;
+
+        setSelectedDay("reject",3);
         return v;
     }
 
 
-    @Override
-    public void onStart() {
-        super.onStart();
 
 
+    static public class gsCalendarColorParam
+    {
+        int m_lineColor    = 0xff000000 ; /// 경계선 색
+        int m_cellColor    = 0xffffffff ; /// 칸의 배경색
+        int m_topCellColor    = 0xffcccccc ; /// 요일 배경색
+        int m_textColor    = 0xff000000 ; /// 글씨색
+        int m_sundayTextColor   = 0xffff0000 ; /// 일요일 글씨색
+        int m_saturdayTextColor  = 0xff0000ff ; /// 토요일 글씨색
+        int m_topTextColor    = 0xff000000 ;  /// 요일 글씨색
+        int m_topSundayTextColor  = 0xffff0000 ;  /// 요일 일요일 글씨색
+        int m_topSaturdatTextColor  = 0xff0000ff ;  /// 요일 토요일 글씨색
+
+        int m_todayCellColor  = 0x999999ff ; /// 선택날짜의 배경색
+        int m_todayTextColor  = 0xffffffff ;  /// 선택날짜의 글씨색
+    }
+
+    gsCalendarColorParam m_colorParam ;
+
+    /// 있으면 적용하고 없으면 bgcolor로 처리함( 각각 개별적으로 )
+    Drawable m_bgImgId = null ;    /// 전체 배경이미지
+    Drawable m_cellBgImgId = null ;   /// 한칸의 배경 이미지
+    Drawable m_topCellBgImgId = null ;  /// 상단 요일 들어가는 부분의 배경 이미지
+
+    Drawable m_todayCellBgImgId = null ;  /// 선택 날짜의 배경 이미지
+
+    /// 상단에 표시하는 요일 텍스트
+    String [] m_dayText ={ "일", "월", "화", "수", "목", "금", "토" } ;
+
+///////////////////////////////////////////
+
+    Button m_preYearBtn ;   /// 전년도 버튼
+    Button m_nextYearBtn ;   /// 다음년도 버튼
+    Button m_preMonthBtn ;   /// 전월 버튼
+    Button m_nextMonthBtn ;   /// 다음월 버튼
+
+    TextView m_yearTv ;    /// 년 표시용 텍스트
+    TextView m_mothTv ;    /// 월 표시용 텍스트
+    TextView m_dayTv ;    /// 날짜 표시용 텍스트
+
+
+    /// 휴일을 MMdd형식으로 넣는다.
+/// 구정이 2월 4 5 6이라면
+/// [0204] [0205] [0206] 이렇게 넣음
+    ArrayList< Integer > m_holiDay = new ArrayList< Integer >( ) ;
+
+
+
+    /// 달력을 생성한다.( 모든 옵션들[컬러값, 텍스트 크기 등]을 설정한 후에 마지막에 출력 할 때 호출)
+    public void initCalendar( )
+    {
+        createViewItem() ;
+        setLayoutParams() ;
+        setLineParam() ;
+        setContentext() ;
+        setOnEvent() ;
+
+        printView( ) ;
+    }
+
+    /// 컬러값 파라메터 설정
+    public void setColorParam( gsCalendarColorParam param )
+    {
+        m_colorParam = param ;
+    }
+
+    /// 배경으로 쓸 이미지를 설정
+    public void setBackground( Drawable bg )
+    {
+        m_bgImgId = bg ;
+    }
+    public void setCellBackground( Drawable bg )
+    {
+        m_cellBgImgId = bg ;
+    }
+    public void setTopCellBackground( Drawable bg )
+    {
+        m_topCellBgImgId = bg ;
+    }
+
+    public void setCalendarSize( int width, int height  )
+    {
+        m_cWidth = ( width - ( m_lineSize * COLS - 1 ) ) / COLS ;
+        m_cHeight = ( height - ( m_lineSize * ROWS - 1 ) ) / ROWS ;
+        m_tcHeight = ( height - ( m_lineSize * COLS - 1 ) ) / COLS ;
+    }
+
+    public void setCellSize( int cellWidth, int cellHeight, int topCellHeight  )
+    {
+        m_cWidth = cellWidth ;
+        m_cHeight = cellHeight ;
+        m_tcHeight = topCellHeight ;
+    }
+
+    public void setTopCellSize( int topCellHeight  )
+    {
+        m_tcHeight = topCellHeight ;
+    }
+
+    public void setCellSize( int allCellWidth, int allCellHeight )
+    {
+        m_cWidth = allCellWidth ;
+        m_cHeight = allCellHeight ;
+        m_tcHeight = allCellHeight ;
+    }
+
+    public void setTextSize( float size )
+    {
+        m_topTextSize = m_displayScale * size ;
+        m_textSize = m_displayScale * size ;
+    }
+
+    public void setTextSize( float textSize, float topTextSize )
+    {
+        m_topTextSize = m_displayScale * topTextSize ;
+        m_textSize = m_displayScale * textSize ;
+    }
+
+
+    public void redraw( )
+    {
+        m_targetLayout.removeAllViews( ) ;
+        initCalendar( ) ;
 
     }
 
 
-    public interface OnMonthChangeListener {
+    //////////////////// 선택한 날짜칸에 변화를 주는 함수 //////////////////////////
+    /// 이녀석이 불러졌을때 상태는 날짜가 오늘로 선택되어있거나 뭔가 선택했을 것임
+    /// 그럼으로 m_cellLy[ 날짜 + m_startPos ].setTextColor( ) ;
+    /// m_startPos가 구해져 있으니 날짜를 더하면 해당 날짜칸을 마음대로 바꿀 수 있음
+    /// ////////////////////////////////////////////////////////////////////
+    /// 선택된 날짜칸에 변화를 주기위한 함수 1호
+    public void setSelectedDay(String code, int day )
+    {
+//        m_colorParam.m_todayCellColor = cellColor ;
+//        m_colorParam.m_todayTextColor = textColor ;
+//        m_cellTextBtn[ m_Calendar.get( Calendar.DAY_OF_MONTH ) + m_startPos - 1 ].setTextColor( textColor ) ;
+//        m_cellTextBtn[ m_Calendar.get( Calendar.DAY_OF_MONTH ) + m_startPos - 1 ].setBackgroundColor( cellColor ) ;
 
-        void onChange(int year, int month);
-    }
-
-    private OnMonthChangeListener dummyListener = new OnMonthChangeListener() {
-        @Override
-        public void onChange(int year, int month) {
+        if(code.equals("passed")){
+            m_cellTextBtn[ day + m_startPos - 1 ].setTextColor( Color.parseColor("#ffffff") ) ;
+            m_cellTextBtn[ day + m_startPos - 1 ].setBackgroundColor(  Color.parseColor("#FF656565")  ) ;
+            m_cellTextBtn[ day + m_startPos - 1].setTag("passed");
+        }else if(code.equals("reject")){
+            m_cellTextBtn[ day + m_startPos - 1 ].setTextColor( Color.parseColor("#ffffff") ) ;
+            m_cellTextBtn[ day + m_startPos - 1 ].setBackgroundColor(  Color.parseColor("#FFFF3139")  ) ;
+            m_cellTextBtn[ day + m_startPos - 1].setTag("reject");
         }
-    };
-
-    private OnMonthChangeListener listener = dummyListener;
-
-    private VerticalViewPager vvpager;
-    private MonthlySlidePagerAdapter adapter;
-    int mYear = -1;
-    int mMonth = -1;
-
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        if (getArguments() != null) {
-            mYear = getArguments().getInt(ARG_YEAR);
-            mMonth = getArguments().getInt(ARG_MONTH);
-        }
-        else {
-            Calendar now = Calendar.getInstance();
-            mYear = now.get(Calendar.YEAR);
-            mMonth = now.get(Calendar.MONTH);
-        }
-
 
     }
 
+    /// 선택된 날짜칸에 변화를 주기위한 함수 2호
+    public void setSelectedDayTextColor( int textColor )
+    {
+        m_colorParam.m_todayTextColor = textColor ;
+        m_cellTextBtn[ m_Calendar.get( Calendar.DAY_OF_MONTH ) + m_startPos - 1 ].setTextColor( textColor ) ;
+    }
 
-    @Override
-    public void onDetach() {
-        setOnMonthChangeListener(null);
-        super.onDetach();
+    /// 선택된 날짜칸에 변화를 주기위한 함수 3호
+    public void setSelectedDay( Drawable bgimg )
+    {
+        m_todayCellBgImgId = bgimg ;
+        m_colorParam.m_todayCellColor = 0x00000000 ;
+        m_cellTextBtn[ m_Calendar.get( Calendar.DAY_OF_MONTH ) + m_startPos - 1 ].setBackgroundDrawable( bgimg ) ;
+        Log.d("===",(m_Calendar.get( Calendar.DAY_OF_MONTH ) -1)+ "" ) ;
     }
 
 
-    public int getYear() {
-        return mYear;
+    ///////////////////////////// 공휴일 처리 ///////////////////////
+    /// 휴일을 MMdd형식으로 넣는다.
+    /// 구정이 2월 4 5 6이라면
+    /// [0204] [0205] [0206] 이렇게 넣음
+    public void addHoliday( int holiday_MMdd )
+    {
+        m_holiDay.add( holiday_MMdd ) ;
     }
 
-    public int getMonth() {
-        return mMonth;
-    }
+    /// 공휴일 리스트를 루프돌면서 해당 날짜를 일요일과 같은 색으로 변경
+    public void applyHoliday( )
+    {
+        /// 현재 달력의 월을 구함
+        Integer iMonth = m_Calendar.get( Calendar.MONTH ) + 1 ;
 
-    public void setOnMonthChangeListener(OnMonthChangeListener listener) {
-        if(listener == null) this.listener = dummyListener;
-        else this.listener = listener;
-    }
-
-    public class YearMonth {
-        public int year;
-        public int month;
-
-        public YearMonth(int year, int month) {
-            this.year = year;
-            this.month = month;
-        }
-    }
-
-
-    class MonthlySlidePagerAdapter extends PagerAdapter
-            implements ViewPager.OnPageChangeListener {
-
-        @SuppressWarnings("unused")
-        private Context mContext;
-
-        private OneMonthView[] monthViews;
-        final static int BASE_YEAR = 2015;
-        final static int BASE_MONTH = Calendar.JANUARY;
-        final static int PAGES = 3;
-        final static int LOOPS = 1;
-        final static int BASE_POSITION = 0;
-        final Calendar BASE_CAL;
-        private int previousPosition;
-
-        public MonthlySlidePagerAdapter(Context context, int startYear, int startMonth) {
-            this.mContext = context;
-            Calendar base = Calendar.getInstance();
-            base.set(base.get(base.YEAR), base.get(base.MONTH), 1);
-            BASE_CAL = base;
-
-            monthViews = new OneMonthView[PAGES];
-            for(int i = 0; i < PAGES; i++) {
-                monthViews[i] = new OneMonthView(getActivity());
+         /// 휴일로 저장된 모든 날짜 루프 줄줄 돌음
+        for( int k = 0 ; k < m_holiDay.size( ) ; k++ )
+        {
+            int holiday = m_holiDay.get( k ) ; /// 월과 일을 구한다음
+            if( holiday / 100 == iMonth )  /// 월이 동일할 경우
+            {
+                /// 해당 날짜를 휴일 컬러로 변경
+                m_cellTextBtn[ holiday % 100 + m_startPos ].setTextColor( m_colorParam.m_sundayTextColor ) ;
             }
         }
-
-        public YearMonth getYearMonth(int position) {
-            Calendar cal = (Calendar)BASE_CAL.clone();
-            cal.add(Calendar.MONTH, position - BASE_POSITION);
-            return new YearMonth(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH));
-        }
-
-        public int getPosition(int year, int month) {
-            Calendar cal = Calendar.getInstance();
-            cal.set(year, month, 1);
-            return BASE_POSITION + howFarFromBase(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH));
-        }
-
-        private int howFarFromBase(int year, int month) {
-
-            int disY = (year - BASE_YEAR) * 12;
-            int disM = month - BASE_MONTH;
-
-            return disY + disM;
-        }
-
-        @Override
-        public Object instantiateItem(ViewGroup container, int position) {
+    }
 
 
-            int howFarFromBase = position - BASE_POSITION;
-            Calendar cal = (Calendar) BASE_CAL.clone();
-            cal.add(Calendar.MONTH, howFarFromBase);
 
-            position = position % PAGES;
 
-            container.addView(monthViews[position]);
+    /// 세로줄 수만큼 루프 세로줄은 날짜 표기되는 줄 + 경계선 줄수
+    public void createViewItem( )
+    {
+        /// 7줄이면 경계선 라인까지 합해서 13줄을 생성해야한다.
+        for( int i = 0 ; i < ROWS * 2 - 1 ; i++ )
+        {
+            /// 짝수라인일때는
+            if( i % 2 == 0 )
+            {
+                /// 라인은 13개 라인이지만 내용이 표시되는 라인은 7개임
+                m_lineLy[i/2] = new LinearLayout( m_context ) ;
+                m_targetLayout.addView( m_lineLy[i/2] ) ; // 만든 레이아웃을 자식으로 등록
 
-            monthViews[position].make(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH));
+                /// 날짜표기 칸과 경계선 합해서 13개의 칸을 생성
+                for( int j = 0 ; j < COLS * 2 - 1 ; j++ )
+                {
 
-            return monthViews[position];
-        }
+                    /// 달력 내용이 들어가는 칸
+                    if( j % 2 == 0 )
+                    {
+                        int pos = ( ( i / 2 ) * COLS ) + ( j / 2 ) ;
 
-        @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
-            container.removeView((View) object);
-        }
+                        Log.d( "pos1", "" +  pos ) ;
+                        m_cellLy[ pos ] = new LinearLayout( m_context ) ;
+                        m_cellTextBtn[ pos ] = new TextView( m_context ) ;
+                        m_lineLy[ i / 2 ].addView( m_cellLy[ pos ] ) ;
+                        m_cellLy[ pos ].addView( m_cellTextBtn[ pos ] ) ;
 
-        @Override
-        public int getCount() {
-            return PAGES * LOOPS;
-        }
+                    }
+                    else /// 이건 단순한 경계선
+                    {
+                        int pos = ( ( i / 2 ) * (COLS - 1) ) + ( j - 1 ) / 2 ;
 
-        @Override
-        public boolean isViewFromObject(View view, Object obj) {
-            return view == obj;
-        }
-
-        @Override
-        public void onPageScrollStateChanged(int state) {
-            switch(state) {
-                case ViewPager.SCROLL_STATE_IDLE:
-                    break;
-                case ViewPager.SCROLL_STATE_DRAGGING:
-                    previousPosition = vvpager.getCurrentItem();
-                    break;
-                case ViewPager.SCROLL_STATE_SETTLING:
-                    break;
+                        Log.d( "pos2", "" +  pos ) ;
+                        m_verticalLine[ pos ] = new LinearLayout( m_context ) ;
+                        m_lineLy[ i / 2 ].addView( m_verticalLine[ pos ] ) ;
+                    }
+                }
             }
-        }
+            else /// 이건 가로줄 경계선
+            {
+                m_horizontalLine[ ( i - 1 ) / 2 ] = new LinearLayout( m_context ) ;
+                m_targetLayout.addView( m_horizontalLine[ ( i - 1 ) / 2 ] ) ;
 
-        @Override
-        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-            //HLog.d(TAG, CLASS, position + "-  " + positionOffset);
-            if(previousPosition != position) {
-                previousPosition = position;
-
-                YearMonth ym = getYearMonth(position);
-                listener.onChange(ym.year, ym.month);
             }
-        }
-
-        @Override
-        public void onPageSelected(int position) {
         }
     }
+
+    /// 레이아웃과 버튼의 배경색, 글씨색 등 ViewParams를 셋팅
+    public void setLayoutParams( )
+    {
+        /// 메인 레이아웃은 세로로 나열
+        m_targetLayout.setOrientation( LinearLayout.VERTICAL ) ;
+        /// 만약 전체 배경이 있으면 넣어줌
+        if( m_bgImgId != null )
+        {
+            m_targetLayout.setBackgroundDrawable( m_bgImgId ) ;
+        }
+
+        /// 세로줄 수만큼 루프 세로줄은 날짜 표기되는 줄 + 경계선 줄수
+        for( int i = 0 ; i < ROWS * 2 - 1 ; i++ )
+        {
+            if( i % 2 == 0 )
+            {
+                /// 각 라인을 구성하는 레이아웃들은 가로로 나열~
+                m_lineLy[i/2].setOrientation( LinearLayout.HORIZONTAL ) ;
+                m_lineLy[i/2].setLayoutParams( /// 레이아웃 사이즈는 warp_content로 설정
+                        new LinearLayout.LayoutParams( ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT ) ) ;
+
+                /// 한칸한칸 옵션을 설정
+                for( int j = 0 ; j < COLS ; j++ )
+                {
+                    int cellnum = ( ( i / 2 ) * COLS ) + j ;
+                    /// 한칸한칸을 구성하는 레이아웃 사이즈는 역시 wrap_content로 설정
+                    LinearLayout.LayoutParams param = new LinearLayout.LayoutParams( ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT ) ;
+                            //param.setMargins( 1, 1, 1, 1 ) ; /// 마진을 1씩 줘서 라인을 그린다.
+                    m_cellLy[ cellnum ].setLayoutParams( param ) ;
+                   // 한칸한칸 들어가는 버튼
+                    m_cellTextBtn[ cellnum ].setGravity( Gravity.CENTER ) ;
+
+
+/// 이하는 배경색 글씨색 글씨 크기 설정하는 부분
+
+
+/// 첫라인은 월화수목금토일 표시하는 부분
+                    if( i == 0 )
+                    {
+/// 요일 표시하는 부분의 넓이 높이
+                        m_cellTextBtn[ cellnum ].setLayoutParams( new LinearLayout.LayoutParams( m_cWidth, m_tcHeight ) ) ;
+
+/// 배경과 글씨색
+                        if( m_topCellBgImgId != null )
+                        {
+                            m_cellLy[ cellnum ].setBackgroundDrawable( m_topCellBgImgId ) ;
+                        }
+                        else
+                        {
+                            m_cellLy[ cellnum ].setBackgroundColor( m_colorParam.m_topCellColor ) ;
+                        }
+
+/// 토요일과 일요일은 다른 컬러로 표시한다.
+                        switch( j )
+                        {
+                            case 0:
+                                m_cellTextBtn[ cellnum ].setTextColor( m_colorParam.m_topSundayTextColor ) ;
+                                break ;
+                            case 6:
+                                m_cellTextBtn[ cellnum ].setTextColor( m_colorParam.m_topSaturdatTextColor ) ;
+                                break ;
+                            default:
+                                m_cellTextBtn[ cellnum ].setTextColor( m_colorParam.m_topTextColor ) ;
+                                break ;
+                        }
+
+/// 글씨 크기
+                        m_cellTextBtn[ cellnum ].setTextSize( m_topTextSize ) ;
+                    }
+                    else   /// 이하는 날짜 표시하는 부분
+                    {
+
+/// 숫자 표시되는 부분의 넓이와 높이
+                        m_cellTextBtn[ cellnum ].setLayoutParams( new LinearLayout.LayoutParams( m_cWidth, m_cHeight ) ) ;
+
+                        /// bg와 글씨색
+                        if( m_cellBgImgId != null )
+                        {
+                            m_cellLy[ cellnum ].setBackgroundDrawable( m_cellBgImgId ) ;
+                        }
+                        else
+                        {
+                            m_cellLy[ cellnum ].setBackgroundColor( m_colorParam.m_cellColor ) ;
+                        }
+
+/// 토요일과 일요일은 다른 컬러로 표시한다.
+                        switch( j )
+                        {
+                            case 0:
+                                m_cellTextBtn[ cellnum ].setTextColor( m_colorParam.m_sundayTextColor ) ;
+                                m_cellTextBtn[ cellnum ].setBackgroundColor( m_colorParam.m_cellColor ); ;
+                                break ;
+                            case 6:
+                                m_cellTextBtn[ cellnum ].setTextColor( m_colorParam.m_saturdayTextColor ) ;
+                                m_cellTextBtn[ cellnum ].setBackgroundColor( m_colorParam.m_cellColor ) ;
+                                break ;
+                            default:
+                                m_cellTextBtn[ cellnum ].setTextColor( m_colorParam.m_textColor ) ;
+                                m_cellTextBtn[ cellnum ].setBackgroundColor( m_colorParam.m_cellColor ); ;
+                                break ;
+                        }
+
+                        m_cellTextBtn[ cellnum ].setTag("") ;
+
+                        /// 글씨 크기
+                        m_cellTextBtn[ cellnum ].setTextSize( m_textSize ) ;
+                    }
+
+
+                }
+            }
+        }
+    }
+
+    public void setLineParam( )
+    {
+        for( int i = 0 ; i < ROWS - 1 ; i ++ )
+        {
+            m_horizontalLine[ i ].setBackgroundColor( m_colorParam.m_lineColor ) ; /// 라인색
+            m_horizontalLine[ i ].setLayoutParams( /// 가로 라인이니까 가로는 꽉 세로는 두께만큼
+                    new LinearLayout.LayoutParams( ViewGroup.LayoutParams.FILL_PARENT, m_lineSize ) ) ;
+        }
+        for( int i = 0 ; i < ROWS ; i ++ )
+        {
+            for( int j = 0 ; j < COLS - 1 ; j++ )
+            {
+                int pos = ( i * ( COLS - 1 ) ) + j ;
+                m_verticalLine[ pos ].setBackgroundColor( m_colorParam.m_lineColor ) ; /// 라인색
+                m_verticalLine[ pos ].setLayoutParams( /// 세로 라인이니까 세로는 쭉~ 가로는 두께만큼
+                        new LinearLayout.LayoutParams( m_lineSize, ViewGroup.LayoutParams.FILL_PARENT ) ) ;
+            }
+        }
+    }
+
+    /// 달력을 구성하는 년 월 일을 셋팅하기
+    public void setContentext( )
+    {
+        /// 달력을 하나 복사해서 작업한다.
+        Calendar iCal = (Calendar) m_Calendar.clone( ) ;
+
+        /// 날짜를 겟~
+        m_selDay = iCal.get( Calendar.DATE ) ;
+
+        /// 날짜를 1로 셋팅하여 달의 1일이 무슨 요일인지 구함
+        iCal.set( Calendar.DATE, 1 ) ;
+        /// 요일표기하는 맨 위 7칸 + 요일이 첫 시작하는 칸임
+        m_startPos = COLS + iCal.get( Calendar.DAY_OF_WEEK ) - Calendar.SUNDAY ;
+
+        /// 1달 더해서 다음달 1일로 만들었다가 1일을 빼면 달의 마지막날이 구해짐
+        iCal.add( Calendar.MONTH, 1 ) ;
+        iCal.add( Calendar.DATE, -1 ) ;
+
+        m_lastDay = iCal.get( Calendar.DAY_OF_MONTH ) ;         /// 해달 달의 마지막날 겟~
+
+        /// 0부터 6번칸까지는 월화수목금토일~ 로 채워넣음
+        for( int k = 0 ; k < COLS ; k++ )
+        {
+            m_cellTextBtn[ k ].setText(  m_dayText[ k % 7 ] ) ;
+        }
+
+        /// 7번부터 처음 시작위치 전까지는 공백으로 채움
+        for( int i = COLS ; i < m_startPos ; i++ )
+        {
+            m_cellTextBtn[ i ].setText( "" ) ;
+        }
+        /// 시작위치부터는 1부터 해서 달의 마지막날까지 숫자로 채움
+        for( int i = 0 ; i < m_lastDay ; i++ )
+        {
+            m_cellTextBtn[ i + m_startPos ].setText( ( i + 1 ) + "" ) ;
+
+
+            // 현재 달의 경우, 지나간 날짜는 클릭 못하게.
+            Calendar oCalendar = Calendar.getInstance( );
+            if(   oCalendar.get(Calendar.MONTH)  == m_Calendar.get( Calendar.MONTH ) ){
+                if( i <  oCalendar.get( Calendar.DAY_OF_MONTH ) ){
+                    setSelectedDay("passed", i+1);
+                    Log.e("view", String.valueOf(i+1));
+                }
+            }
+
+        }
+
+        /// 마지막날부터 끝까지는 공백으로 채움
+        for( int i = m_startPos + m_lastDay ; i < COLS * ROWS ; i++ )
+        {
+            m_cellTextBtn[ i ].setText( "" ) ;
+        }
+
+        //getCompanyReserveList();
+    }
+
+    /// 각 버튼들에 setOnClickListener 주기
+    public void setOnEvent( )
+    {
+
+        /// 월화수목금토일 들어가있는 부분에는 눌러도 반응할 필요 없음
+        for( int i = COLS ; i < COLS * ROWS ; i++ )
+        {
+            final int k = i ;
+            m_cellTextBtn[i].setOnClickListener( new Button.OnClickListener( )
+            {
+                @Override
+                public void onClick(View v)
+                {
+
+                    if( m_cellTextBtn[k].getText( ).toString( ).length() > 0 )
+                    {
+                        m_Calendar.set( Calendar.DATE, Integer.parseInt( m_cellTextBtn[k].getText( ).toString( ) ) ) ;
+                        if( m_dayTv != null )
+                            m_dayTv.setText( m_Calendar.get( Calendar.DAY_OF_MONTH ) + "" ) ;
+                        printView( ) ;
+                        String code="";
+                        if((String)m_cellTextBtn[k].getTag() !=null) {
+                           code = (String) m_cellTextBtn[k].getTag();
+                        }
+                        myClickEvent(code, m_Calendar.get( Calendar.YEAR ),
+                                m_Calendar.get( Calendar.MONTH ) +1,
+                                m_Calendar.get( Calendar.DAY_OF_MONTH ));
+                    }
+                }
+            } ) ;
+        }
+    }
+
+    /// 달력을 띄운 다음 년 월 일을 출력해줌
+    public void printView( )
+    {
+        /// 텍스트 뷰들이 있으면 그 텍스트 뷰에다가 년 월 일을 적어넣음
+        if( m_yearTv != null )
+            m_yearTv.setText( m_Calendar.get( Calendar.YEAR ) + "년 " ) ;
+        if( m_mothTv != null )
+        {
+            //int imonth =  iCal.get( Calendar.MONTH ) ;
+            m_mothTv.setText( ( m_Calendar.get( Calendar.MONTH ) + 1 ) + "월 " ) ;
+        }
+        if( m_dayTv != null )
+            m_dayTv.setText( m_Calendar.get( Calendar.DAY_OF_MONTH ) + "" ) ;
+    }
+
+    /// 년도와 월을 앞~ 뒤~로
+    public void preYear( )
+    {
+        m_Calendar.add( Calendar.YEAR, -1 ) ;
+        setContentext( ) ;
+        printView( ) ;
+    }
+    public void nextYear( )
+    {
+        m_Calendar.add( Calendar.YEAR, 1 ) ;
+        setContentext( ) ;
+        printView( ) ;
+    }
+    public void preMonth( )
+    {
+        Calendar oCalendar = Calendar.getInstance( );
+        if(   oCalendar.get(Calendar.MONTH)  != m_Calendar.get( Calendar.MONTH ) ){
+            m_Calendar.add( Calendar.MONTH, -1 ) ;
+            setLayoutParams();
+            setContentext( ) ;
+            setOnEvent() ;
+            printView( ) ;
+        }
+
+
+    }
+    public void nextMonth( )
+    {
+        m_Calendar.add( Calendar.MONTH, 1 ) ;
+        setLayoutParams();
+        setContentext( ) ;
+        setOnEvent() ;
+        printView( ) ;
+    }
+
+    /// 텍스트뷰를 넣어주면 각각 뿌려줌 (빈게 들어있으면 안뿌림)
+    public void setViewTarget( TextView [] tv )
+    {
+        m_yearTv = tv[0] ;
+        m_mothTv = tv[1] ;
+        m_dayTv = tv[2] ;
+    }
+
+    /// 버튼을 넣어주면 알아서 옵션 넣어줌 (역시나 빈게 있으면 이벤트 안넣음)
+    public void setControl( Button [] btn )
+    {
+        m_preYearBtn = btn[0] ;
+        m_nextYearBtn = btn[1] ;
+        m_preMonthBtn = btn[2] ;
+        m_nextMonthBtn = btn[3] ;
+
+        if( m_preYearBtn != null )
+            m_preYearBtn.setOnClickListener( new Button.OnClickListener( )
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    preYear( ) ;
+                }
+            } ) ;
+        if( m_nextYearBtn != null )
+            m_nextYearBtn.setOnClickListener( new Button.OnClickListener( )
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    nextYear( ) ;
+                }
+            } ) ;
+        if( m_preMonthBtn != null )
+            m_preMonthBtn.setOnClickListener( new Button.OnClickListener( )
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    preMonth( ) ;
+                }
+            } ) ;
+        if( m_nextMonthBtn != null )
+            m_nextMonthBtn.setOnClickListener( new Button.OnClickListener( )
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    nextMonth( ) ;
+                }
+            } ) ;
+    }
+
+    /// 원하는 포멧대로 날짜를 구해줌
+/// 예)
+/// String today = getData( "yyyy-MM-dd" )이런식?
+    public String getData( String format )
+    {
+        SimpleDateFormat sdf = new SimpleDateFormat( format, Locale.US ) ;
+        return sdf.format( new Date( m_Calendar.getTimeInMillis( ) ) ) ;
+    }
+
+    /// 달력에서 날짜를 클릭하면 이 함수를 부른다.
+    public void myClickEvent( String code, final int year, final int month, final int day )
+    {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        if(code ==""){
+            String str = String.valueOf(year)+"년 "+String.valueOf(month)+"월 "+String.valueOf(day)+"일";
+            builder.setTitle(str)        // 제목 설정
+                    .setMessage("이 날짜로 예약하시겠습니까?")        // 메세지 설정
+                    .setCancelable(false)        // 뒤로 버튼 클릭시 취소 가능 설정
+                    .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        // 확인 버튼 클릭시 설정
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            Intent intent = new Intent(getActivity(), ReserveActivity.class);
+                            intent.putExtra("year", year);
+                            intent.putExtra("month", month);
+                            intent.putExtra("day", day);
+                            startActivity(intent);
+                        }
+                    }).setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+                }
+            });
+
+
+            AlertDialog dialog = builder.create();    // 알림창 객체 생성
+            dialog.show();    // 알림창 띄우기
+        }
+        else if(code.equals("reject")){
+
+            builder.setTitle("예약 불가")        // 제목 설정
+                    .setMessage("이미 예약된 날짜입니다.")        // 메세지 설정
+                    .setCancelable(false)        // 뒤로 버튼 클릭시 취소 가능 설정
+                    .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        // 확인 버튼 클릭시 설정
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                        }
+                    });
+
+            AlertDialog dialog = builder.create();    // 알림창 객체 생성
+            dialog.show();    // 알림창 띄우기
+        }else if(code.equals("passed")){
+            builder.setTitle("예약 불가")        // 제목 설정
+                    .setMessage("이미 지나간 날짜입니다.")        // 메세지 설정
+                    .setCancelable(false)        // 뒤로 버튼 클릭시 취소 가능 설정
+                    .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        // 확인 버튼 클릭시 설정
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                        }
+                    });
+
+            AlertDialog dialog = builder.create();    // 알림창 객체 생성
+            dialog.show();    // 알림창 띄우기
+        }
+
+
+    }
+
+    public int pixelToDip( int arg )
+    {
+        m_displayScale = m_context.getResources( ).getDisplayMetrics( ).density ;
+        return (int) ( arg * m_displayScale ) ;
+    }
+
+    public gsCalendarColorParam getBasicColorParam( )
+    {
+        return new gsCalendarColorParam( ) ;
+    }
+
+
+    void getCompanyReserveList(){
+
+        final ProgressDialog dialog = new ProgressDialog(getActivity());
+        dialog.setMessage("질문 리스트를 받아오는 중입니다...");
+        dialog.setIndeterminate(true);
+        dialog.setCancelable(false);
+        dialog.show();
+
+        final JsonObject info = new JsonObject();
+        info.addProperty("year",  Calendar.YEAR);
+        info.addProperty("month",  Calendar.MONTH);
+
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+
+                    RestAdapter restAdapter = new RestAdapter.Builder()
+                            .setEndpoint(Retrofit.ROOT)  //call your base url
+                            .build();
+                    Retrofit retrofit = restAdapter.create(Retrofit.class); //this is how retrofit create your api
+                    retrofit.getQnaList(info, new Callback<JsonArray>() {
+
+                        @Override
+                        public void success(JsonArray jsonElements, Response response) {
+
+                            dialog.dismiss();
+
+
+                            for (int i = 0; i < jsonElements.size(); i++) {
+                                JsonObject deal = (JsonObject) jsonElements.get(i);
+                                int day = (deal.get("day")).getAsInt();
+
+                                setSelectedDay("reject",day);
+                            }
+
+                        }
+
+                        @Override
+                        public void failure(RetrofitError retrofitError) {
+                            dialog.dismiss();
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                            builder.setTitle("네트워크가 불안정합니다.")        // 제목 설정
+                                    .setMessage("네트워크를 확인해주세요")        // 메세지 설정
+                                    .setCancelable(false)        // 뒤로 버튼 클릭시 취소 가능 설정
+                                    .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        // 확인 버튼 클릭시 설정
+                                        public void onClick(DialogInterface dialog, int whichButton) {
+                                        }
+                                    });
+
+                            AlertDialog dialog = builder.create();    // 알림창 객체 생성
+                            dialog.show();    // 알림창 띄우기
+
+                        }
+                    });
+                }
+                catch (Throwable ex) {
+
+                }
+            }
+        }).start();
+
+    }
+
 
 }

@@ -30,9 +30,9 @@ public interface Retrofit {
     public void getCompanyReportList(@Body JsonObject info, Callback<JsonArray> callback);
     @POST("/list/list/detailReport.php")
     public void getReportDetail(@Body JsonObject info, Callback<JsonArray> callback);
-    @POST("/list/list/detailReport.php")
+    @POST("/reply/getReplyList.php")
     public void getReplyList(@Body JsonObject info, Callback<JsonArray> callback);
-    @POST("/list/list/sendReply.php")
+    @POST("/reply/sendReply.php")
     public void sendReply(@Body JsonObject info, Callback<String> callback);
 
 
