@@ -9,8 +9,7 @@ import retrofit.http.POST;
 
 public interface Retrofit {
 
-    public static final String ROOT = "http://welcompany.dothome.co.kr";
-    //public static final String ROOT = "  http://welcompany.zz.mu";
+    public static final String ROOT = "http://ourproject.dothome.co.kr/welcompany";
     @POST("/login/login.php")
     public void login(@Body JsonObject info, Callback<String> callback);
     @POST("/login/join.php")

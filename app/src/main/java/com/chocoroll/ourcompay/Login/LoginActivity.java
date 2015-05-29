@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -43,6 +44,7 @@ public class LoginActivity extends Activity {
         login_findpasswd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.e("login","in");
                 Intent intent = new Intent(LoginActivity.this, FindPWActivity.class);
                 startActivity(intent);
             }
@@ -94,21 +96,6 @@ public class LoginActivity extends Activity {
 
             }
         });
-
-        login_findid.setOnClickListener(new View.OnClickListener(){
-
-            public void onClick(View v){
-
-            }
-        });
-
-        login_findpasswd.setOnClickListener(new View.OnClickListener(){
-
-            public void onClick(View v){
-
-            }
-        });
-
     }
 
 
