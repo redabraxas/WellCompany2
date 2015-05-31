@@ -1,29 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-    xmlns:app1="http://schemas.android.com/apk/res-auto">
-
+    android:padding="10dp">
 
 
-    <com.astuetz.PagerSlidingTabStrip
-        android:id="@+id/tabs"
-        android:layout_width="match_parent"
-        android:layout_height="50dip"
-        app1:pstsIndicatorColor="@color/tab_indicate"
-        app1:pstsIndicatorHeight="4dip"
-        app1:pstsShouldExpand="true"
-        app1:pstsDividerColor="#00ff0000"
-        android:background="@color/tab_background"/>
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/pager"
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tabs"
-        tools:context=".MainActivity" />
+        android:text="New Text"
+        android:id="@+id/comName" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/reserveDate" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Button"
+        android:id="@+id/btn" />
 </LinearLayout>

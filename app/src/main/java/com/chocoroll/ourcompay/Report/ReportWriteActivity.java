@@ -23,6 +23,7 @@ import android.widget.TextView;
 
 import com.chocoroll.ourcompay.Extra.Retrofit;
 import com.chocoroll.ourcompay.MainActivity;
+import com.chocoroll.ourcompay.Model.Reserve;
 import com.chocoroll.ourcompay.R;
 import com.google.gson.JsonObject;
 
@@ -55,19 +56,23 @@ public class ReportWriteActivity extends Activity implements OnClickListener {
     String content, date;
     private String imagepath = null;
 
+    Reserve reserve;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_write);
 
-        reserve_date = "2015-04-05"; // 나중에는 받을 것
-        reserv_num = "4";
-        comp_name = "아모레";
-        com_num = "10";
+        reserve=getIntent().getParcelableExtra("reserve");
+
+        reserve_date = reserve.getDate();
+        reserv_num = reserve.getReserveNum();
+        comp_name = reserve.getName();
+        com_num = reserve.getComNum();
         user_email =
                 ((MainActivity)MainActivity.mContext).getUserId();
-        com_purpose ="취업하기 위해";
+        com_purpose =reserve.getPurpose();
 
 
 

@@ -12,22 +12,28 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.chocoroll.ourcompay.AdminMenu.CompanyStateFragment;
+import com.chocoroll.ourcompay.Company.CompanyActivity;
 import com.chocoroll.ourcompay.CompanyMenu.VisitStateFragment;
 import com.chocoroll.ourcompay.Extra.Retrofit;
 import com.chocoroll.ourcompay.Login.JoinSelectFragment;
 import com.chocoroll.ourcompay.Login.LoginActivity;
 import com.chocoroll.ourcompay.Mine.MyInfoFragment;
 import com.chocoroll.ourcompay.Mine.MyListFragment;
-import com.chocoroll.ourcompay.Report.ReportWriteActivity;
+import com.chocoroll.ourcompay.Model.BookMarkAdapter;
+import com.chocoroll.ourcompay.Model.Company;
 import com.chocoroll.ourcompay.UserMenu.MyApplyFragment;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+
+import java.util.ArrayList;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
@@ -57,7 +63,8 @@ public class MainActivity extends FragmentActivity {
     }
 
     public static Context mContext;
-
+    ArrayList<Company> bookMarkList= new ArrayList<Company>();
+    BookMarkAdapter bookMarkAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -249,6 +256,7 @@ public class MainActivity extends FragmentActivity {
             });
 
             // 즐겨찾기
+            bookMarkAdapter = new BookMarkAdapter(MainActivity.this, R.layout.model_bookmark,bookMarkList);
             menu_bookmark.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -262,6 +270,9 @@ public class MainActivity extends FragmentActivity {
 
                 }
             });
+
+            getBookMark();
+
 
 
 
@@ -289,13 +300,13 @@ public class MainActivity extends FragmentActivity {
                     menu_reserve.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                    slidingMenu.showContent(true);
-                    removeAllStack();
-                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                    ft.replace(R.id.container, new VisitStateFragment());
-                    ft.setTransition(FragmentTransaction.TRANSIT_NONE);
-                    ft.addToBackStack(null);
-                    ft.commit();
+                                slidingMenu.showContent(true);
+                                removeAllStack();
+                                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                                ft.replace(R.id.container, new VisitStateFragment());
+                                ft.setTransition(FragmentTransaction.TRANSIT_NONE);
+                                ft.addToBackStack(null);
+                                ft.commit();
                         }
                     });
                     break;
@@ -307,8 +318,6 @@ public class MainActivity extends FragmentActivity {
                         public void onClick(View view) {
                             slidingMenu.showContent(true);
 
-                            Intent intent = new Intent(MainActivity.this, ReportWriteActivity.class);
-                            startActivity(intent);
                             removeAllStack();
                             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                             ft.replace(R.id.container, new CompanyStateFragment());
@@ -323,6 +332,96 @@ public class MainActivity extends FragmentActivity {
 
         }
 
+
+    }
+
+
+    public void getBookMark(){
+
+        final JsonObject info = new JsonObject();
+        info.addProperty("id", userid);
+
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+
+                    RestAdapter restAdapter = new RestAdapter.Builder()
+                            .setEndpoint(Retrofit.ROOT)  //call your base url
+                            .build();
+                    Retrofit retrofit = restAdapter.create(Retrofit.class); //this is how retrofit create your api
+                    retrofit.getBookMarkList(info, new Callback<JsonArray>() {
+
+                        @Override
+                        public void success(JsonArray jsonElements, Response response) {
+
+                            dialog.dismiss();
+                            bookMarkList.clear();
+
+                            for (int i = 0; i < jsonElements.size(); i++) {
+                                JsonObject deal = (JsonObject) jsonElements.get(i);
+                                String num = (deal.get("comNum")).getAsString();
+                                String name = (deal.get("comName")).getAsString();
+
+                                String bCategory = (deal.get("bCategory")).getAsString();
+                                String sCategory = (deal.get("sCategory")).getAsString();
+
+                                String logo = (deal.get("logoimage")).getAsString();
+                                String address = (deal.get("comAddress")).getAsString();
+                                String site = (deal.get("comSite")).getAsString();
+                                String email = (deal.get("comEmail")).getAsString();
+                                String phone = (deal.get("comTel")).getAsString();
+                                String intro = (deal.get("comIntro")).getAsString();
+
+                                String repID = (deal.get("repID")).getAsString();
+
+                                bookMarkList.add(new Company(num,name,bCategory,sCategory,logo,address,site,email,phone,intro, repID));
+
+
+                            }
+                            ListView listView = (ListView) findViewById(R.id.listViewBookmark);
+                            listView.setAdapter(bookMarkAdapter);
+                            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                                    slidingMenu.showContent(true);
+                                    Company item =(Company)bookMarkAdapter.getItem(i);
+
+                                    Intent intent = new Intent(MainActivity.this, CompanyActivity.class);
+                                    intent.putExtra("Company",item);
+                                    startActivity(intent);
+
+
+                                }
+                            });
+
+                        }
+
+                        @Override
+                        public void failure(RetrofitError retrofitError) {
+                            dialog.dismiss();
+
+                            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                            builder.setTitle("네트워크가 불안정합니다.")        // 제목 설정
+                                    .setMessage("네트워크를 확인해주세요")        // 메세지 설정
+                                    .setCancelable(false)        // 뒤로 버튼 클릭시 취소 가능 설정
+                                    .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        // 확인 버튼 클릭시 설정
+                                        public void onClick(DialogInterface dialog, int whichButton) {
+                                        }
+                                    });
+
+                            AlertDialog dialog = builder.create();    // 알림창 객체 생성
+                            dialog.show();    // 알림창 띄우기
+
+                        }
+                    });
+                }
+                catch (Throwable ex) {
+
+                }
+            }
+        }).start();
 
     }
 

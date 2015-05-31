@@ -585,7 +585,7 @@ public class ReserveFragment extends Fragment {
             m_cellTextBtn[ i ].setText( "" ) ;
         }
 
-        //getCompanyReserveList();
+        getCompanyReserveList();
     }
 
     /// 각 버튼들에 setOnClickListener 주기
@@ -809,14 +809,15 @@ public class ReserveFragment extends Fragment {
     void getCompanyReserveList(){
 
         final ProgressDialog dialog = new ProgressDialog(getActivity());
-        dialog.setMessage("질문 리스트를 받아오는 중입니다...");
+        dialog.setMessage("예약 리스트를 받아오는 중입니다...");
         dialog.setIndeterminate(true);
         dialog.setCancelable(false);
         dialog.show();
 
         final JsonObject info = new JsonObject();
-        info.addProperty("year",  Calendar.YEAR);
-        info.addProperty("month",  Calendar.MONTH);
+        info.addProperty("comNum", companyNum);
+        info.addProperty("year",   m_Calendar.get( Calendar.YEAR ));
+        info.addProperty("month",  m_Calendar.get( Calendar.MONTH ) +1);
 
         new Thread(new Runnable() {
             public void run() {
@@ -826,7 +827,7 @@ public class ReserveFragment extends Fragment {
                             .setEndpoint(Retrofit.ROOT)  //call your base url
                             .build();
                     Retrofit retrofit = restAdapter.create(Retrofit.class); //this is how retrofit create your api
-                    retrofit.getQnaList(info, new Callback<JsonArray>() {
+                    retrofit.getCompanyReserveList(info, new Callback<JsonArray>() {
 
                         @Override
                         public void success(JsonArray jsonElements, Response response) {
@@ -836,7 +837,7 @@ public class ReserveFragment extends Fragment {
 
                             for (int i = 0; i < jsonElements.size(); i++) {
                                 JsonObject deal = (JsonObject) jsonElements.get(i);
-                                int day = (deal.get("day")).getAsInt();
+                                int day = (deal.get("reserv_date")).getAsInt();
 
                                 setSelectedDay("reject",day);
                             }

@@ -66,12 +66,7 @@ public class MyApplyFragment extends Fragment {
         tabs = (PagerSlidingTabStrip)v.findViewById(R.id.tabs);
         tabs.setTextColor(Color.WHITE);
         pager = (ViewPager)v.findViewById(R.id.pager);
-        mAdapter = new MyPagerAdapter(getChildFragmentManager());
 
-        pager.setOffscreenPageLimit(2);
-        final int pageMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources()
-                .getDisplayMetrics());
-        pager.setPageMargin(pageMargin);
 
         getMyApplyList();
         return v;
@@ -97,11 +92,11 @@ public class MyApplyFragment extends Fragment {
         public Fragment getItem(int position) {
             switch (position){
                 case 0:
-                    return ApplyListFragment.newInstance(waitApplyList);
+                    return ApplyListFragment.newInstance(waitApplyList, "wait");
                 case 1:
-                    return ApplyListFragment.newInstance(approveApplyList);
+                    return ApplyListFragment.newInstance(approveApplyList, "approve");
                 case 2:
-                    return ApplyListFragment.newInstance(rejectApplyList);
+                    return ApplyListFragment.newInstance(rejectApplyList, "reject");
             }
 
             return null;
@@ -156,6 +151,7 @@ public class MyApplyFragment extends Fragment {
                                 JsonObject deal = (JsonObject) jsonElements.get(i);
                                 String reserveNum = (deal.get("reserveNum")).getAsString();
                                 String comName = (deal.get("comName")).getAsString();
+                                String date = (deal.get("date")).getAsString();
 
                                 String name = (deal.get("name")).getAsString();
                                 String phone =(deal.get("phone")).getAsString();
@@ -166,19 +162,20 @@ public class MyApplyFragment extends Fragment {
                                 String expectQuery = (deal.get("expectQuery")).getAsString();
                                 String comment = (deal.get("comment")).getAsString();
 
+
                                 int state = (deal.get("state")).getAsInt();
 
                                 switch (state){
                                     case 0:
-                                        waitApplyList.add(new Reserve(reserveNum,comName,id,name,phone,belongs,
+                                        waitApplyList.add(new Reserve(reserveNum,comName,date,id,name,phone,belongs,
                                                 expectPeople,purpose,expectQuery,comment,state));
                                         break;
                                     case 1:
-                                        approveApplyList.add(new Reserve(reserveNum,comName,id,name,phone,belongs,
+                                        approveApplyList.add(new Reserve(reserveNum,comName,date,id,name,phone,belongs,
                                                 expectPeople,purpose,expectQuery,comment,state));
                                         break;
                                     case 2:
-                                        rejectApplyList.add(new Reserve(reserveNum,comName,id,name,phone,belongs,
+                                        rejectApplyList.add(new Reserve(reserveNum,comName,date,id,name,phone,belongs,
                                                 expectPeople,purpose,expectQuery,comment,state));
                                         break;
 
@@ -188,7 +185,12 @@ public class MyApplyFragment extends Fragment {
 
                             }
 
+                            mAdapter = new MyPagerAdapter(getChildFragmentManager());
 
+                            pager.setOffscreenPageLimit(2);
+                            final int pageMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources()
+                                    .getDisplayMetrics());
+                            pager.setPageMargin(pageMargin);
                             pager.setAdapter(mAdapter);
                             tabs.setViewPager(pager);
 
@@ -227,10 +229,11 @@ public class MyApplyFragment extends Fragment {
         ReserveApplyAdapter applyAdapter;
         ListView listView;
 
-        public static ApplyListFragment newInstance(ArrayList<Reserve> applyList) {
+        public static ApplyListFragment newInstance(ArrayList<Reserve> applyList, String key) {
             ApplyListFragment fragment = new ApplyListFragment();
             Bundle args = new Bundle();
             args.putParcelableArrayList("applyList", applyList);
+            args.putString("key", key);
             fragment.setArguments(args);
             return fragment;
         }
@@ -248,7 +251,9 @@ public class MyApplyFragment extends Fragment {
             View v=  inflater.inflate(R.layout.fragment_apply_list, container, false);
 
             listView =(ListView) v.findViewById(R.id.listViewApply);
-            applyAdapter= new ReserveApplyAdapter(getActivity(), R.layout.model_reserve_apply, applyList);
+
+            String key = getArguments().getString("key");
+            applyAdapter= new ReserveApplyAdapter(getActivity(), R.layout.model_reserve_apply, applyList, key);
 
             listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
             listView.setDivider(new ColorDrawable(Color.LTGRAY));

@@ -45,9 +45,11 @@ public interface Retrofit {
     @POST("/qna/enrollcompanyA.php")
     public void sendAnswer(@Body JsonObject info, Callback<String> callback);
 
-    // 나의 신청내역 가져오기
-    @POST("/list/MyReservation.php")
+    // 나의 신청내역
+    @POST("/list/MyReservation.php") // 내 신청내역 리스트 가져오기
     public void getMyApplyList(@Body JsonObject info, Callback<JsonArray> callback);
+    @POST("/list/del_reservation.php") // 포기하기/삭제하기
+    public void deleteMyApply(@Body JsonObject info, Callback<String> callback);
 
     // 나의 리스트 가져오기
     @POST("/list/showMyReport.php")
@@ -61,7 +63,20 @@ public interface Retrofit {
 
 
     // 견학예약
-    @POST("/list/registReservation.php")
+    @POST("/list/registReservation.php") // 예약 보내기
     public void reservation(@Body JsonObject info, Callback<String> callback);
+    @POST("/list/reserv_date.php") // 예약 리스트 가져오기
+    public void getCompanyReserveList(@Body JsonObject info, Callback<JsonArray> callback);
+
+
+    // 즐겨찾기
+    @POST("/bookmark/bookmark.php") // 북마크 리스트 가져옴
+    public void getBookMarkList(@Body JsonObject info, Callback<JsonArray> callback);
+    @POST("/bookmark/bookmarkList.php") // 북마크 회사 정보 가져옴
+    public void getBookMarkCompany(@Body JsonObject info, Callback<JsonArray> callback);
+    @POST("/bookmark/insert_bookmark.php") // 북마크 추가
+    public void addBookMark(@Body JsonObject info, Callback<String> callback);
+    @POST("/bookmark/del_bookmark.php") // 북마크 삭제
+    public void deleteBookMark(@Body JsonObject info, Callback<String> callback);
 
 }
