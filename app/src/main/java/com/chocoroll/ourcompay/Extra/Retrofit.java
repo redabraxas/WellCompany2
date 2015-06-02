@@ -79,4 +79,17 @@ public interface Retrofit {
     @POST("/bookmark/del_bookmark.php") // 북마크 삭제
     public void deleteBookMark(@Body JsonObject info, Callback<String> callback);
 
+    //회사견학목록
+    @POST("/visit/visitWaiting2.php")
+    public void getVisitStateList(@Body JsonObject info, Callback<JsonArray> callback);
+    @POST("/visit/visitApproval.php")
+    public void approval(@Body JsonObject info, Callback<String> callback);
+    @POST("/visit/visitReject.php")
+    public void refusal(@Body JsonObject info, Callback<String> callback);
+
+    //내정보수정
+    @POST("/.php")
+    public void chage_pw(@Body JsonObject info, Callback<String> callback);
+
+
 }

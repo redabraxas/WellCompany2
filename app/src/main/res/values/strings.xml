@@ -144,5 +144,6 @@
     <string name="title_activity_reserve">ReserveActivity</string>
     <string name="title_activity_join_select">JoinSelectActivity</string>
     <string name="title_activity_join_company">JoinCompanyActivity</string>
+    <string name="title_activity_findpw" />
 
 </resources>

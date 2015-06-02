@@ -336,7 +336,7 @@ public class MainActivity extends FragmentActivity {
     }
 
 
-    public void getBookMark(){
+   public void getBookMark(){
 
         final JsonObject info = new JsonObject();
         info.addProperty("id", userid);
@@ -354,7 +354,7 @@ public class MainActivity extends FragmentActivity {
                         @Override
                         public void success(JsonArray jsonElements, Response response) {
 
-                            dialog.dismiss();
+                           // dialog.dismiss();
                             bookMarkList.clear();
 
                             for (int i = 0; i < jsonElements.size(); i++) {
