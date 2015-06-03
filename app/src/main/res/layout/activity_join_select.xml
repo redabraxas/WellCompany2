@@ -7,17 +7,24 @@
     android:orientation="vertical"
     tools:context="com.chocoroll.ourcompay.Login.JoinSelectActivity">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="유저로가입"
-        android:id="@+id/btnJoinUser"
-        android:onClick="btnJoin"/>
+    <ImageButton xmlns:android="http://schemas.android.com/apk/res/android"
 
-    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="회사로가입"
-        android:id="@+id/btnJoinCompany"
-        android:onClick="btnJoin"/>
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:background="@null"
+        android:id="@+id/user_join"
+        android:src="@drawable/user_join" />
+
+
+    <ImageButton xmlns:android="http://schemas.android.com/apk/res/android"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:background="@null"
+        android:id="@+id/company_join"
+        android:src="@drawable/company_join" />
 </LinearLayout>

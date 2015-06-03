@@ -14,6 +14,8 @@ public interface Retrofit {
     public void login(@Body JsonObject info, Callback<String> callback);
     @POST("/login/join.php")
     public void join(@Body JsonObject info, Callback<String> callback);
+    @POST("/login/registCompany.php")
+    public void join_company(@Body JsonObject info, Callback<String> callback);
     @POST("/php")
     public void sendID(@Body JsonObject info, Callback<String> callback);
 
