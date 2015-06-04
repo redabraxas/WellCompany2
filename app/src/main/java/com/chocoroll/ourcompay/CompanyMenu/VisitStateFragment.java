@@ -88,6 +88,8 @@ public class VisitStateFragment extends Fragment {
                                 vslist.add(new VisitState(reservNum, reservDate, purpose, approval));
 
                             }
+
+
                             vslistview.setAdapter(vsAdapter);
                         }
 

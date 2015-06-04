@@ -6,16 +6,27 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.chocoroll.ourcompay.Model.Reserve;
 import com.chocoroll.ourcompay.R;
-
-import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ReserveDetailFragment extends Fragment {
+    Reserve reserve;
+    TextView comname;
+    TextView purpose;
+    TextView date;
+    TextView name;
+    TextView belong;
+    TextView phone;
+    TextView expectQuery;
+    TextView expectPeople;
+    TextView comment;
+
+
 
 
     public ReserveDetailFragment() {
@@ -37,6 +48,16 @@ public class ReserveDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_reserve_detail, container, false);
+
+        comname=(TextView)v.findViewById(R.id.company_name);
+        purpose=(TextView)v.findViewById(R.id.purpose);
+        date=(TextView)v.findViewById(R.id.reserv_date);
+        name=(TextView)v.findViewById(R.id.name);
+        belong=(TextView)v.findViewById(R.id.belong);
+        phone=(TextView)v.findViewById(R.id.phone);
+        expectQuery=(TextView)v.findViewById(R.id.expectQuery);
+        expectPeople=(TextView)v.findViewById(R.id.expectpeople);
+        comment=(TextView)v.findViewById(R.id.comment);
 
 
 
