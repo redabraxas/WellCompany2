@@ -354,7 +354,6 @@ public class MainActivity extends FragmentActivity {
                         @Override
                         public void success(JsonArray jsonElements, Response response) {
 
-                            dialog.dismiss();
                             bookMarkList.clear();
 
                             for (int i = 0; i < jsonElements.size(); i++) {
@@ -399,7 +398,6 @@ public class MainActivity extends FragmentActivity {
 
                         @Override
                         public void failure(RetrofitError retrofitError) {
-                            dialog.dismiss();
 
                             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                             builder.setTitle("네트워크가 불안정합니다.")        // 제목 설정

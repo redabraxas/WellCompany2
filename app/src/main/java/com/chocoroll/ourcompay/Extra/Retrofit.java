@@ -29,9 +29,9 @@ public interface Retrofit {
     public void getCompanyReportList(@Body JsonObject info, Callback<JsonArray> callback);
     @POST("/list/list/detailReport.php")
     public void getReportDetail(@Body JsonObject info, Callback<JsonArray> callback);
-    @POST("/reply/getReplyList.php")
+    @POST("/qna/getReply.php")
     public void getReplyList(@Body JsonObject info, Callback<JsonArray> callback);
-    @POST("/reply/sendReply.php")
+    @POST("/qna/sendReply.php")
     public void sendReply(@Body JsonObject info, Callback<String> callback);
 
 
@@ -79,4 +79,9 @@ public interface Retrofit {
     @POST("/bookmark/del_bookmark.php") // 북마크 삭제
     public void deleteBookMark(@Body JsonObject info, Callback<String> callback);
 
+    // 회사 신청 대기 목록 가져오기
+    @POST("/list/waitCompany.php") // 회사 신청 대기목
+    public void getCompanyList(Callback<JsonArray> callback);
+    @POST("/list/chageComstate.php") // 승인/거절
+    public void chageCompanyState(Callback<JsonArray> callback);
 }

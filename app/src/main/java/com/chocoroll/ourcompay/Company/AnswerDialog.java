@@ -438,7 +438,7 @@ public class AnswerDialog extends Dialog{
                                         .setPositiveButton("확인", new OnClickListener() {
                                             // 확인 버튼 클릭시 설정
                                             public void onClick(DialogInterface dialog, int whichButton) {
-                                                getAnswerList();
+                                                getReplyList();
                                             }
                                         });
 
