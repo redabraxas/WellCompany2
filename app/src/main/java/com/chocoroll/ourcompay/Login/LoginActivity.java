@@ -17,9 +17,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.chocoroll.ourcompay.Extra.Retrofit;
 import com.chocoroll.ourcompay.MainActivity;
 import com.chocoroll.ourcompay.R;
-import com.chocoroll.ourcompay.Extra.Retrofit;
 import com.google.gson.JsonObject;
 
 import retrofit.Callback;
@@ -44,7 +44,9 @@ public class LoginActivity extends Activity {
         login_findpasswd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e("login","in");
+
+
+                Log.e("login", "in");
                 Intent intent = new Intent(LoginActivity.this, FindPWActivity.class);
                 startActivity(intent);
             }

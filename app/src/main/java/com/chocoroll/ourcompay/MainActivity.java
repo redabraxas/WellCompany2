@@ -336,7 +336,7 @@ public class MainActivity extends FragmentActivity {
     }
 
 
-    public void getBookMark(){
+   public void getBookMark(){
 
         final JsonObject info = new JsonObject();
         info.addProperty("id", userid);
