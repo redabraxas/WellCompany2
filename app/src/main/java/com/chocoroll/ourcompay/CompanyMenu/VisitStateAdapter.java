@@ -3,15 +3,20 @@ package com.chocoroll.ourcompay.CompanyMenu;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chocoroll.ourcompay.Extra.Retrofit;
+import com.chocoroll.ourcompay.MainActivity;
+import com.chocoroll.ourcompay.Mine.MyListFragment;
+import com.chocoroll.ourcompay.Model.Reserve;
 import com.chocoroll.ourcompay.R;
 import com.google.gson.JsonObject;
 
@@ -25,14 +30,16 @@ import retrofit.client.Response;
 /**
  * Created by L G on 2015-05-30.
  */
-public class VisitStateAdapter extends ArrayAdapter<VisitState> {
-    private ArrayList<VisitState> items;
+public class VisitStateAdapter extends ArrayAdapter<Reserve> {
+    private ArrayList<Reserve> items;
     Context context;
+    String key;
 
-    public VisitStateAdapter(Context context, int textViewResourceId, ArrayList<VisitState> items) {
+    public VisitStateAdapter(Context context, int textViewResourceId, ArrayList<Reserve> items, String key) {
         super(context, textViewResourceId, items);
         this.items = items;
         this.context=context;
+        this.key =key;
     }
     public View getView(int position, View convertView, ViewGroup parent) {
         View v = convertView;
@@ -41,30 +48,39 @@ public class VisitStateAdapter extends ArrayAdapter<VisitState> {
             v = vi.inflate(R.layout.model_visit_state, null);
 
         }
-        final VisitState vs = items.get(position);
+        final Reserve vs = items.get(position);
         if (vs != null) {
+
             TextView date = (TextView)v.findViewById(R.id.date);
             TextView purpose = (TextView)v.findViewById(R.id.purpose);
 
-            date.setText(vs.date);
-            purpose.setText(vs.purpose);
-            Button approval=(Button)v.findViewById(R.id.approval);
-            approval.setOnClickListener(new  View.OnClickListener(){
+            date.setText(vs.getComName());
+            purpose.setText(vs.getPurpose());
 
-                @Override
-                public void onClick(View v) {
+            LinearLayout waitbox =(LinearLayout) v.findViewById(R.id.waitbox);
+            if(key.equals("wait")){
+                waitbox.setVisibility(View.VISIBLE);
+                Button approval=(Button)v.findViewById(R.id.approval);
+                approval.setOnClickListener(new  View.OnClickListener(){
 
-                    approval(vs.ReservNum);
-                }
-            });
-            Button refusal=(Button)v.findViewById(R.id.refusal);
-            refusal.setOnClickListener(new  View.OnClickListener(){
-                @Override
-                public void onClick(View v) {
+                    @Override
+                    public void onClick(View v) {
 
-                    refusal(vs.ReservNum);
-                }
-            });
+                        approval(vs.getReserveNum());
+                    }
+                });
+                Button refusal=(Button)v.findViewById(R.id.refusal);
+                refusal.setOnClickListener(new  View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+
+                        refusal(vs.getReserveNum());
+                    }
+                });
+            }else{
+                waitbox.setVisibility(View.INVISIBLE);
+            }
+
 
 
         }
@@ -87,6 +103,12 @@ public class VisitStateAdapter extends ArrayAdapter<VisitState> {
                         public void success(String result, Response response) {
                             if (result.equals("success")) {
                                 Toast.makeText(getContext(), "승인되었습니다.", Toast.LENGTH_LONG).show();
+                                ((MainActivity)MainActivity.mContext).removeAllStack();
+                                FragmentTransaction ft = ((MainActivity)MainActivity.mContext).getSupportFragmentManager().beginTransaction();
+                                ft.replace(R.id.container, new VisitStateFragment());
+                                ft.setTransition(FragmentTransaction.TRANSIT_NONE);
+                                ft.addToBackStack(null);
+                                ft.commit();
 
                             } else if (result.equals("failed")) {
                                 new AlertDialog.Builder(getContext()).setMessage("승인에 실패했습니다.")

@@ -137,13 +137,13 @@ public class ReserveFragment extends Fragment {
         /// 화면의 크기에 따른 보정값
         m_displayScale = m_context.getResources( ).getDisplayMetrics( ).density ;
 
-        m_topTextSize = m_displayScale * 12.0f ;
-        m_textSize = m_displayScale * 12.0f ;
+        m_topTextSize = m_displayScale * 6.5f ;
+        m_textSize = m_displayScale * 6.5f ;
+        setCellSize((int)m_displayScale *45 , (int)m_displayScale *35);
 
         m_colorParam = new gsCalendarColorParam( ) ;
         initCalendar( ) ;
 
-        setSelectedDay("reject",3);
         return v;
     }
 
@@ -573,7 +573,6 @@ public class ReserveFragment extends Fragment {
             if(   oCalendar.get(Calendar.MONTH)  == m_Calendar.get( Calendar.MONTH ) ){
                 if( i <  oCalendar.get( Calendar.DAY_OF_MONTH ) ){
                     setSelectedDay("passed", i+1);
-                    Log.e("view", String.valueOf(i+1));
                 }
             }
 

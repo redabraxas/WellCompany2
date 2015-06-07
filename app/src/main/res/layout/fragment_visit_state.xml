@@ -1,14 +1,109 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app1="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
-    tools:context="com.chocoroll.ourcompay.CompanyMenu.VisitStateFragment"
-    android:background="#FFFFFF">
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:gravity="center">
 
-    <ListView
-        android:layout_width="wrap_content"
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/visitlist"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true">
-    </ListView>
-</FrameLayout>
+        android:orientation="vertical">
+
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="◀"
+                android:textSize="20dp"
+                android:background="@null"
+                android:id="@+id/m_preMonthBtn" />
+
+            <TextView
+                android:id="@+id/m_yearTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="#888888"
+                android:text="년도"
+                android:textSize="20dp"
+                android:typeface="sans" />
+
+            <TextView
+                android:id="@+id/m_mothTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="#888888"
+                android:textSize="20dp"
+                android:typeface="sans"
+                android:text="달" />
+
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="▶"
+                android:textSize="20dp"
+                android:background="@null"
+                android:id="@+id/m_nextMonthBtn" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            android:id="@+id/calenderView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/textView2"
+            android:layout_gravity="center_horizontal" />
+
+        <com.astuetz.PagerSlidingTabStrip
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        app1:pstsIndicatorColor="@color/tab_indicate"
+        app1:pstsIndicatorHeight="4dip"
+        app1:pstsShouldExpand="true"
+        app1:pstsDividerColor="#00ff0000"
+        android:background="@color/tab_background"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tabs"
+        tools:context=".MainActivity" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
