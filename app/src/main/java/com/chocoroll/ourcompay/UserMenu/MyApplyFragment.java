@@ -263,7 +263,7 @@ public class MyApplyFragment extends Fragment {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                    Reserve reserve = applyList.get(i);
+                    Reserve reserve = applyAdapter.getItem(i);
                     ReserveDetailFragment reserveDetailFragment = ReserveDetailFragment.newInstance(reserve);
                     getActivity().getSupportFragmentManager().beginTransaction().add(R.id.container, reserveDetailFragment).addToBackStack(null).commit();
 

@@ -39,6 +39,7 @@ public class Reserve implements Parcelable {
                    String expectPeople, String purpose, String expectQuery, String comment, int state){
         // 내가 아이디를 보내서 받는 것들,,
         this.reserveNum =reserveNum;
+        this.comNum = comNum;
         this.comName =comName;
         this.date=date;
         this.day =day;

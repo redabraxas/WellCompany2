@@ -49,6 +49,8 @@ public class ReserveDetailFragment extends Fragment {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_reserve_detail, container, false);
 
+        reserve = getArguments().getParcelable("reserve");
+
         comname=(TextView)v.findViewById(R.id.company_name);
         purpose=(TextView)v.findViewById(R.id.purpose);
         date=(TextView)v.findViewById(R.id.reserv_date);

@@ -269,7 +269,7 @@ public class VisitStateFragment extends Fragment {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                    Reserve reserve = reserveList.get(i);
+                    Reserve reserve = visitAdapter.getItem(i);
                     ReserveDetailFragment reserveDetailFragment = ReserveDetailFragment.newInstance(reserve);
                     getActivity().getSupportFragmentManager().beginTransaction().add(R.id.container, reserveDetailFragment).addToBackStack(null).commit();
 
