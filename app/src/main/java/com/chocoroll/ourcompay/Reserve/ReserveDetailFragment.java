@@ -59,6 +59,16 @@ public class ReserveDetailFragment extends Fragment {
         expectPeople=(TextView)v.findViewById(R.id.expectpeople);
         comment=(TextView)v.findViewById(R.id.comment);
 
+        comname.setText(reserve.getComName());
+        purpose.setText(reserve.getPurpose());
+        date.setText(reserve.getDate());
+        name.setText(reserve.getName());
+        belong.setText(reserve.getBelongs());
+        phone.setText(reserve.getPhone());
+        expectQuery.setText(reserve.getExpectQuery());
+        expectPeople.setText(reserve.getExpectPeople());
+        comment.setText(reserve.getComment());
+
 
 
 
