@@ -9,5 +9,8 @@
     <color name="tab_background">#5085C0</color>
     <color name="tab_indicate">#1E4C6B</color>
 
+    <color name="textBold">#787878</color>
+    <color name="text">#8C8C8C</color>
+
 
 </resources>
