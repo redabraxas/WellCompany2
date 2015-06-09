@@ -147,7 +147,9 @@ public class ReportListFragment extends Fragment implements HomeFragment.HomeFra
                                 String content = (deal.get("content")).getAsString();
                                 String picture = (deal.get("picture")).getAsString();
 
-                                reportList.add(new Report(num,companyNum,companyName,id,purpose,content,picture));
+                                int replyCount = (deal.get("answerCount")).getAsInt();
+
+                                reportList.add(new Report(num,companyNum,companyName,id,purpose,content,picture, replyCount));
 
                             }
 
@@ -231,7 +233,9 @@ public class ReportListFragment extends Fragment implements HomeFragment.HomeFra
                                 String content = (deal.get("content")).getAsString();
                                 String picture = (deal.get("picture")).getAsString();
 
-                                reportList.add(new Report(num,companyNum,companyName,id,purpose,content,picture));
+                                int replyCount = (deal.get("answerCount")).getAsInt();
+
+                                reportList.add(new Report(num,companyNum,companyName,id,purpose,content,picture, replyCount));
 
                             }
                             listView.setAdapter(mAdapter);
