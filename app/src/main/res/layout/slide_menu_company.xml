@@ -12,6 +12,7 @@
         android:text="안녕하세요 유저님~"
         android:id="@+id/menu_hi"
         android:padding="10dp"
+        android:textColor="#FFFFFF"
         android:layout_gravity="center_horizontal" />
 
     <LinearLayout
@@ -30,7 +31,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
-            android:src="@drawable/left_menu" />
+            android:src="@drawable/edit" />
 
 
         <com.chocoroll.ourcompay.Model.BTextView
