@@ -96,7 +96,7 @@ public class CompanyChangeAdapter extends ArrayAdapter<Company> {
                             .setEndpoint(Retrofit.ROOT)  //call your base url
                             .build();
                     Retrofit retrofit = restAdapter.create(Retrofit.class); //this is how retrofit create your api
-                    retrofit.deleteMyApply(info, new Callback<String>() {
+                    retrofit.chageCompanyState(info, new Callback<String>() {
 
                         @Override
                         public void success(String result, Response response) {

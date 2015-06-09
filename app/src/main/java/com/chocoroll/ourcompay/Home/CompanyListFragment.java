@@ -38,7 +38,6 @@ public class CompanyListFragment extends Fragment implements HomeFragment.HomeFr
 
     Activity mActivity;
 
-    ProgressDialog dialog;
     ArrayList<Company> companyList = new ArrayList<Company>();
     CompanyAdapter mAdapter;
     ListView listView;
@@ -97,13 +96,6 @@ public class CompanyListFragment extends Fragment implements HomeFragment.HomeFr
 
     void getCompanyList(String bCategory, String sCategory, String search){
 
-//
-//        dialog = new ProgressDialog(getActivity());
-//        dialog.setMessage("회사 리스트를 받아오는 중입니다...");
-//        dialog.setIndeterminate(true);
-//        dialog.setCancelable(false);
-//        dialog.show();
-
         final JsonObject info = new JsonObject();
         info.addProperty("bCategory",bCategory);
         info.addProperty("sCategory",sCategory);
@@ -122,7 +114,6 @@ public class CompanyListFragment extends Fragment implements HomeFragment.HomeFr
                         @Override
                         public void success(JsonArray jsonElements, Response response) {
 
-//                            dialog.dismiss();
                             companyList.clear();
 
                             for (int i = 0; i < jsonElements.size(); i++) {
@@ -150,9 +141,8 @@ public class CompanyListFragment extends Fragment implements HomeFragment.HomeFr
 
                         @Override
                         public void failure(RetrofitError retrofitError) {
-//                            dialog.dismiss();
 
-                            AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                             builder.setTitle("네트워크가 불안정합니다.")        // 제목 설정
                                     .setMessage("네트워크를 확인해주세요")        // 메세지 설정
                                     .setCancelable(false)        // 뒤로 버튼 클릭시 취소 가능 설정

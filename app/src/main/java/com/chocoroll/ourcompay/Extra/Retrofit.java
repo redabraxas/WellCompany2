@@ -84,8 +84,8 @@ public interface Retrofit {
     // 회사 신청 대기 목록 가져오기
     @POST("/list/waitCompany.php") // 회사 신청 대기목
     public void getCompanyList(Callback<JsonArray> callback);
-    @POST("/list/chageComstate.php") // 승인/거절
-    public void chageCompanyState(Callback<JsonArray> callback);
+    @POST("/list/comState0to1.php") // 승인/거절
+    public void chageCompanyState(@Body JsonObject info, Callback<String> callback);
 
     //회사견학목록
     @POST("/visit/visitWaiting2.php")
