@@ -363,7 +363,6 @@ public class ReserveFragment extends Fragment {
                     {
                         int pos = ( ( i / 2 ) * COLS ) + ( j / 2 ) ;
 
-                        Log.d( "pos1", "" +  pos ) ;
                         m_cellLy[ pos ] = new LinearLayout( m_context ) ;
                         m_cellTextBtn[ pos ] = new TextView( m_context ) ;
                         m_lineLy[ i / 2 ].addView( m_cellLy[ pos ] ) ;
@@ -374,7 +373,6 @@ public class ReserveFragment extends Fragment {
                     {
                         int pos = ( ( i / 2 ) * (COLS - 1) ) + ( j - 1 ) / 2 ;
 
-                        Log.d( "pos2", "" +  pos ) ;
                         m_verticalLine[ pos ] = new LinearLayout( m_context ) ;
                         m_lineLy[ i / 2 ].addView( m_verticalLine[ pos ] ) ;
                     }
