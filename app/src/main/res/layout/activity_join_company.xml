@@ -69,7 +69,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:text="ID : "
-                        android:textColor="#000000"
+                        android:textColor="@color/text"
                         android:textSize="15dp"
                         android:typeface="sans" />
 
@@ -79,7 +79,7 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:padding="10dp"
-                        android:textColor="#000000"
+                        android:textColor="@color/text"
                         android:textSize="15dp"
                         android:typeface="sans" />
 
@@ -112,7 +112,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:text="PASS WORD : "
-                        android:textColor="#000000"
+                        android:textColor="@color/text"
                         android:textSize="15dp"
                         android:typeface="sans" />
 
@@ -124,7 +124,7 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:padding="10dp"
-                        android:textColor="#000000"
+                        android:textColor="@color/text"
                         android:textSize="15dp"
                         android:typeface="sans" />
 
@@ -157,7 +157,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:text="회사 구분 : "
-                        android:textColor="#000000"
+                        android:textColor="@color/text"
                         android:textSize="15dp"
                         android:typeface="sans" />
 
@@ -214,7 +214,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:text="회사명 : "
-                        android:textColor="#000000"
+                        android:textColor="@color/text"
                         android:textSize="15dp"
                         android:typeface="sans" />
 
@@ -225,7 +225,7 @@
                         android:background="@null"
                         android:padding="10dp"
                         android:singleLine="true"
-                        android:textColor="#000000"
+                        android:textColor="@color/text"
                         android:textSize="15dp"
                         android:typeface="sans" />
                 </LinearLayout>
@@ -256,7 +256,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:text="대표 메일 주소 : "
-                        android:textColor="#000000"
+                        android:textColor="@color/text"
                         android:textSize="15dp"
                         android:typeface="sans" />
 
@@ -267,7 +267,7 @@
                         android:background="@null"
                         android:padding="10dp"
                         android:singleLine="true"
-                        android:textColor="#000000"
+                        android:textColor="@color/text"
                         android:textSize="15dp"
                         android:typeface="sans" />
                 </LinearLayout>
@@ -300,7 +300,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:text="대표 사이트 : "
-                        android:textColor="#000000"
+                        android:textColor="@color/text"
                         android:textSize="15dp"
                         android:typeface="sans" />
 
@@ -310,7 +310,7 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:padding="10dp"
-                        android:textColor="#000000"
+                        android:textColor="@color/text"
                         android:textSize="15dp"
                         android:typeface="sans" />
 
@@ -343,7 +343,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:text="회사 주소 : "
-                        android:textColor="#000000"
+                        android:textColor="@color/text"
                         android:textSize="15dp"
                         android:typeface="sans" />
 
@@ -353,7 +353,7 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:padding="10dp"
-                        android:textColor="#000000"
+                        android:textColor="@color/text"
                         android:textSize="15dp"
                         android:typeface="sans" />
 
@@ -387,7 +387,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:text="연락처 : "
-                        android:textColor="#000000"
+                        android:textColor="@color/text"
                         android:textSize="15dp"
                         android:typeface="sans" />
 
@@ -407,7 +407,7 @@
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
-                        android:textColor="#000000"
+                        android:textColor="@color/text"
                         android:textSize="15dp"
                         android:typeface="sans"
                         android:digits="0123456789-"
@@ -423,7 +423,7 @@
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
-                        android:textColor="#000000"
+                        android:textColor="@color/text"
                         android:textSize="15dp"
                         android:typeface="sans"
                         android:digits="0123456789-"
@@ -459,7 +459,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:text="회사 로고  "
-                        android:textColor="#000000"
+                        android:textColor="@color/text"
                         android:textSize="15dp"
                         android:typeface="sans" />
 
@@ -472,6 +472,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:layout_marginLeft="5dp"
+                        android:gravity="center"
                         android:text="upload"
                         android:background="#336c97cf"
                         android:textSize="13dp"
@@ -520,7 +521,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:text="회사 소개 : "
-                        android:textColor="#000000"
+                        android:textColor="@color/text"
                         android:textSize="15dp"
                         android:typeface="sans" />
 
@@ -530,7 +531,7 @@
                         android:layout_height="200dp"
                         android:background="@null"
                         android:padding="10dp"
-                        android:textColor="#000000"
+                        android:textColor="@color/text"
                         android:textSize="15dp"
                         android:typeface="sans" />
                 </LinearLayout>

@@ -17,7 +17,7 @@
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent">
-            <com.chocoroll.ourcompay.Model.MTextView
+            <com.chocoroll.ourcompay.Model.EBTextView
                 android:id="@+id/title_bar_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
