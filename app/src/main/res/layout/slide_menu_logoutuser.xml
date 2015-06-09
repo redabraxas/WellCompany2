@@ -23,7 +23,7 @@
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/left_menu" />
+                            android:src="@drawable/login1" />
 
 
                         <com.chocoroll.ourcompay.Model.BTextView
@@ -54,7 +54,7 @@
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/left_menu" />
+                            android:src="@drawable/join1" />
 
 
                         <com.chocoroll.ourcompay.Model.BTextView
