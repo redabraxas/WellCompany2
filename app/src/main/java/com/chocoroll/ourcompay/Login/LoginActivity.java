@@ -39,7 +39,6 @@ public class LoginActivity extends Activity {
         final EditText editPwd=(EditText)findViewById(R.id.editPwd);
 
         TextView login_bt=(TextView)findViewById(R.id.login_bt);
-        TextView login_findid=(TextView)findViewById(R.id.login_findid);
         TextView login_findpasswd=(TextView)findViewById(R.id.login_findpasswd);
         login_findpasswd.setOnClickListener(new View.OnClickListener() {
             @Override
