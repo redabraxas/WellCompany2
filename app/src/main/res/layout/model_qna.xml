@@ -12,17 +12,19 @@
         android:padding="5dp"
         android:layout_gravity="center_horizontal">
 
-        <com.chocoroll.ourcompay.Model.MTextView
+        <com.chocoroll.ourcompay.Model.BTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="아이디"
+            android:textColor="@color/textBold"
             android:id="@+id/qna_id"
             android:layout_gravity="center_horizontal" />
 
-        <com.chocoroll.ourcompay.Model.MTextView
+        <com.chocoroll.ourcompay.Model.BTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="날짜"
+            android:textColor="@color/textBold"
             android:id="@+id/qna_date"
             android:layout_gravity="center_horizontal"
             android:layout_alignParentTop="true"
@@ -47,18 +49,23 @@
             android:gravity="center"
             android:layout_weight="3"
             android:layout_width="0dp"
+            android:textColor="@color/text"
             android:layout_height="wrap_content"
             android:text="내용"
             android:id="@+id/qna_content" />
 
 
             <com.chocoroll.ourcompay.Model.MTextView
+
+                android:background="#aaaaaa"
                 android:clickable="true"
-                style="?android:attr/buttonStyleSmall"
                 android:layout_weight="1"
                 android:layout_width="0dp"
+                android:gravity="center"
+                android:padding="3dp"
                 android:layout_height="wrap_content"
-                android:text="답변보기"
+                android:text="답변 보기"
+                android:textColor="#FFF"
                 android:id="@+id/qna_showAnswer"
                 android:layout_gravity="right" />
 

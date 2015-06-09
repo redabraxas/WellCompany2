@@ -11,15 +11,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.chocoroll.ourcompay.Extra.Retrofit;
 import com.chocoroll.ourcompay.MainActivity;
 import com.chocoroll.ourcompay.R;
-import com.chocoroll.ourcompay.Extra.Retrofit;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
@@ -83,11 +82,11 @@ public class AnswerDialog extends Dialog{
             this.setTitle("답변보기");
 
             // 답변 달기는 셀러 또는 질문 작성자만 할 수 있다.
-            RelativeLayout answerbox = (RelativeLayout)findViewById(R.id.seller_answer_box);
+            LinearLayout answerbox = (LinearLayout)findViewById(R.id.seller_answer_box);
 
             if(((MainActivity)MainActivity.mContext).getUserId().equals(repID) ||  ((MainActivity)MainActivity.mContext).getUserId().equals(writer)){
 
-                Button replyAnswer = (Button) findViewById(R.id.answer_ok);
+                TextView replyAnswer = (TextView) findViewById(R.id.answer_ok);
                 replyAnswer.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

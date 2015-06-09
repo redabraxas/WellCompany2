@@ -31,18 +31,19 @@
             android:layout_toRightOf="@+id/comLogo"
             android:layout_toEndOf="@+id/comLogo">
 
-            <com.chocoroll.ourcompay.Model.MTextView
+            <com.chocoroll.ourcompay.Model.EBTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#000000"
+                android:textColor="@color/textBold"
                 android:textSize="20dp"
                 android:text="회사이름"
                 android:id="@+id/comName" />
 
-            <TextView
+            <com.chocoroll.ourcompay.Model.MTextView
+                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#ff373737"
+                android:textColor="@color/text"
                 android:textSize="15dp"
                 android:text="카테고리"
                 android:id="@+id/comCategory" />
