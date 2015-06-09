@@ -16,7 +16,6 @@ import android.support.v4.content.CursorLoader;
 import android.util.Base64;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -68,7 +67,7 @@ public class ReportWriteActivity extends Activity implements OnClickListener {
 
         reserve_date = reserve.getDate();
         reserv_num = reserve.getReserveNum();
-        comp_name = reserve.getName();
+        comp_name = reserve.getComName();
         com_num = reserve.getComNum();
         user_email =
                 ((MainActivity)MainActivity.mContext).getUserId();
@@ -152,7 +151,7 @@ public class ReportWriteActivity extends Activity implements OnClickListener {
 
 
                         Uploadinfo.addProperty("content",((EditText)findViewById(R.id.content)).getText().toString());
-                        Uploadinfo.addProperty("date",date);
+
                         Uploadinfo.addProperty("user_email",user_email);
                         Uploadinfo.addProperty("reserv_num",reserv_num);
                         Uploadinfo.addProperty("com_name",((TextView)findViewById(R.id.com_name)).getText().toString());
@@ -185,14 +184,15 @@ public class ReportWriteActivity extends Activity implements OnClickListener {
                             @Override
                             public void success(String result, Response response) {
                                 ldialog.dismiss();
-                                AlertDialog dialog = new AlertDialog.Builder(ReportWriteActivity.this).setMessage(result)
-                                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dia, int which) {
-                                                dia.dismiss();
-                                                finish();
-                                            }
-                                        }).show();
+                                    AlertDialog dialog = new AlertDialog.Builder(ReportWriteActivity.this).setMessage(result)
+                                            .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dia, int which) {
+                                                    dia.dismiss();
+                                                    finish();
+                                                }
+                                            }).show();
+
 
                             }
                             @Override
