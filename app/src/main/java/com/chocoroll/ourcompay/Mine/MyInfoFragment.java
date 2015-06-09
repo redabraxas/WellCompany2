@@ -90,6 +90,7 @@ public class MyInfoFragment extends Fragment {
         final JsonObject info = new JsonObject();
         info.addProperty("id", id);
         info.addProperty("newpw", newpw);
+
         new Thread(new Runnable() {
             public void run() {
                 try {

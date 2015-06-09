@@ -96,7 +96,7 @@ public interface Retrofit {
     public void refusal(@Body JsonObject info, Callback<String> callback);
 
     //내정보수정
-    @POST("/.php")
+    @POST("/login/modifyMyInfo.php")
     public void chage_pw(@Body JsonObject info, Callback<String> callback);
 
 }
