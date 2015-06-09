@@ -54,11 +54,16 @@
                 android:layout_weight="1" />
 
             <com.chocoroll.ourcompay.Model.EBTextView
+                android:background="@color/text"
                 android:clickable="true"
-                android:textColor="@color/textBold"
+                android:textColor="#FFF"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="검색"
+                android:paddingTop="7dp"
+                android:paddingBottom="7dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
                 android:id="@+id/btnSearch" />
         </LinearLayout>
 

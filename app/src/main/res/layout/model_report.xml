@@ -12,7 +12,7 @@
     <com.chocoroll.ourcompay.Model.MTextView
         android:layout_marginLeft="5dp"
         android:textColor="@color/textBold"
-        android:textSize="18dp"
+        android:textSize="14dp"
         android:layout_width="0dp"
         android:layout_weight="5"
         android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
     <com.chocoroll.ourcompay.Model.MTextView
         android:layout_marginLeft="10dp"
         android:textColor="@color/textBold"
-        android:textSize="15dp"
+        android:textSize="13dp"
         android:layout_width="0dp"
         android:layout_weight="1.8"
         android:layout_height="wrap_content"
