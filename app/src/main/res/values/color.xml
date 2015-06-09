@@ -2,8 +2,8 @@
 <resources>
     <color name="main_color">#CBF0FF</color>
 
-    <color name="slide_line">#ffadb3bf</color>
-    <color name="slide_background">#ff57555c</color>
+    <color name="slide_line">#DDD</color>
+    <color name="slide_background">#8C8C8C</color>
 
 
     <color name="tab_background">#4277A6</color>

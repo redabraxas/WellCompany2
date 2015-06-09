@@ -8,21 +8,29 @@
 
 
     <com.chocoroll.ourcompay.Model.MTextView
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="wrap_content"
+        android:textColor="@color/text"
         android:text="회사이름"
         android:id="@+id/comName" />
 
     <com.chocoroll.ourcompay.Model.MTextView
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/text"
         android:layout_height="wrap_content"
         android:text="예약 날짜"
         android:id="@+id/reserveDate" />
 
-    <com.chocoroll.ourcompay.Model.MTextView
+    <com.chocoroll.ourcompay.Model.EBTextView
         android:clickable="true"
+        android:background="@drawable/shape"
+        android:textColor="#FFFFFF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
         android:text="New Button"
         android:id="@+id/btn" />
 </LinearLayout>
