@@ -47,7 +47,8 @@
                     android:maxLength="12"
                     android:singleLine="true"/>
             </LinearLayout>
-            <Button
+            <com.chocoroll.ourcompay.Model.MTextView
+                android:clickable="true"
                 android:id="@+id/login_bt"
                 android:layout_width="80dp"
                 android:layout_height="fill_parent"
@@ -78,7 +79,8 @@
                 android:typeface="sans"
                 android:textSize="10dp" />
 
-            <Button
+            <com.chocoroll.ourcompay.Model.MTextView
+                android:clickable="true"
                 android:id="@+id/login_findid"
                 android:layout_width="80dp"
                 android:layout_height="30dp"
@@ -88,7 +90,8 @@
                 android:textSize="8dp"
                 android:typeface="sans"
                 android:layout_marginRight="10dp"/>
-            <Button
+            <com.chocoroll.ourcompay.Model.MTextView
+                android:clickable="true"
                 android:id="@+id/login_findpasswd"
                 android:layout_width="80dp"
                 android:layout_height="30dp"

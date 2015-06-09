@@ -12,14 +12,14 @@
 
         <TableRow>
 
-            <TextView
+            <com.chocoroll.ourcompay.Model.MTextView
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="주소"
                 android:textColor="#000000"/>
 
-            <TextView
+            <com.chocoroll.ourcompay.Model.MTextView
                 android:layout_weight="3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -34,14 +34,14 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
 
-            <TextView
+            <com.chocoroll.ourcompay.Model.MTextView
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="연락처"
                 android:textColor="#000000"/>
 
-            <TextView
+            <com.chocoroll.ourcompay.Model.MTextView
                 android:layout_weight="3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -55,14 +55,14 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
 
-            <TextView
+            <com.chocoroll.ourcompay.Model.MTextView
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="이메일"
                 android:textColor="#000000"/>
 
-            <TextView
+            <com.chocoroll.ourcompay.Model.MTextView
                 android:layout_weight="3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -77,14 +77,14 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
 
-            <TextView
+            <com.chocoroll.ourcompay.Model.MTextView
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="웹사이트"
                 android:textColor="#000000"/>
 
-            <TextView
+            <com.chocoroll.ourcompay.Model.MTextView
                 android:layout_weight="3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -100,14 +100,14 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
 
-            <TextView
+            <com.chocoroll.ourcompay.Model.MTextView
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="소개"
                 android:textColor="#000000"/>
 
-            <TextView
+            <com.chocoroll.ourcompay.Model.MTextView
                 android:layout_weight="3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

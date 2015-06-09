@@ -24,7 +24,7 @@
             android:background="@null"
             android:id="@+id/m_preMonthBtn" />
 
-        <TextView
+        <com.chocoroll.ourcompay.Model.MTextView
             android:id="@+id/m_yearTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
             android:textSize="20dp"
             android:typeface="sans" />
 
-        <TextView
+        <com.chocoroll.ourcompay.Model.MTextView
             android:id="@+id/m_mothTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
