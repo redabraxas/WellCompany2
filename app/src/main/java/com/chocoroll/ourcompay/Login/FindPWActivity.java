@@ -38,7 +38,6 @@ public class FindPWActivity extends FragmentActivity {
             @Override
             public void onClick(View v) {
                 String id = email.getText().toString();
-                dialog = ProgressDialog.show(FindPWActivity.this, "", "아이디 찾는 중", true);
                 sendID(id);
 
             }
@@ -49,6 +48,8 @@ public class FindPWActivity extends FragmentActivity {
     void sendID(String id) {
         final JsonObject info = new JsonObject();
         info.addProperty("id", id);
+        dialog = ProgressDialog.show(FindPWActivity.this, "", "아이디 찾는 중", true);
+
 
         new Thread(new Runnable() {
             public void run() {
@@ -63,6 +64,7 @@ public class FindPWActivity extends FragmentActivity {
                         @Override
                         public void success(String result, Response response) {
 
+                            dialog.dismiss();
                             if (result.equals("failed")) {
                                 new AlertDialog.Builder(FindPWActivity.this).setMessage("해당하는 이메일이 존재하지 않습니다.")
                                         .setPositiveButton("확인", new DialogInterface.OnClickListener() {
@@ -80,7 +82,7 @@ public class FindPWActivity extends FragmentActivity {
 
                         @Override
                         public void failure(RetrofitError retrofitError) {
-//                            dialog.dismiss();
+                            dialog.dismiss();
                             Log.e("error", retrofitError.getCause().toString());
                             AlertDialog.Builder builder = new AlertDialog.Builder(FindPWActivity.this);
                             builder.setTitle("네트워크가 불안정합니다.")        // 제목 설정

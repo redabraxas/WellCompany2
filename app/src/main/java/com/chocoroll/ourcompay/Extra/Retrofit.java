@@ -16,7 +16,7 @@ public interface Retrofit {
     public void join(@Body JsonObject info, Callback<String> callback);
     @POST("/login/registCompany.php")
     public void join_company(@Body JsonObject info, Callback<String> callback);
-    @POST("/php")
+    @POST("/login/findPasswd.php")
     public void sendID(@Body JsonObject info, Callback<String> callback);
 
     // 카테고리 별 리스트

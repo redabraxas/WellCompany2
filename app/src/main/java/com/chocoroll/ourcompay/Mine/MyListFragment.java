@@ -153,8 +153,10 @@ public class MyListFragment extends Fragment {
                                 String content = (deal.get("content")).getAsString();
                                 String picture = (deal.get("picture")).getAsString();
 
+                                int answerCount = (deal.get("answerCount")).getAsInt();
 
-                                arMyreport.add(new Report(num,companyNum,companyName,id,purpose,content,picture));
+
+                                arMyreport.add(new Report(num,companyNum,companyName,id,purpose,content,picture, answerCount));
 
                             }
 
