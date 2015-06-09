@@ -131,9 +131,11 @@
                 android:orientation="horizontal" >
 
                 <com.chocoroll.ourcompay.Model.BTextView
-                    android:layout_width="130dp"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="10dp"
                     android:text="예약 날짜 : "
                     android:textColor="@color/text"
                     android:textSize="15dp"
@@ -142,24 +144,30 @@
                 <com.chocoroll.ourcompay.Model.MTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="2015.12.12"
                     android:textColor="@color/text"
                     android:id="@+id/reserv_date"/>
 
                 <com.chocoroll.ourcompay.Model.BTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginBottom="10dp"
                     android:text="예약자 : "
                     android:textColor="@color/text"
                     android:textSize="15dp"
                     android:typeface="sans" />
                 <com.chocoroll.ourcompay.Model.MTextView
-                    android:layout_width="120dp"
-                    android:layout_height="40dp"
+                    android:layout_width="wrap_content"
+                    android:textSize="15dp"
+                    android:layout_margin="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="홍길동"
+                    android:gravity="center"
                     android:id="@+id/name"
                     android:textColor="@color/text"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_weight="1"/>
+                   />
 
 
                 />
@@ -189,7 +197,9 @@
                 <com.chocoroll.ourcompay.Model.BTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="10dp"
                     android:text="예상인원 :  "
                     android:textColor="@color/text"
                     android:textSize="15dp"
@@ -197,11 +207,13 @@
 
                 <com.chocoroll.ourcompay.Model.MTextView
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:textColor="@color/text"
                     android:id="@+id/expectpeople"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_weight="1"/>
+                    android:textSize="15dp"
+                    android:text="10"
+                    android:layout_marginRight="30dp"
+                    android:gravity="center"/>
 
 
                 <com.chocoroll.ourcompay.Model.BTextView
@@ -213,13 +225,13 @@
                     android:textSize="15dp"
                     android:typeface="sans" />
                 <com.chocoroll.ourcompay.Model.MTextView
-                    android:layout_width="200dp"
-                    android:layout_height="40dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:id="@+id/phone"
-
-                    android:autoLink="phone"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_weight="1"/>
+                    android:text="010-1234-1234"
+                    android:gravity="center"
+                    android:textSize="15dp"
+                    android:autoLink="phone"/>
             </LinearLayout>
         </RelativeLayout>
 
@@ -251,12 +263,12 @@
                 android:textSize="15dp"
                 android:typeface="sans" />
             <com.chocoroll.ourcompay.Model.MTextView
-                android:layout_width="140dp"
-                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:textColor="@color/text"
-                android:id="@+id/belong"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_weight="1"/>
+                android:textSize="15dp"
+                android:text="하하하하하하하하하하하하하"
+                android:id="@+id/belong"/>
            </LinearLayout>
         </RelativeLayout>
 
@@ -293,11 +305,11 @@
 
                 <com.chocoroll.ourcompay.Model.MTextView
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
+                    android:text="하하하하하하하ㅏ하하하하하하하"
                     android:textColor="@color/text"
                     android:id="@+id/expectQuery"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_weight="1"/>
+                    android:textSize="15dp"/>
 
 
 
@@ -342,8 +354,9 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/text"
                     android:id="@+id/comment"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_weight="1"/>
+                    android:textSize="15dp"
+                    android:gravity="center"
+                    android:text="dlfjs dkaddfskdlfjsdkfjslefkjgfdf"/>
 
 
                 />

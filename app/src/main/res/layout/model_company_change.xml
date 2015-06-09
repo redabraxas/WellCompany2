@@ -9,6 +9,7 @@
 
     <ImageView
         android:layout_marginLeft="10dp"
+        android:layout_marginRight="5dp"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:id="@+id/companyLogo" />
@@ -18,7 +19,7 @@
         android:layout_marginLeft="10dp"
         android:textColor="@color/textBold"
         android:textSize="20dp"
-        android:layout_width="175dp"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:text="회사이름"
         android:id="@+id/companyName" />

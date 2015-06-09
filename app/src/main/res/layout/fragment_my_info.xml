@@ -109,13 +109,13 @@
 
 
 
-        <com.chocoroll.ourcompay.Model.MTextView
+        <com.chocoroll.ourcompay.Model.EBTextView
             android:clickable="true"
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:text="비밀번호 수정"
             android:background="@drawable/shape"
-            android:textColor="@color/textBold"
+            android:textColor="#FFFFFF"
             android:gravity="center"
             android:id="@+id/change_pw"
             android:layout_gravity="center_horizontal"
