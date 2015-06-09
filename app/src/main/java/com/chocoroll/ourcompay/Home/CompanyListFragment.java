@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.chocoroll.ourcompay.Company.CompanyActivity;
+import com.chocoroll.ourcompay.MainActivity;
 import com.chocoroll.ourcompay.Model.Company;
 import com.chocoroll.ourcompay.Model.CompanyAdapter;
 import com.chocoroll.ourcompay.R;
@@ -96,6 +97,15 @@ public class CompanyListFragment extends Fragment implements HomeFragment.HomeFr
 
     void getCompanyList(String bCategory, String sCategory, String search){
 
+
+
+        final ProgressDialog progressDialog = new ProgressDialog((MainActivity)MainActivity.mContext);
+        progressDialog.setMessage("회사 리스트를 받아오는 중입니다...");
+        progressDialog.setIndeterminate(true);
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
+
         final JsonObject info = new JsonObject();
         info.addProperty("bCategory",bCategory);
         info.addProperty("sCategory",sCategory);
@@ -114,6 +124,7 @@ public class CompanyListFragment extends Fragment implements HomeFragment.HomeFr
                         @Override
                         public void success(JsonArray jsonElements, Response response) {
 
+                            progressDialog.dismiss();
                             companyList.clear();
 
                             for (int i = 0; i < jsonElements.size(); i++) {
@@ -141,7 +152,7 @@ public class CompanyListFragment extends Fragment implements HomeFragment.HomeFr
 
                         @Override
                         public void failure(RetrofitError retrofitError) {
-
+                            progressDialog.dismiss();
                             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                             builder.setTitle("네트워크가 불안정합니다.")        // 제목 설정
                                     .setMessage("네트워크를 확인해주세요")        // 메세지 설정
