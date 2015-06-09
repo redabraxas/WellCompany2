@@ -982,19 +982,19 @@ public class MyApplyFragment extends Fragment {
 
                                 int state = (VisitState.get("approval")).getAsInt();
 
-                                reserveApplyList.add(new Reserve(reservNum, comNum, comName, reservDate, day, userEmail, name, phone, expectPeople, belongs, purpose, preQuestion, comment, state));
+                                reserveApplyList.add(new Reserve(reservNum, comNum, comName, reservDate, day, userEmail, name, phone, belongs, expectPeople, purpose, preQuestion, comment, state));
 
                                 switch (state){
                                     case 0:
-                                        waitApplyList.add(new Reserve(reservNum, comNum, comName, reservDate, day, userEmail, name, phone, expectPeople, belongs, purpose, preQuestion, comment, state));
+                                        waitApplyList.add(new Reserve(reservNum, comNum, comName, reservDate, day, userEmail, name, phone, belongs, expectPeople, purpose, preQuestion, comment, state));
                                         setSelectedDay("wait",day);
                                         break;
                                     case 1:
-                                        approveApplyList.add(new Reserve(reservNum, comNum, comName, reservDate, day, userEmail, name, phone, expectPeople, belongs, purpose, preQuestion, comment, state));
+                                        approveApplyList.add(new Reserve(reservNum, comNum, comName, reservDate, day, userEmail, name, phone,belongs,  expectPeople, purpose, preQuestion, comment, state));
                                         setSelectedDay("sure",day);
                                         break;
                                     case 2:
-                                        rejectApplyList.add(new Reserve(reservNum, comNum, comName, reservDate, day, userEmail, name, phone, expectPeople, belongs, purpose, preQuestion, comment, state));
+                                        rejectApplyList.add(new Reserve(reservNum, comNum, comName, reservDate, day, userEmail, name, phone, belongs, expectPeople, purpose, preQuestion, comment, state));
 
                                         break;
 

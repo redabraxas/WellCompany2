@@ -109,7 +109,7 @@ public class ReportListFragment extends Fragment implements HomeFragment.HomeFra
     void getReportList(String bCategory, String sCategory, String search){
 
 //
-//        progressDialog = new ProgressDialog(getActivity());
+//        progressDialog = new ProgressDialog((MainActivity)MainActivity.mContext));
 //        progressDialog.setMessage("보고서 리스트를 받아오는 중입니다...");
 //        progressDialog.setIndeterminate(true);
 //        progressDialog.setCancelable(false);
@@ -164,14 +164,13 @@ public class ReportListFragment extends Fragment implements HomeFragment.HomeFra
                         @Override
                         public void failure(RetrofitError retrofitError) {
 //                            progressDialog.dismiss();
-                            AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
+                            AlertDialog.Builder builder = new AlertDialog.Builder(((MainActivity)MainActivity.mContext));
                             builder.setTitle("네트워크가 불안정합니다.")        // 제목 설정
                                     .setMessage("네트워크를 확인해주세요")        // 메세지 설정
                                     .setCancelable(false)        // 뒤로 버튼 클릭시 취소 가능 설정
                                     .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                                         // 확인 버튼 클릭시 설정
                                         public void onClick(DialogInterface dialog, int whichButton) {
-                                            getActivity().finish();
                                         }
                                     });
 

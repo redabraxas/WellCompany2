@@ -975,7 +975,7 @@ public class VisitStateFragment extends Fragment {
 
                                 int state = (VisitState.get("approval")).getAsInt();
 
-                                visitList.add(new Reserve(reservNum, comNum, comName, reservDate, day, userEmail, name, phone, expectPeople, belongs, purpose, preQuestion, comment, state));
+                                visitList.add(new Reserve(reservNum, comNum, comName, reservDate, day, userEmail, name, phone,  belongs, expectPeople, purpose, preQuestion, comment, state));
 
                                 // 예약 날짜 표시
                                 if(state == 1){
