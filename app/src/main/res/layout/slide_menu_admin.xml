@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
 
-    <com.chocoroll.ourcompay.Model.MTextView
+    <com.chocoroll.ourcompay.Model.BTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="안녕하세요 유저님~"
@@ -33,7 +33,7 @@
             android:src="@drawable/left_menu" />
 
 
-        <com.chocoroll.ourcompay.Model.MTextView
+        <com.chocoroll.ourcompay.Model.BTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -64,7 +64,7 @@
             android:src="@drawable/left_menu" />
 
 
-        <com.chocoroll.ourcompay.Model.MTextView
+        <com.chocoroll.ourcompay.Model.BTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -96,7 +96,7 @@
             android:src="@drawable/left_menu" />
 
 
-        <com.chocoroll.ourcompay.Model.MTextView
+        <com.chocoroll.ourcompay.Model.BTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -127,7 +127,7 @@
             android:src="@drawable/left_menu" />
 
 
-        <com.chocoroll.ourcompay.Model.MTextView
+        <com.chocoroll.ourcompay.Model.BTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -159,7 +159,7 @@
             android:src="@drawable/left_menu" />
 
 
-        <com.chocoroll.ourcompay.Model.MTextView
+        <com.chocoroll.ourcompay.Model.BTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

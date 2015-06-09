@@ -9,7 +9,8 @@
     >
 
 
-    <TextView
+    <com.chocoroll.ourcompay.Model.BTextView
+        android:textColor="@color/text"
         android:id="@+id/QnA_date"
         android:padding="4dp"
         android:layout_width="70dp"
@@ -18,7 +19,8 @@
         android:gravity="center"
         />
 
-    <TextView
+    <com.chocoroll.ourcompay.Model.MTextView
+        android:textColor="@color/text"
         android:id = "@+id/QnA_title"
         android:layout_marginLeft="4dp"
         android:padding="4dp"
@@ -27,7 +29,8 @@
         android:text = "카카오톡 답사 문의드립니다."
         />
 
-    <TextView
+    <com.chocoroll.ourcompay.Model.BTextView
+        android:textColor="@color/text"
         android:id = "@+id/QnA_check"
         android:layout_width="60dp"
         android:layout_marginLeft="4dp"
