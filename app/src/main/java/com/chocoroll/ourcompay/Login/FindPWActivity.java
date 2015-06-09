@@ -49,6 +49,7 @@ public class FindPWActivity extends FragmentActivity {
     void sendID(String id) {
         final JsonObject info = new JsonObject();
         info.addProperty("id", id);
+
         new Thread(new Runnable() {
             public void run() {
                 try {
