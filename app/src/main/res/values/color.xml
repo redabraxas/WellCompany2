@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="main_color">#9976cfc8</color>
+    <color name="main_color">#AEE0F5</color>
 
     <color name="slide_line">#ffadb3bf</color>
     <color name="slide_background">#ff57555c</color>
 
 
-    <color name="tab_background">#ff9e8fff</color>
-    <color name="tab_indicate">#ff5f55ac</color>
+    <color name="tab_background">#5085C0</color>
+    <color name="tab_indicate">#1E4C6B</color>
+
 
 </resources>
