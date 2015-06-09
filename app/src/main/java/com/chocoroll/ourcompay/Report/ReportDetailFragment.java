@@ -76,6 +76,8 @@ public class ReportDetailFragment extends Fragment {
         new DownloadImageTask((ImageView) v.findViewById(R.id.image))
                 .execute(report.getPicture());
 
+        ((TextView)v.findViewById(R.id.date)).setText(report.getDate());
+
         ((TextView)v.findViewById(R.id.report_reply_count)).setText("댓글보기("+report.getAnswerCount()+")");
 
 

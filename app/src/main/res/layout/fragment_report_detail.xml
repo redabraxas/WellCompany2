@@ -137,15 +137,17 @@
                         android:textSize="15dp"
                         android:typeface="sans" />
 
-                    <com.chocoroll.ourcompay.Model.MTextView
-                        android:layout_width="wrap_content"
+
+                    <com.chocoroll.ourcompay.Model.BTextView
+                        android:id="@+id/date"
+                        android:layout_width="250dp"
                         android:layout_height="wrap_content"
-                        android:text=""
+                        android:background="@null"
+                        android:padding="10dp"
                         android:textColor="@color/text"
-                        android:id="@+id/reserv_date"/>
-
-
-                    />
+                        android:textSize="15dp"
+                        android:typeface="sans"
+                        android:text=""/>
 
                 </LinearLayout>
             </RelativeLayout>
