@@ -39,34 +39,11 @@ public class ReportAdapter  extends ArrayAdapter<Report> {
         if (p != null) {
 
           String str = "["+p.getCompanyName()+"]  "+p.getPurpose();
-            ((TextView)  v.findViewById(R.id.reportTitle)).setText(str);
-           // ((TextView)v.findViewById(R.id.reportdate)).setText(p.g);
+            ((TextView) v.findViewById(R.id.comName)).setText(str);
+            ((TextView) v.findViewById(R.id.title)).setText(p.getPurpose());
+            ((TextView)v.findViewById(R.id.date)).setText(p.getDate());
         }
         return v;
     }
 
-    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-        ImageView bmImage;
-
-        public DownloadImageTask(ImageView bmImage) {
-            this.bmImage = bmImage;
-        }
-
-        protected Bitmap doInBackground(String... urls) {
-            String urldisplay = urls[0];
-            Bitmap mIcon11 = null;
-            try {
-                InputStream in = new java.net.URL(urldisplay).openStream();
-                mIcon11 = BitmapFactory.decodeStream(in);
-            } catch (Exception e) {
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
-            }
-            return mIcon11;
-        }
-
-        protected void onPostExecute(Bitmap result) {
-            bmImage.setImageBitmap(result);
-        }
-    }
 }

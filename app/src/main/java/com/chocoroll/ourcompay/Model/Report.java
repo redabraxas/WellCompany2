@@ -20,6 +20,10 @@ public class Report  implements Parcelable {
 
     int answerCount;
 
+    public String getDate() {
+        return date;
+    }
+
     public String getCompanyName() {
         return companyName;
     }
