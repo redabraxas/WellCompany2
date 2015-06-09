@@ -126,7 +126,7 @@ public class AnswerDialog extends Dialog{
         }else if(type.equals("report")){
             this.setTitle("댓글보기");
 
-            Button replyAnswer = (Button) findViewById(R.id.answer_ok);
+            TextView replyAnswer = (TextView) findViewById(R.id.answer_ok);
             replyAnswer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
