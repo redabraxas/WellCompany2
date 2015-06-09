@@ -60,7 +60,7 @@ public class VisitStateAdapter extends ArrayAdapter<Reserve> {
             LinearLayout waitbox =(LinearLayout) v.findViewById(R.id.waitbox);
             if(key.equals("wait")){
                 waitbox.setVisibility(View.VISIBLE);
-                Button approval=(Button)v.findViewById(R.id.approval);
+                TextView approval=(TextView)v.findViewById(R.id.approval);
                 approval.setOnClickListener(new  View.OnClickListener(){
 
                     @Override
@@ -69,7 +69,7 @@ public class VisitStateAdapter extends ArrayAdapter<Reserve> {
                         approval(vs.getReserveNum());
                     }
                 });
-                Button refusal=(Button)v.findViewById(R.id.refusal);
+                TextView refusal=(TextView)v.findViewById(R.id.refusal);
                 refusal.setOnClickListener(new  View.OnClickListener(){
                     @Override
                     public void onClick(View v) {

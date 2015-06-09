@@ -4,7 +4,7 @@
     android:padding="10dp">
 
 
-    <TextView
+    <com.chocoroll.ourcompay.Model.MTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Text"
@@ -14,7 +14,8 @@
         android:layout_alignParentStart="true" />
 
 
-    <Button
+    <com.chocoroll.ourcompay.Model.MTextView
+        android:clickable="true"
         android:focusable="false"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

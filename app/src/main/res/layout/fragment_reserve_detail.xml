@@ -42,7 +42,7 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal" >
 
-                <TextView
+                <com.chocoroll.ourcompay.Model.MTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -51,7 +51,7 @@
                     android:textSize="15dp"
                     android:typeface="sans" />
 
-                <TextView
+                <com.chocoroll.ourcompay.Model.MTextView
                     android:id="@+id/company_name"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
@@ -86,7 +86,7 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal" >
 
-                <TextView
+                <com.chocoroll.ourcompay.Model.MTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -95,7 +95,7 @@
                     android:textSize="15dp"
                     android:typeface="sans" />
 
-                <TextView
+                <com.chocoroll.ourcompay.Model.MTextView
                     android:id="@+id/purpose"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
@@ -129,7 +129,7 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal" >
 
-                <TextView
+                <com.chocoroll.ourcompay.Model.MTextView
                     android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -138,13 +138,13 @@
                     android:textSize="15dp"
                     android:typeface="sans" />
 
-                <TextView
+                <com.chocoroll.ourcompay.Model.MTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
                     android:id="@+id/reserv_date"/>
 
-                <TextView
+                <com.chocoroll.ourcompay.Model.MTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -152,7 +152,7 @@
                     android:textColor="#000000"
                     android:textSize="15dp"
                     android:typeface="sans" />
-                <TextView
+                <com.chocoroll.ourcompay.Model.MTextView
                     android:layout_width="120dp"
                     android:layout_height="40dp"
                     android:id="@+id/name"
@@ -185,7 +185,7 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal" >
 
-                <TextView
+                <com.chocoroll.ourcompay.Model.MTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -193,13 +193,13 @@
                     android:textColor="#000000"
                     android:textSize="15dp"
                     android:typeface="sans" />
-                <TextView
+                <com.chocoroll.ourcompay.Model.MTextView
                     android:layout_width="140dp"
                     android:layout_height="40dp"
                     android:id="@+id/belong"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_weight="1"/>
-                <TextView
+                <com.chocoroll.ourcompay.Model.MTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -207,7 +207,7 @@
                     android:textColor="#000000"
                     android:textSize="15dp"
                     android:typeface="sans" />
-                <TextView
+                <com.chocoroll.ourcompay.Model.MTextView
                     android:layout_width="200dp"
                     android:layout_height="40dp"
                     android:id="@+id/phone"
@@ -238,7 +238,7 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal" >
 
-                <TextView
+                <com.chocoroll.ourcompay.Model.MTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -247,14 +247,14 @@
                     android:textSize="15dp"
                     android:typeface="sans" />
 
-                <TextView
+                <com.chocoroll.ourcompay.Model.MTextView
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:id="@+id/expectQuery"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_weight="1"/>
 
-                <TextView
+                <com.chocoroll.ourcompay.Model.MTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -263,7 +263,7 @@
                     android:textSize="15dp"
                     android:typeface="sans" />
 
-                <TextView
+                <com.chocoroll.ourcompay.Model.MTextView
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:id="@+id/expectpeople"
@@ -297,7 +297,7 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal" >
 
-                <TextView
+                <com.chocoroll.ourcompay.Model.MTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -306,7 +306,7 @@
                     android:textSize="15dp"
                     android:typeface="sans" />
 
-                <TextView
+                <com.chocoroll.ourcompay.Model.MTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/comment"

@@ -76,7 +76,7 @@ public class CompanyActivity extends FragmentActivity {
         new DownloadImageTask((ImageView) findViewById(R.id.comLogo)).execute(company.getLogo());
         ((TextView)findViewById(R.id.comName)).setText(company.getName());
         ((TextView)findViewById(R.id.comCategory)).setText(company.getbCategory()+" > "+company.getsCategory());
-        ((Button)findViewById(R.id.comBookmark)).setOnClickListener(new View.OnClickListener() {
+        ((TextView)findViewById(R.id.comBookmark)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 addBookMark();

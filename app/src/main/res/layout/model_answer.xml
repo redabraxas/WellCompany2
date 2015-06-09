@@ -5,7 +5,7 @@
     android:background="#ffffff"
     android:padding="10dp">
 
-    <TextView
+    <com.chocoroll.ourcompay.Model.MTextView
         android:padding="5dp"
         android:gravity="center"
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
         android:padding="5dp">
 
 
-        <TextView
+        <com.chocoroll.ourcompay.Model.MTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="날짜"
@@ -34,7 +34,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
 
-        <TextView
+        <com.chocoroll.ourcompay.Model.MTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="작성자"

@@ -34,7 +34,7 @@ public class ReserveActivity extends Activity implements OnClickListener {
 
     private ProgressDialog ldialog = null;
 
-    Button uploadButton,cancelButton;
+    TextView uploadButton,cancelButton;
 
     String user_email, com_num, reserve_date, comp_name; //전 액티비티에서 받아야되는 것들
     String question, comment, phone, com_purpose, reserv_name, belong;
@@ -68,8 +68,8 @@ public class ReserveActivity extends Activity implements OnClickListener {
 
         ((TextView) findViewById(R.id.com_name)).setText(comp_name);
 
-        uploadButton = (Button) findViewById(R.id.uploadButton);
-        cancelButton = (Button) findViewById(R.id.report_cancelbt);
+        uploadButton = (TextView) findViewById(R.id.uploadButton);
+        cancelButton = (TextView) findViewById(R.id.report_cancelbt);
 
         uploadButton.setOnClickListener(this);
         cancelButton.setOnClickListener(this);

@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chocoroll.ourcompay.Extra.Retrofit;
@@ -31,7 +32,7 @@ public class FindPWActivity extends FragmentActivity {
         // 아이디 입력 후 임시 비밀번호 발송
         final EditText email = (EditText) findViewById(R.id.editid);
 
-        Button findpw = (Button) findViewById(R.id.findpasswd);
+        TextView findpw = (TextView) findViewById(R.id.findpasswd);
         findpw.setOnClickListener(new View.OnClickListener()
 
         {

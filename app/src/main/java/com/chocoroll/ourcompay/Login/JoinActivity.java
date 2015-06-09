@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chocoroll.ourcompay.Extra.Retrofit;
@@ -34,7 +35,7 @@ public class JoinActivity extends Activity {
         final EditText passwd = (EditText) findViewById(R.id.editpwd);
         final EditText repasswd = (EditText) findViewById(R.id.editrepwd);
 
-        Button regist = (Button) findViewById(R.id.btnregister);
+        TextView regist = (TextView) findViewById(R.id.btnregister);
         regist.setOnClickListener(new View.OnClickListener()
 
         {

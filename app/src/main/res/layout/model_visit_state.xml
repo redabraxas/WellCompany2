@@ -7,7 +7,7 @@
     android:padding="10dp"
     android:gravity="center">
 
-    <TextView
+    <com.chocoroll.ourcompay.Model.MTextView
         android:id="@+id/date"
         android:layout_weight="1"
         android:layout_width="0dp"
@@ -16,7 +16,7 @@
 
         />
 
-    <TextView
+    <com.chocoroll.ourcompay.Model.MTextView
         android:id="@+id/purpose"
         android:layout_weight="1"
         android:layout_width="0dp"
@@ -32,13 +32,15 @@
         android:layout_height="wrap_content"
         android:id="@+id/waitbox">
 
-        <Button
+        <com.chocoroll.ourcompay.Model.MTextView
+            android:clickable="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="승인"
             android:id="@+id/approval" />
 
-        <Button
+        <com.chocoroll.ourcompay.Model.MTextView
+            android:clickable="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="거절"

@@ -20,7 +20,7 @@
 
 
 
-        <TextView
+        <com.chocoroll.ourcompay.Model.MTextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -42,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
+        <com.chocoroll.ourcompay.Model.MTextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -64,7 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
+            <com.chocoroll.ourcompay.Model.MTextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
@@ -82,7 +82,8 @@
 
 
 
-        <Button
+        <com.chocoroll.ourcompay.Model.MTextView
+            android:clickable="true"
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:text="비밀번호 수정"
