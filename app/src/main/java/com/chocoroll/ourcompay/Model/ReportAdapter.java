@@ -37,12 +37,10 @@ public class ReportAdapter  extends ArrayAdapter<Report> {
         }
         Report p = items.get(position);
         if (p != null) {
-//
-//            new DownloadImageTask((ImageView) v.findViewById(R.id.thumbnailDeal))
-//                    .execute(p.getThumbnail());
 
-            String str = "["+p.getCompanyName()+"]  "+p.getPurpose();
+          String str = "["+p.getCompanyName()+"]  "+p.getPurpose();
             ((TextView)  v.findViewById(R.id.reportTitle)).setText(str);
+           // ((TextView)v.findViewById(R.id.reportdate)).setText(p.g);
         }
         return v;
     }
