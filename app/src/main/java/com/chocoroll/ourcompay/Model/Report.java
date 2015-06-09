@@ -16,6 +16,8 @@ public class Report  implements Parcelable {
     String content;
     String picture;
 
+    String date;
+
     int answerCount;
 
     public String getCompanyName() {
@@ -53,7 +55,7 @@ public class Report  implements Parcelable {
     public Report(Parcel in) {
         readFromParcel(in);
     }
-    public Report(String num, String companyNum, String companyName, String id, String purpose, String content, String picture, int answerCount){
+    public Report(String num, String companyNum, String companyName, String id, String purpose, String content, String picture, String date, int answerCount){
         this.num = num;
         this.companyNum = companyNum;
         this.companyName =companyName;
@@ -61,6 +63,8 @@ public class Report  implements Parcelable {
         this.purpose = purpose;
         this.content =content;
         this.picture =picture;
+
+        this.date =date;
         this.answerCount = answerCount;
     }
 
@@ -81,6 +85,7 @@ public class Report  implements Parcelable {
         parcel.writeString(purpose);
         parcel.writeString(content);
         parcel.writeString(picture);
+        parcel.writeString(date);
 
         parcel.writeInt(answerCount);
 
@@ -95,6 +100,7 @@ public class Report  implements Parcelable {
         purpose = in.readString();
         content = in.readString();
         picture = in.readString();
+        date= in.readString();
 
         answerCount=in.readInt();
 

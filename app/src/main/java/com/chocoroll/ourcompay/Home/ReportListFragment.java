@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.chocoroll.ourcompay.MainActivity;
 import com.chocoroll.ourcompay.R;
 import com.chocoroll.ourcompay.Report.ReportDetailFragment;
 import com.chocoroll.ourcompay.Extra.Retrofit;
@@ -86,7 +87,7 @@ public class ReportListFragment extends Fragment implements HomeFragment.HomeFra
 
                 Report report = reportList.get(i);
                 ReportDetailFragment reportDetailFragment = ReportDetailFragment.newInstance(report);
-                getActivity().getSupportFragmentManager().beginTransaction().add(R.id.container, reportDetailFragment).addToBackStack(null).commit();
+                ((MainActivity) MainActivity.mContext).getSupportFragmentManager().beginTransaction().add(R.id.container, reportDetailFragment).addToBackStack(null).commit();
 
 
             }
@@ -147,9 +148,11 @@ public class ReportListFragment extends Fragment implements HomeFragment.HomeFra
                                 String content = (deal.get("content")).getAsString();
                                 String picture = (deal.get("picture")).getAsString();
 
+                                String date = (deal.get("date")).getAsString();
+
                                 int replyCount = (deal.get("answerCount")).getAsInt();
 
-                                reportList.add(new Report(num,companyNum,companyName,id,purpose,content,picture, replyCount));
+                                reportList.add(new Report(num,companyNum,companyName,id,purpose,content,picture, date, replyCount));
 
                             }
 
@@ -195,7 +198,7 @@ public class ReportListFragment extends Fragment implements HomeFragment.HomeFra
 
 
 
-        progressDialog = new ProgressDialog(getActivity());
+        final ProgressDialog progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage("회사의 보고서 리스트를 받아오는 중입니다...");
         progressDialog.setIndeterminate(true);
         progressDialog.setCancelable(false);
@@ -233,9 +236,11 @@ public class ReportListFragment extends Fragment implements HomeFragment.HomeFra
                                 String content = (deal.get("content")).getAsString();
                                 String picture = (deal.get("picture")).getAsString();
 
+                                String date = (deal.get("date")).getAsString();
+
                                 int replyCount = (deal.get("answerCount")).getAsInt();
 
-                                reportList.add(new Report(num,companyNum,companyName,id,purpose,content,picture, replyCount));
+                                reportList.add(new Report(num,companyNum,companyName,id,purpose,content,picture, date, replyCount));
 
                             }
                             listView.setAdapter(mAdapter);
