@@ -8,13 +8,25 @@
     >
 
 
-    <com.chocoroll.ourcompay.Model.MTextView
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+    <com.chocoroll.ourcompay.Model.BTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text = "내 글 목록"
         android:textColor="@color/textBold"
         android:textSize="20dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#7894B0"/>
+
+    </LinearLayout>
 
     <ListView
         android:id="@+id/list"
@@ -31,15 +43,26 @@
         android:orientation="vertical" >
     </LinearLayout>
 
-    <com.chocoroll.ourcompay.Model.MTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:paddingTop="5dp"
-        android:textColor="@color/textBold"
-        android:text = "내 질문 목록"
-        android:textSize="20dp"/>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <com.chocoroll.ourcompay.Model.BTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text = "내 질문 목록"
+            android:textColor="@color/textBold"
+            android:textSize="20dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#7894B0"/>
+
+        </LinearLayout>
     <ListView
         android:id="@+id/list2"
         android:layout_width="match_parent"

@@ -64,7 +64,7 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal" >
 
-                    <com.chocoroll.ourcompay.Model.MTextView
+                    <com.chocoroll.ourcompay.Model.BTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
@@ -107,7 +107,7 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal" >
 
-                    <com.chocoroll.ourcompay.Model.MTextView
+                    <com.chocoroll.ourcompay.Model.BTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
@@ -152,7 +152,7 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal" >
 
-                    <com.chocoroll.ourcompay.Model.MTextView
+                    <com.chocoroll.ourcompay.Model.BTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
@@ -209,7 +209,7 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal" >
 
-                    <com.chocoroll.ourcompay.Model.MTextView
+                    <com.chocoroll.ourcompay.Model.BTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
@@ -251,7 +251,7 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal" >
 
-                    <com.chocoroll.ourcompay.Model.MTextView
+                    <com.chocoroll.ourcompay.Model.BTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
@@ -295,7 +295,7 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal" >
 
-                    <com.chocoroll.ourcompay.Model.MTextView
+                    <com.chocoroll.ourcompay.Model.BTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
@@ -338,7 +338,7 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal" >
 
-                    <com.chocoroll.ourcompay.Model.MTextView
+                    <com.chocoroll.ourcompay.Model.BTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
@@ -382,7 +382,7 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal" >
 
-                    <com.chocoroll.ourcompay.Model.MTextView
+                    <com.chocoroll.ourcompay.Model.BTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
@@ -397,7 +397,7 @@
                         android:layout_height="wrap_content"
                         />
 
-                    <com.chocoroll.ourcompay.Model.MTextView
+                    <com.chocoroll.ourcompay.Model.BTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=" - "/>
@@ -413,7 +413,7 @@
                         android:digits="0123456789-"
                         android:inputType="phone"/>
 
-                    <com.chocoroll.ourcompay.Model.MTextView
+                    <com.chocoroll.ourcompay.Model.BTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=" - "/>
@@ -454,7 +454,7 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal" >
 
-                    <com.chocoroll.ourcompay.Model.MTextView
+                    <com.chocoroll.ourcompay.Model.BTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
@@ -464,7 +464,7 @@
                         android:typeface="sans" />
 
 
-                    <com.chocoroll.ourcompay.Model.MTextView
+                    <com.chocoroll.ourcompay.Model.BTextView
                         android:clickable="true"
                         android:paddingRight="8dp"
                         android:paddingLeft="8dp"
@@ -515,7 +515,7 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal" >
 
-                    <com.chocoroll.ourcompay.Model.MTextView
+                    <com.chocoroll.ourcompay.Model.BTextView
                         android:gravity="top"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -553,7 +553,7 @@
                 android:gravity="center"
                 android:orientation="horizontal" >
 
-                <com.chocoroll.ourcompay.Model.MTextView
+                <com.chocoroll.ourcompay.Model.BTextView
                     android:clickable="true"
                     android:layout_margin="10dp"
                     android:id="@+id/uploadButton"
@@ -566,7 +566,7 @@
                     android:textSize="13dp"
                     android:typeface="sans" />
 
-                <com.chocoroll.ourcompay.Model.MTextView
+                <com.chocoroll.ourcompay.Model.BTextView
                     android:clickable="true"
                     android:layout_margin="10dp"
                     android:id="@+id/cancelbt"
