@@ -2,30 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" tools:context="com.chocoroll.ourcompay.Mine.MyInfoFragment"
      android:background="#ffffff">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/main_color">
 
-        <FrameLayout
-            android:layout_gravity="center"
-            android:layout_marginLeft="12dp"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent">
-            <com.chocoroll.ourcompay.Model.EBTextView
-                android:id="@+id/title_bar_img"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:textSize="20dp"
-                android:textColor="#ffffff"
-                android:typeface="serif"
-                android:text=" > 비밀번호 수정 "/>
-
-        </FrameLayout>
-
-    </LinearLayout>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
@@ -37,73 +14,113 @@
         android:weightSum="1">
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
+
+            android:paddingRight="20dp"
+            android:layout_marginTop="130dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp">
+            android:orientation="vertical">
 
-
-
-        <com.chocoroll.ourcompay.Model.MTextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="비밀번호"
-            android:textColor="@color/text"
-            android:layout_weight="1"
-            />
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/editpwd"
-            android:layout_weight="2"
-            android:hint="Password"
-            android:password="true"/>
-
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.chocoroll.ourcompay.Model.MTextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="비밀번호확인"
-            android:textColor="@color/text"
-            android:layout_weight="1"
-            />
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/editrepwd"
-            android:layout_weight="2"
-            android:hint="Password"
-            android:password="true"/>
-
-    </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.chocoroll.ourcompay.Model.MTextView
-                android:layout_width="0dp"
-                android:textColor="@color/text"
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_weight="1"
-                android:text="새비밀번호"
-                />
-            <EditText
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/editnewpw"
-                android:layout_weight="2"
-                android:hint="New Password"/>
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp">
+
+                <com.chocoroll.ourcompay.Model.EBTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_weight="1"
+                    android:text="비밀 번호 : "
+                    android:textColor="@color/text"
+                    />
+
+
+                <EditText
+                    android:background="@null"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editpwd"
+                    android:layout_weight="2"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="1dp"
+                android:layout_marginLeft="103dp"
+                android:layout_width="200dp"
+                android:layout_height="1dp"
+                android:background="#7894B0"/>
+            <LinearLayout
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.chocoroll.ourcompay.Model.EBTextView
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/text"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="새로운 비밀 번호 : "
+
+                    />
+
+                <EditText
+                    android:background= "@null"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editrepwd"
+                    android:password="true"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="1dp"
+                android:layout_marginLeft="160dp"
+                android:layout_width="140dp"
+                android:layout_height="1dp"
+                android:background="#7894B0"/>
+
+            <LinearLayout
+
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.chocoroll.ourcompay.Model.EBTextView
+                    android:layout_width="0dp"
+                    android:textColor="@color/text"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="비밀 번호 확인 : "
+                    android:layout_weight="2"
+                    />
+
+                <EditText
+                    android:background="@null"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editnewpw"
+                    android:layout_weight="2"
+                    android:password="true"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="1dp"
+                android:layout_marginLeft="140dp"
+                android:layout_width="160dp"
+                android:layout_height="1dp"
+                android:background="#7894B0"/>
 
         </LinearLayout>
 

@@ -286,7 +286,7 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_weight="0.8"
+        android:layout_weight="0.6"
         android:layout_height="0dp"
         android:id="@+id/report_reply"
         android:background="@color/main_color"
