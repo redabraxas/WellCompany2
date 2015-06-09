@@ -561,7 +561,6 @@
                     android:layout_marginRight="5dp"
                     android:text="JOIN"
                     android:gravity="center"
-                    android:background="@drawable/shape"
                     android:textColor="#0099CC"
                     android:textSize="13dp"
                     android:typeface="sans" />
@@ -574,7 +573,6 @@
                     android:layout_height="30dp"
                     android:layout_marginLeft="5dp"
                     android:text="CANCEL"
-                    android:background="@drawable/shape"
                     android:gravity="center"
                     android:textColor="#ff4444"
                     android:textSize="13dp"

@@ -115,7 +115,7 @@
             <com.chocoroll.ourcompay.Model.MTextView
                 android:layout_weight="3"
                 android:layout_width="0dp"
-                android:lineSpacingExtra="3dp"
+                android:lineSpacingExtra="4dp"
                 android:layout_height="wrap_content"
                 android:text="회사소개000000000000000000mmmmmmmmmㅡㅡㅡㅡㅡㅡㅡㅡ"
                 android:id="@+id/comIntro"
