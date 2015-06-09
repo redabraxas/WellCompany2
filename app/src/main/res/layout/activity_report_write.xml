@@ -6,6 +6,31 @@
     android:background="#FFFFFF"
     android:orientation="vertical" >
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/main_color">
+        <FrameLayout
+            android:layout_gravity="center"
+            android:layout_marginLeft="12dp"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent">
+
+            <com.chocoroll.ourcompay.Model.EBTextView
+                android:id="@+id/title_bar_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textSize="20dp"
+                android:textColor="#ffffff"
+                android:typeface="serif"
+                android:text=" > 레포트 작성" />
+
+        </FrameLayout>
+
+    </LinearLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -40,22 +65,22 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal" >
 
-                    <com.chocoroll.ourcompay.Model.MTextView
+                    <com.chocoroll.ourcompay.Model.BTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:text="방문 회사 : "
-                        android:textColor="#000000"
+                        android:textColor="@color/textBold"
                         android:textSize="15dp"
                         android:typeface="sans" />
 
-                    <com.chocoroll.ourcompay.Model.MTextView
+                    <com.chocoroll.ourcompay.Model.BTextView
                         android:id="@+id/com_name"
                         android:layout_width="250dp"
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:padding="10dp"
-                        android:textColor="#000000"
+                        android:textColor="@color/textBold"
                         android:textSize="15dp"
                         android:typeface="sans"
                         android:text=""/>
@@ -84,22 +109,22 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal" >
 
-                    <com.chocoroll.ourcompay.Model.MTextView
+                    <com.chocoroll.ourcompay.Model.BTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:text="방문 목적 : "
-                        android:textColor="#000000"
+                        android:textColor="@color/textBold"
                         android:textSize="15dp"
                         android:typeface="sans" />
 
-                    <com.chocoroll.ourcompay.Model.MTextView
+                    <com.chocoroll.ourcompay.Model.BTextView
                         android:id="@+id/purpose"
                         android:layout_width="250dp"
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:padding="10dp"
-                        android:textColor="#000000"
+                        android:textColor="@color/textBold"
                         android:textSize="15dp"
                         android:typeface="sans"
                         android:text=""/>
@@ -127,16 +152,16 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal" >
 
-                    <com.chocoroll.ourcompay.Model.MTextView
+                    <com.chocoroll.ourcompay.Model.BTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:text="방문 날짜 :   "
-                        android:textColor="#000000"
+                        android:textColor="@color/textBold"
                         android:textSize="15dp"
                         android:typeface="sans" />
 
-                    <com.chocoroll.ourcompay.Model.MTextView
+                    <com.chocoroll.ourcompay.Model.BTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
@@ -166,12 +191,12 @@
                     android:gravity="center_vertical"
                     android:orientation="vertical" >
 
-                    <com.chocoroll.ourcompay.Model.MTextView
+                    <com.chocoroll.ourcompay.Model.BTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:text="후기 글 "
-                        android:textColor="#000000"
+                        android:textColor="@color/textBold"
                         android:textSize="15dp"
                         android:typeface="sans" />
 
@@ -208,16 +233,16 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal" >
 
-                    <com.chocoroll.ourcompay.Model.MTextView
+                    <com.chocoroll.ourcompay.Model.BTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:text="견학 사진 : "
-                        android:textColor="#000000"
+                        android:textColor="@color/textBold"
                         android:textSize="15dp"
                         android:typeface="sans" />
 
-                    <com.chocoroll.ourcompay.Model.MTextView
+                    <com.chocoroll.ourcompay.Model.BTextView
                         android:clickable="true"
                         android:paddingRight="8dp"
                         android:paddingLeft="8dp"
@@ -259,7 +284,7 @@
                 android:gravity="center"
                 android:orientation="horizontal" >
 
-                <com.chocoroll.ourcompay.Model.MTextView
+                <com.chocoroll.ourcompay.Model.EBTextView
                     android:clickable="true"
                     android:layout_margin="10dp"
                     android:id="@+id/uploadButton"
@@ -268,11 +293,11 @@
                     android:layout_marginRight="5dp"
                     android:text="작성"
                     android:background="@null"
-                    android:textColor="#0099CC"
+                    android:textColor="@color/main_color"
                     android:textSize="13dp"
                     android:typeface="sans" />
 
-                <com.chocoroll.ourcompay.Model.MTextView
+                <com.chocoroll.ourcompay.Model.EBTextView
                     android:clickable="true"
                     android:layout_margin="10dp"
                     android:id="@+id/report_cancelbt"
@@ -281,7 +306,7 @@
                     android:layout_marginLeft="5dp"
                     android:text="취소"
                     android:background="@null"
-                    android:textColor="#ff4444"
+                    android:textColor="#ee5544"
                     android:textSize="13dp"
                     android:typeface="sans" />
             </LinearLayout>
