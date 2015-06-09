@@ -179,7 +179,7 @@ public class CompanyActivity extends FragmentActivity {
 
     public class MyPagerAdapter extends FragmentPagerAdapter implements PagerSlidingTabStrip.IconTabProvider{
 
-        private int[] ICONS = { R.drawable.com_info, R.drawable.reservtion, R.drawable.report, R.drawable.qna };
+        private int[] ICONS = { R.drawable.com_infom, R.drawable.reservtion, R.drawable.report, R.drawable.qna };
 
         public MyPagerAdapter(FragmentManager fm) {
             super(fm);
