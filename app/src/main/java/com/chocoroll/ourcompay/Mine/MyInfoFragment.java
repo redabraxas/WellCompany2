@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.chocoroll.ourcompay.Extra.Retrofit;
 import com.chocoroll.ourcompay.MainActivity;
@@ -51,7 +52,7 @@ public class MyInfoFragment extends Fragment {
         final EditText newpasswd = (EditText) v.findViewById(R.id.editnewpw);
         id = ((MainActivity) MainActivity.mContext).getUserId();
 
-        Button change_pw = (Button) v.findViewById(R.id.change_pw);
+        TextView change_pw = (TextView) v.findViewById(R.id.change_pw);
         change_pw.setOnClickListener(new View.OnClickListener()
 
         {

@@ -48,8 +48,8 @@ public class QnaAdapter extends ArrayAdapter<Qna> {
             ((TextView)  v.findViewById(R.id.qna_id)).setText(p.getWriter());
             ((TextView) v.findViewById(R.id.qna_date)).setText(p.getDate());
             ((TextView)  v.findViewById(R.id.qna_content)).setText(p.getContent());
-            ((Button)v.findViewById(R.id.qna_showAnswer)).setText("답변보기("+p.getAnswerCount()+")");
-            ((Button)v.findViewById(R.id.qna_showAnswer)).setOnClickListener(new View.OnClickListener() {
+            ((TextView)v.findViewById(R.id.qna_showAnswer)).setText("답변보기("+p.getAnswerCount()+")");
+            ((TextView)v.findViewById(R.id.qna_showAnswer)).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 

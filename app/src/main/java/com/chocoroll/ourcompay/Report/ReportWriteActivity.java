@@ -38,7 +38,7 @@ import retrofit.client.Response;
 public class ReportWriteActivity extends Activity implements OnClickListener {
 
 
-    private Button uploadButton, btnselectpic,cancelButton;
+    private TextView uploadButton, btnselectpic,cancelButton;
     private ImageView imageview;
     private int serverResponseCode = 0;
     private ProgressDialog ldialog = null;
@@ -85,10 +85,10 @@ public class ReportWriteActivity extends Activity implements OnClickListener {
 
 
 
-        uploadButton = (Button) findViewById(R.id.uploadButton);
-        btnselectpic = (Button) findViewById(R.id.button_selectpic);
+        uploadButton = (TextView) findViewById(R.id.uploadButton);
+        btnselectpic = (TextView) findViewById(R.id.button_selectpic);
         imageview = (ImageView) findViewById(R.id.imageView_pic);
-        cancelButton = (Button) findViewById(R.id.report_cancelbt);
+        cancelButton = (TextView) findViewById(R.id.report_cancelbt);
         user_email =
                 ((MainActivity)MainActivity.mContext).getUserId();
 

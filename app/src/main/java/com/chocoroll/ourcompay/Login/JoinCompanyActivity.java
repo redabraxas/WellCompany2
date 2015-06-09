@@ -38,7 +38,7 @@ import retrofit.client.Response;
 
 public class JoinCompanyActivity extends Activity implements View.OnClickListener {
 
-    private Button uploadButton, btnselectpic, cancelButton;
+    private TextView uploadButton, btnselectpic, cancelButton;
     private ImageView imageview;
     private ProgressDialog ldialog = null;
 
@@ -64,10 +64,10 @@ public class JoinCompanyActivity extends Activity implements View.OnClickListene
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join_company);
-        uploadButton = (Button) findViewById(R.id.uploadButton);
-        btnselectpic = (Button) findViewById(R.id.button_selectpic);
+        uploadButton = (TextView) findViewById(R.id.uploadButton);
+        btnselectpic = (TextView) findViewById(R.id.button_selectpic);
         imageview = (ImageView) findViewById(R.id.imageView_pic);
-        cancelButton = (Button) findViewById(R.id.cancelbt);
+        cancelButton = (TextView) findViewById(R.id.cancelbt);
         user_email =
                 ((MainActivity)MainActivity.mContext).getUserId();
 

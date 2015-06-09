@@ -51,7 +51,7 @@ public class ReserveApplyAdapter extends ArrayAdapter<Reserve> {
         if (p != null) {
             ((TextView)  v.findViewById(R.id.comName)).setText(p.getComName());
             ((TextView)  v.findViewById(R.id.reserveDate)).setText(p.getDate());
-            Button btn = (Button)v.findViewById(R.id.btn);
+            TextView btn = (TextView)v.findViewById(R.id.btn);
 
             if(key.equals("wait")){
                 btn.setText("포기하기");

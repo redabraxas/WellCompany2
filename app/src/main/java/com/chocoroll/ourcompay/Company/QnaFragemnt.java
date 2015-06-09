@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.chocoroll.ourcompay.MainActivity;
 import com.chocoroll.ourcompay.R;
@@ -64,7 +65,7 @@ public class QnaFragemnt extends Fragment {
         final View v = inflater.inflate(R.layout.fragment_qna, container, false);
 
         // 큐엔에이 작성구문
-        Button btnQna = (Button)v.findViewById(R.id.btn_qna);
+        TextView btnQna = (TextView)v.findViewById(R.id.btn_qna);
         btnQna.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
