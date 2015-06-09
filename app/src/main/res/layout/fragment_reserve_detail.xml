@@ -47,7 +47,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:text="예약 회사 : "
-                    android:textColor="@color/text"
+                    android:textColor="@color/textBold"
                     android:textSize="15dp"
                     android:typeface="sans" />
 
@@ -91,7 +91,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:text="목적 : "
-                    android:textColor="@color/text"
+                    android:textColor="@color/textBold"
                     android:textSize="15dp"
                     android:typeface="sans" />
 
@@ -136,8 +136,8 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginBottom="10dp"
-                    android:text="예약 날짜 : "
-                    android:textColor="@color/text"
+                    android:text="예약 날짜 :  "
+                    android:textColor="@color/textBold"
                     android:textSize="15dp"
                     android:typeface="sans" />
 
@@ -152,22 +152,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_marginLeft="40dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginBottom="10dp"
-                    android:text="예약자 : "
-                    android:textColor="@color/text"
+                    android:text=" 예상인원 :  "
+                    android:textColor="@color/textBold"
                     android:textSize="15dp"
                     android:typeface="sans" />
+
                 <com.chocoroll.ourcompay.Model.MTextView
                     android:layout_width="wrap_content"
-                    android:textSize="15dp"
-                    android:layout_margin="10dp"
                     android:layout_height="wrap_content"
-                    android:text="홍길동"
-                    android:gravity="center"
-                    android:id="@+id/name"
                     android:textColor="@color/text"
-                   />
+                    android:id="@+id/expectpeople"
+                    android:textSize="15dp"
+                    android:text="10"
+                    android:layout_marginRight="30dp"
+                    android:gravity="center"/>
 
 
                 />
@@ -194,36 +194,42 @@
                 android:layout_marginLeft="10dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal" >
+
+
                 <com.chocoroll.ourcompay.Model.BTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginBottom="10dp"
-                    android:text="예상인원 :  "
-                    android:textColor="@color/text"
+                    android:text="예약자 : "
+                    android:textColor="@color/textBold"
                     android:textSize="15dp"
                     android:typeface="sans" />
 
                 <com.chocoroll.ourcompay.Model.MTextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/text"
-                    android:id="@+id/expectpeople"
                     android:textSize="15dp"
-                    android:text="10"
-                    android:layout_marginRight="30dp"
-                    android:gravity="center"/>
+                    android:layout_margin="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="홍길동"
+                    android:gravity="center"
+                    android:id="@+id/name"
+                    android:textColor="@color/text"
+                    />
+
+
 
 
                 <com.chocoroll.ourcompay.Model.BTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="전화번호 :   "
-                    android:textColor="@color/text"
+                    android:text="전화번호 : "
+                    android:textColor="@color/textBold"
                     android:textSize="15dp"
                     android:typeface="sans" />
+
                 <com.chocoroll.ourcompay.Model.MTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -259,7 +265,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:text="소속 : "
-                android:textColor="@color/text"
+                android:textColor="@color/textBold"
                 android:textSize="15dp"
                 android:typeface="sans" />
             <com.chocoroll.ourcompay.Model.MTextView
@@ -298,12 +304,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="예상질문 :  "
-                    android:textColor="@color/text"
+                    android:text="예상질문 : "
+                    android:textColor="@color/textBold"
                     android:textSize="15dp"
                     android:typeface="sans" />
 
                 <com.chocoroll.ourcompay.Model.MTextView
+                    android:lineSpacingExtra="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="하하하하하하하ㅏ하하하하하하하"
@@ -344,12 +351,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="하고싶은말 :  "
-                    android:textColor="@color/text"
+                    android:text="하고싶은말 : "
+                    android:textColor="@color/textBold"
                     android:textSize="15dp"
                     android:typeface="sans" />
 
                 <com.chocoroll.ourcompay.Model.MTextView
+                    android:lineSpacingExtra="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/text"
