@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,8 +16,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.chocoroll.ourcompay.CompanyMenu.VisitStateFragment;
 import com.chocoroll.ourcompay.Extra.DownloadImageTask;
 import com.chocoroll.ourcompay.Extra.Retrofit;
+import com.chocoroll.ourcompay.MainActivity;
 import com.chocoroll.ourcompay.Model.Company;
 import com.chocoroll.ourcompay.R;
 import com.google.gson.JsonObject;
@@ -113,7 +116,12 @@ public class CompanyChangeAdapter extends ArrayAdapter<Company> {
                                             public void onClick(DialogInterface dialog, int whichButton) {
 
 
-
+                                                ((MainActivity)MainActivity.mContext).removeAllStack();
+                                                FragmentTransaction ft = ((MainActivity)MainActivity.mContext).getSupportFragmentManager().beginTransaction();
+                                                ft.replace(R.id.container, new CompanyStateFragment());
+                                                ft.setTransition(FragmentTransaction.TRANSIT_NONE);
+                                                ft.addToBackStack(null);
+                                                ft.commit();
                                             }
                                         });
 

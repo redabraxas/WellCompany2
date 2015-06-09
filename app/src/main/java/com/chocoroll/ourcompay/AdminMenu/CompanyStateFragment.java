@@ -89,8 +89,6 @@ public class CompanyStateFragment extends Fragment {
                     sendreport.getCompanyList(new Callback<JsonArray>() {
                         @Override
                         public void success(JsonArray jsonElements, Response response) {
-                            dialog.dismiss();
-
 
                             for (int i = 0; i < jsonElements.size(); i++) {
                                 JsonObject deal = (JsonObject) jsonElements.get(i);
@@ -114,7 +112,7 @@ public class CompanyStateFragment extends Fragment {
                                 }
 
 
-
+                            dialog.dismiss();
                             listView.setAdapter(companyAdatper);
 
                         }
