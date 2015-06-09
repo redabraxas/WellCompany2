@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text = "내 글 목록"
+        android:textColor="@color/textBold"
         android:textSize="20dp"/>
 
     <ListView
@@ -35,6 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:paddingTop="5dp"
+        android:textColor="@color/textBold"
         android:text = "내 질문 목록"
         android:textSize="20dp"/>
 

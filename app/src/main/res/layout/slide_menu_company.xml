@@ -61,7 +61,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
-            android:src="@drawable/left_menu" />
+            android:src="@drawable/logout" />
 
 
         <com.chocoroll.ourcompay.Model.BTextView
@@ -95,7 +95,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
-            android:src="@drawable/left_menu" />
+            android:src="@drawable/reservtion" />
 
 
         <com.chocoroll.ourcompay.Model.BTextView
@@ -129,7 +129,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
-            android:src="@drawable/left_menu" />
+            android:src="@drawable/report" />
 
 
         <com.chocoroll.ourcompay.Model.BTextView
@@ -161,7 +161,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
-            android:src="@drawable/left_menu" />
+            android:src="@drawable/bookmarklist" />
 
 
         <com.chocoroll.ourcompay.Model.BTextView
