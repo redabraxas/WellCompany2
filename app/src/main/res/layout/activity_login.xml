@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="48dp"
         android:background="@color/main_color">
 
         <LinearLayout
@@ -54,7 +54,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <com.chocoroll.ourcompay.Model.MTextView
+                    <com.chocoroll.ourcompay.Model.EBTextView
                         android:textColor="#6B6B6B"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
@@ -88,7 +88,7 @@
                     android:orientation="horizontal">
 
 
-                    <com.chocoroll.ourcompay.Model.MTextView
+                    <com.chocoroll.ourcompay.Model.EBTextView
                         android:textColor="#6B6B6B"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"

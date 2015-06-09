@@ -7,24 +7,29 @@
     android:orientation="vertical"
     tools:context="com.chocoroll.ourcompay.Login.JoinSelectActivity">
 
-    <ImageButton xmlns:android="http://schemas.android.com/apk/res/android"
 
+    <com.chocoroll.ourcompay.Model.EBTextView
+        android:layout_marginTop="185dp"
+        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:background="@null"
+        android:padding="10dp"
+        android:textSize="25dp"
+        android:text="JOIN AS USER"
         android:id="@+id/user_join"
-        android:src="@drawable/user_join" />
+        android:background="@color/tab_background"
+        android:textColor="#FFF"/>
 
 
-    <ImageButton xmlns:android="http://schemas.android.com/apk/res/android"
-
+    <com.chocoroll.ourcompay.Model.EBTextView
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:background="@null"
+        android:padding="10dp"
+        android:textSize="25dp"
+        android:text="JOIN AS COMPANY"
         android:id="@+id/company_join"
-        android:src="@drawable/company_join" />
+        android:background="@color/tab_background"
+        android:textColor="#FFF"/>
 </LinearLayout>

@@ -11,10 +11,10 @@
         android:layout_height="50dp"
         android:id="@+id/companyLogo" />
 
-    <com.chocoroll.ourcompay.Model.MTextView
+    <com.chocoroll.ourcompay.Model.BTextView
         android:layout_marginLeft="10dp"
-        android:textColor="#000000"
-        android:textSize="20dp"
+        android:textColor="@color/textBold"
+        android:textSize="17dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="회사이름"

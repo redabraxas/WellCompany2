@@ -180,8 +180,9 @@
                         android:typeface="sans" />
 
                     <com.chocoroll.ourcompay.Model.MTextView
+
                         android:layout_width="130dp"
-                        android:layout_height="40dp"
+                        android:layout_height="wrap_content"
                         android:textColor="@color/text"
                         android:id="@+id/user_id"
                         android:textAppearance="?android:attr/textAppearanceMedium"
