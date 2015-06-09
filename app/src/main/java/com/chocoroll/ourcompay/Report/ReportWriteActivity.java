@@ -229,11 +229,7 @@ public class ReportWriteActivity extends Activity implements OnClickListener {
             options.inSampleSize = 8;
 
             Bitmap bitmap = BitmapFactory.decodeFile(imagepath,options);
-            imageview.setImageBitmap(bitmap);
-
-
-
-        }
+            imageview.setImageBitmap(bitmap); }
 
     }
 
