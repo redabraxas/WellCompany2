@@ -86,7 +86,8 @@ public class ReportListFragment extends Fragment implements HomeFragment.HomeFra
 
                 Report report = reportList.get(i);
                 ReportDetailFragment reportDetailFragment = ReportDetailFragment.newInstance(report);
-                ((MainActivity) MainActivity.mContext).getSupportFragmentManager().beginTransaction().replace(R.id.container, reportDetailFragment).addToBackStack(null).commit();
+                ((MainActivity) MainActivity.mContext).getSupportFragmentManager().beginTransaction().
+                        replace(R.id.container, reportDetailFragment).addToBackStack(null).commit();
 
 
             }

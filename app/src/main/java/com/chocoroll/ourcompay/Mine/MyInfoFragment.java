@@ -47,9 +47,9 @@ public class MyInfoFragment extends Fragment {
 
         // 비밀번호 변경!
 
-        final EditText passwd = (EditText) v.findViewById(R.id.editpwd);
-        final EditText repasswd = (EditText) v.findViewById(R.id.editrepwd);
-        final EditText newpasswd = (EditText) v.findViewById(R.id.editnewpw);
+        final EditText passwd = (EditText) v.findViewById(R.id.pw);
+        final EditText newpasswd = (EditText) v.findViewById(R.id.newpw);
+        final EditText newconfirm = (EditText) v.findViewById(R.id.newpw_confirm);
         id = ((MainActivity) MainActivity.mContext).getUserId();
 
         TextView change_pw = (TextView) v.findViewById(R.id.change_pw);
@@ -60,13 +60,13 @@ public class MyInfoFragment extends Fragment {
             public void onClick(View v) {
 
                 String pw = passwd.getText().toString();
-                String repw = repasswd.getText().toString();
+                String repw = newconfirm.getText().toString();
                 String newpw = newpasswd.getText().toString();
 
-                dialog = ProgressDialog.show(getActivity(), "", "비밀번호변경", true);
 
-                if (!pw.equals(repw)) {
-                    new AlertDialog.Builder(getActivity()).setMessage("현재 비밀번호가 서로 일치하지 않습니다.")
+
+                if (!newpw.equals(repw)) {
+                    new AlertDialog.Builder(getActivity()).setMessage("새로운 비밀번호가 서로 일치하지 않습니다.")
                             .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -87,6 +87,15 @@ public class MyInfoFragment extends Fragment {
 
 
     void chage_pw(String id,String newpw){
+
+
+        dialog = new ProgressDialog(getActivity());
+        dialog.setMessage("나의 신청 내역을 받아오는 중입니다...");
+        dialog.setIndeterminate(true);
+        dialog.setCancelable(false);
+        dialog.show();
+
+
         final JsonObject info = new JsonObject();
         info.addProperty("id", id);
         info.addProperty("newpw", newpw);
